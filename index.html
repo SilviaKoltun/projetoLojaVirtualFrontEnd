@@ -4,106 +4,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Criar Conta - Inova 3D</title>
+
     <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    >
 </head>
 
 <body>
     <div class="container">
+
+        <!-- Painel esquerdo -->
         <aside class="sidebar">
+
             <div class="logo-area">
-                <div class="logo-placeholder">
-                    <span class="orage-text">3D</span>
-                    <h1>INOVA 3D</h1>
-                    <p class="subtitle"> INOVAÇÃO QUE GRANHA FORMA </p>
-                </div>
+                <!-- Retire a barra inicial do caminho -->
+                <img
+                    src="./assets/logo.png"
+                    alt="Logo Inova 3D"
+                    class="logo"
+                >
             </div>
 
             <div class="features">
+
                 <div class="feature-item">
-                    <i class="fa-regular fa-lightbuld"></i>
+                    <i class="ph ph-lightbulb-filament"></i>
+
+                    <h3>Inovação</h3>
+
+                    <p>
+                        Soluções criativas<br>
+                        e eficientes
+                    </p>
                 </div>
 
-                <h3>Inovação</h3>
-                <p> Soluções criativas e eficientes</p>
-            </div>
-
-            <div class="features">
                 <div class="feature-item">
-                    <i class="fa-regular fa-lightbuld"></i>
+                    <i class="ph ph-cube"></i>
+
+                    <h3>Tecnologia</h3>
+
+                    <p>
+                        Impressão 3D de<br>
+                        alta qualidade
+                    </p>
                 </div>
 
-                <h3>Tecnologia</h3>
-                <p> Impressão 3D</p>
-            </div>
-
-            <div class="features">
                 <div class="feature-item">
-                    <i class="fa-regular fa-lightbuld"></i>
+                    <i class="ph ph-target"></i>
+
+                    <h3>Precisão</h3>
+
+                    <p>
+                        Detalhes que<br>
+                        fazem a diferença
+                    </p>
                 </div>
 
-                <h3>Precisão</h3>
-                <p> Detalhes que fazem a diferença</p>
             </div>
-
-
-
         </aside>
-        <main class="form-painel">
-            <h2>Criar Conta</h2>
-            <p class="form-desc"> Preencha os dados abaixo para criar sua conta na <span
-                    class="orange-text font-bold">Inova
-                    3D</span>.</p>
 
+        <!-- Formulário -->
+        <main class="form-painel">
+
+            <header class="form-header">
+                <h1>Criar conta</h1>
+
+                <p class="form-desc">
+                    Preencha os dados abaixo para<br>
+                    criar sua conta na
+                    <span class="orange-text">Inova 3D.</span>
+                </p>
+            </header>
 
             <form>
+
                 <div class="input-group">
-                    <label> Nome Completo </label>
+                    <label for="nome">Nome completo</label>
+
                     <div class="input-wrapper">
-                        <i class="fa-regular fa-user"></i>
-                        <input type="text" placeholder="Digite seu nome completo" required>
+                        <i class="ph ph-user"></i>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            placeholder="Digite seu nome completo"
+                            required
+                        >
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label> Email </label>
+                    <label for="email">E-mail</label>
+
                     <div class="input-wrapper">
-                        <i class="fa-regular fa-envelope"></i>
-                        <input type="text" placeholder="Digite seu email" required>
+                        <i class="ph ph-envelope-simple"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Digite seu e-mail"
+                            required
+                        >
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label> Telefone </label>
-                    <div class=" input-wrapper">
-                        <i class=" fa-solid   fa-phone"></i>
-                        <input type="number" placeholder="(11)9999-9999" required>
+                    <label for="telefone">
+                        Telefone <span class="optional">(opcional)</span>
+                    </label>
+
+                    <div class="input-wrapper">
+                        <i class="ph ph-phone"></i>
+
+                        <input
+                            type="tel"
+                            id="telefone"
+                            placeholder="(11) 99999-9999"
+                        >
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label> Senha </label>
+                    <label for="senha">Senha</label>
+
                     <div class="input-wrapper">
-                        <i class="fa-regular fa-password"></i>
-                        <input type="text" placeholder="Digite sua Senha" required>
+                        <i class="ph ph-lock"></i>
+
+                        <input
+                            type="password"
+                            id="senha"
+                            placeholder="Digite sua senha"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            aria-label="Mostrar senha"
+                        >
+                            <i class="ph ph-eye"></i>
+                        </button>
                     </div>
+
+                    <small class="helper-text">
+                        A senha deve ter pelo menos 8 caracteres
+                    </small>
                 </div>
 
                 <div class="input-group">
-                    <label> Confirmar Senha </label>
+                    <label for="confirmar-senha">Confirmar senha</label>
+
                     <div class="input-wrapper">
-                        <i class="fa-regular fa-password"></i>
-                        <input type="text" placeholder="Confirme sua Senha" required>
+                        <i class="ph ph-lock"></i>
+
+                        <input
+                            type="password"
+                            id="confirmar-senha"
+                            placeholder="Confirme sua senha"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            aria-label="Mostrar confirmação da senha"
+                        >
+                            <i class="ph ph-eye"></i>
+                        </button>
                     </div>
                 </div>
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="terms" required>
-                    <label id="terms-label" for="terms">Eu concordo com os <a href="#">Termos de Uso</a> e a <a
-                            href="#">Política de Privacidade</a>.</label>
+
+                    <label for="terms">
+                        Eu concordo com os
+                        <a href="#">Termos de Uso</a><br>
+                        e a
+                        <a href="#">Política de Privacidade</a>
+                    </label>
                 </div>
 
-                <button type="submit" class="btn-submit">Cadastrar</button>
+                <button type="submit" class="btn-submit">
+                    Cadastrar
+                </button>
             </form>
 
             <div class="divider">
@@ -111,14 +201,35 @@
             </div>
 
             <button type="button" class="btn-google">
-                <img src="https://wikimedia.org" alt="Google">
+                <span class="google-icon">G</span>
                 Cadastrar com Google
             </button>
 
-            <p class="footer-text">Já tem uma conta? <a href="#">Entrar</a></p>
+            <p class="footer-text">
+                Já tem uma conta?
+                <a href="#">Entrar</a>
+            </p>
+
         </main>
     </div>
 
+    <script>
+        const botoesSenha = document.querySelectorAll(".toggle-password");
+
+        botoesSenha.forEach((botao) => {
+            botao.addEventListener("click", () => {
+                const input = botao.parentElement.querySelector("input");
+                const icone = botao.querySelector("i");
+
+                const senhaEstaVisivel = input.type === "text";
+
+                input.type = senhaEstaVisivel ? "password" : "text";
+
+                icone.classList.toggle("ph-eye");
+                icone.classList.toggle("ph-eye-slash");
+            });
+        });
+    </script>
 </body>
 
 </html>
