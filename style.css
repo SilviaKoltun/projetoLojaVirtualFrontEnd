@@ -27,8 +27,6 @@ body {
     font-family: var(--font-main);
 }
 
-/* Card principal */
-
 .container {
     width: 625px;
     max-width: 100%;
@@ -41,8 +39,6 @@ body {
     border-radius: 20px;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
 }
-
-/* Painel esquerdo */
 
 .sidebar {
     position: relative;
@@ -68,8 +64,6 @@ body {
         var(--dark-bg);
 }
 
-/* Brilho/textura discreta */
-
 .sidebar::before {
     content: "";
     position: absolute;
@@ -93,8 +87,6 @@ body {
         );
 }
 
-/* Logo */
-
 .logo-area {
     position: relative;
     z-index: 1;
@@ -114,8 +106,6 @@ body {
     height: auto;
     object-fit: contain;
 }
-
-/* Benefícios */
 
 .features {
     position: relative;
@@ -175,7 +165,6 @@ body {
     line-height: 1.55;
 }
 
-/* Painel do formulário */
 
 .form-painel {
     width: 61%;
@@ -205,7 +194,6 @@ body {
     font-weight: 700;
 }
 
-/* Campos */
 
 .input-group {
     margin-bottom: 24px;
@@ -296,8 +284,6 @@ body {
     font-size: 0.74rem;
 }
 
-/* Termos */
-
 .checkbox-group {
     margin: 27px 0;
 
@@ -327,7 +313,6 @@ body {
     text-decoration: none;
 }
 
-/* Botão cadastrar */
 
 .btn-submit {
     width: 100%;
@@ -351,8 +336,6 @@ body {
     opacity: 0.92;
     transform: translateY(-1px);
 }
-
-/* Divisor */
 
 .divider {
     position: relative;
@@ -384,8 +367,6 @@ body {
     background-color: #ffffff;
     font-size: 0.82rem;
 }
-
-/* Google */
 
 .btn-google {
     width: 100%;
@@ -428,8 +409,6 @@ body {
     text-decoration: none;
     font-weight: 600;
 }
-
-/* Tablet e celular */
 
 @media (max-width: 650px) {
     body {
