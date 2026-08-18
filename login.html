@@ -8,25 +8,18 @@
     <title>Criar Conta - Inova 3D</title>
 
     <link rel="stylesheet" href="style.css">
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
 </head>
 
 <body>
     <div class="container">
 
-        
+
         <aside class="sidebar">
 
             <div class="logo-area">
-                
-                <img
-                    src="./assets/logo.png"
-                    alt="Logo Inova 3D"
-                    class="logo"
-                >
+
+                <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo">
             </div>
 
             <div class="features">
@@ -72,68 +65,83 @@
             <header class="form-header">
                 <h1>Bem Vindo! </h1>
                 <p class="form-desc">
-                    Acesse sua conta e continue  <br>
+                    Acesse sua conta e continue <br>
                     transformando ideias em realidade. </p>
             </header>
 
-        <form> 
-            <div class="input-group">
-                <label for="email">E-mail</label>
+            <form id= "login">
+                <div class="input-group">
+                    <label for="email">E-mail</label>
 
-                <div class="input-wrapper">
-                    <i class="ph ph-envelope-simple"></i>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Digite seu e-mail"
-                        required>
+                    <div class="input-wrapper">
+                        <i class="ph ph-envelope-simple"></i>
+                        <input type="email" id="email" placeholder="Digite seu e-mail" required>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label for="senha">Senha</label>
 
-                <div class="input-wrapper">
-                    <i class="ph ph-lock"></i>
+                    <div class="input-wrapper">
+                        <i class="ph ph-lock"></i>
 
-                    <input
-                        type="password"
-                        id="senha"
-                        placeholder="Digite sua senha"
-                        minlength="8"
-                        required>
+                        <input type="password" id="senha" placeholder="Digite sua senha" minlength="8" required>
 
-                <button
-                    type="button"
-                    class="toggle-password"
-                    aria-label="Mostrar senha">
-                    <i class="ph ph-eye"></i>
+                        <button type="button" class="toggle-password" aria-label="Mostrar senha">
+                            <i class="ph ph-eye"></i>
+                        </button>
+                    </div>
+
+                    <small class="helper-text">
+                        Esqueceu sua senha
+                    </small>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Entrar
                 </button>
-            </div>
 
-                <small class="helper-text">
-                    Esqueceu sua senha
-                </small>
-            </div>
-
-            <button type="submit" class="btn-submit">
-                Entrar
-            </button>
-
-        </form>
-         <div class="divider">
+            </form>
+            <div class="divider">
                 <span>ou</span>
-        </div>
+            </div>
 
             <button type="button" class="btn-google">
                 <span class="google-icon">G</span>
                 Entrar com Google
             </button>
-             <p class="footer-text">
+            <p class="footer-text">
                 ainda não tem uma conta? <a href="cadastro.html">Criar Conta</a>
-             </p>
+            </p>
         </main>
     </div>
+    <script>
+
+        const form = document.querySelector("#login")
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+                const data = {
+               
+                email: formData.get("email"),
+                senha: formData.get("senha")
+            }
+
+            const response = await fetch("https://laughing-bassoon-pj6rvrpv56p93vvw-3000.app.github.dev/auth/register", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }).then(() => {
+                alert("Logado")
+            });
+
+        });
+    </script>
 
 
 </body>
