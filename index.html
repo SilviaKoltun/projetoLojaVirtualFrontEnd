@@ -152,7 +152,8 @@
                 </div>
 
                 <button class="btn-submit">
-                    Cadastrar
+                    <a href="./login.html"> Cadastrar </a>
+                    
                 </button>
             </form>
 
@@ -196,9 +197,7 @@
             event.preventDefault();
 
             const formData = new FormData(form);
-
-            
-
+     
             const data = {
                 nome: formData.get("nome"),
                 email: formData.get("email"),

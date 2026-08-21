@@ -69,7 +69,7 @@
                     transformando ideias em realidade. </p>
             </header>
 
-            <form id= "login">
+            <form id="login">
                 <div class="input-group">
                     <label for="email">E-mail</label>
 
@@ -85,7 +85,8 @@
                     <div class="input-wrapper">
                         <i class="ph ph-lock"></i>
 
-                        <input type="password" id="senha" placeholder="Digite sua senha" minlength="8" required>
+                        <input type="password" id="senha" placeholder="Digite sua senha" name="senha" minlength="8"
+                            required>
 
                         <button type="button" class="toggle-password" aria-label="Mostrar senha">
                             <i class="ph ph-eye"></i>
@@ -111,11 +112,22 @@
                 Entrar com Google
             </button>
             <p class="footer-text">
-                ainda não tem uma conta? <a href="cadastro.html">Criar Conta</a>
+                ainda não tem uma conta? <a href="./index.html">Criar Conta</a>
             </p>
         </main>
     </div>
     <script>
+        const botoesSenha = document.querySelectorAll(".toggle-password");
+        botoesSenha.forEach((botao) => {
+            botao.addEventListener("click", () => {
+                const input = botao.parentElement.querySelector("input");
+                const icone = botao.querySelector("i");
+                const senhaEstaVisivel = input.type === "text";
+                input.type = senhaEstaVisivel ? "password" : "text";
+                icone.classList.toggle("ph-eye");
+                icone.classList.toggle("ph-eye-slash");
+            });
+        });
 
         const form = document.querySelector("#login")
 
@@ -124,8 +136,8 @@
 
             const formData = new FormData(form);
 
-                const data = {
-               
+            const data = {
+
                 email: formData.get("email"),
                 senha: formData.get("senha")
             }
