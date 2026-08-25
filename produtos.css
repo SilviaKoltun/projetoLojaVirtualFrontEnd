@@ -2,8 +2,10 @@
     --cor-laranja: #ff6500;
     --cor-fundo: #050505;
     --cor-card: #171717;
+    --cor-card-claro: #202020;
     --cor-texto: #ffffff;
     --cor-texto-suave: #a7a7a7;
+    --cor-borda: #282828;
 }
 
 * {
@@ -12,8 +14,13 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
 
@@ -21,41 +28,34 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Página principal */
+
 .pagina {
     width: 100%;
     max-width: 530px;
     min-height: 100vh;
-    padding: 18px 20px;
+    padding: 14px 20px 0;
 
     color: var(--cor-texto);
     background-color: var(--cor-fundo);
 }
+
+/* =========================
+   CABEÇALHO
+========================= */
 
 .cabecalho {
     width: 100%;
 }
 
 .cabecalho-superior {
-    height: 65px;
+    min-height: 64px;
 
     display: grid;
     grid-template-columns: 48px 1fr 48px;
     align-items: center;
     gap: 10px;
 }
-
-.logo {
-    display: block;
-    justify-self: center;
-
-    width: 265px;
-    max-width: 100%;
-    height: 64px;
-
-    object-fit: contain;
-}
-
-/* Botões de menu e carrinho */
 
 .botao-menu,
 .botao-carrinho {
@@ -74,7 +74,7 @@ body {
 }
 
 .botao-menu i {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
 }
 
 .botao-carrinho {
@@ -90,8 +90,8 @@ body {
     top: 0;
     right: 0;
 
-    width: 23px;
-    height: 23px;
+    width: 22px;
+    height: 22px;
 
     display: flex;
     align-items: center;
@@ -101,14 +101,67 @@ body {
     background-color: var(--cor-laranja);
     border-radius: 50%;
 
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: bold;
 }
+
+/* Marca e logo */
+.marca {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.logo {
+    width: 58px;
+    height: 65px;
+
+    display: block;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.nome-marca {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    column-gap: 7px;
+
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.nome-marca span {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nome-marca strong {
+    color: var(--cor-laranja);
+    font-size: 1.6rem;
+}
+
+.nome-marca small {
+    grid-column: 1 / -1;
+
+    margin-top: 2px;
+
+    color: var(--cor-texto-suave);
+    text-align: center;
+    font-size: 0.39rem;
+    letter-spacing: 1.1px;
+}
+
+/* Pesquisa */
 
 .campo-busca {
     width: 100%;
     height: 48px;
-    margin-top: 14px;
+    margin: 14px 0 16px;
     padding: 0 17px;
 
     display: flex;
@@ -118,15 +171,10 @@ body {
     background-color: var(--cor-card);
     border: 1px solid transparent;
     border-radius: 24px;
-
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
 }
 
 .campo-busca i {
     flex-shrink: 0;
-
     color: var(--cor-texto-suave);
     font-size: 1.4rem;
 }
@@ -139,61 +187,392 @@ body {
     border: none;
     outline: none;
 
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 .campo-busca input::placeholder {
     color: var(--cor-texto-suave);
 }
+
 .campo-busca:focus-within {
     border-color: var(--cor-laranja);
     box-shadow: 0 0 0 3px rgba(255, 101, 0, 0.12);
-
 }
 
-.categoria-item i,
-.vantagem-item i,
-.ver-todas,
-.menu-item.ativo {
-    color: #ff6500;
+/* =========================
+   BANNER
+========================= */
+
+.banner {
+    position: relative;
+
+    width: 100%;
+    min-height: 245px;
+    padding: 24px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 5, 5, 0.98) 0%,
+            rgba(5, 5, 5, 0.78) 48%,
+            rgba(5, 5, 5, 0.15) 100%
+        ),
+        url("./assets/banner-impressora-3d.jpg");
+
+    background-position: center;
+    background-size: cover;
+
+    border: 1px solid rgba(255, 101, 0, 0.25);
+    border-radius: 20px;
 }
 
-.categoria-item i {
-    font-size: 2rem;
+.banner-conteudo {
+    position: relative;
+    z-index: 1;
+    width: 62%;
 }
 
-.vantagem-item i {
-    font-size: 1.8rem;
+.banner h1 {
+    font-size: 1.5rem;
+    line-height: 1.25;
 }
 
-.menu-item i {
-    font-size: 1.7rem;
+.banner h1 span {
+    color: var(--cor-laranja);
 }
 
-.botao-adicionar i {
-    font-size: 1.3rem;
+.beneficios-banner {
+    margin-top: 24px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.beneficio-banner {
+    flex: 1;
+    text-align: center;
+}
+
+.beneficio-banner i {
+    color: var(--cor-laranja);
+    font-size: 1.65rem;
+}
+
+.beneficio-banner p {
+    margin-top: 5px;
+
+    color: #e0e0e0;
+    font-size: 0.62rem;
+    line-height: 1.3;
+}
+
+/* Indicadores do banner */
+
+.indicadores {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+
+    display: flex;
+    gap: 7px;
+
+    transform: translateX(-50%);
+}
+
+.indicador {
+    width: 8px;
+    height: 8px;
+
+    display: block;
+
+    background-color: #777777;
+    border-radius: 50%;
+}
+
+.indicador.ativo {
+    background-color: var(--cor-laranja);
+}
+
+/* =========================
+   TÍTULOS DAS SEÇÕES
+========================= */
+
+.secao-categorias,
+.secao-produtos {
+    margin-top: 22px;
+}
+
+.titulo-secao {
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.titulo-secao h2 {
+    font-size: 1.16rem;
+}
+
+.ver-todas {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: var(--cor-laranja);
+    text-decoration: none;
+
+    font-size: 0.78rem;
+    font-weight: 600;
 }
 
 .ver-todas i {
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
-@media (max-width: 400px) {
+/* =========================
+   CATEGORIAS
+========================= */
+
+.categorias {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.categoria-item {
+    min-width: 0;
+    min-height: 84px;
+    padding: 9px 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    color: #ffffff;
+    background:
+        linear-gradient(145deg, #202020, #151515);
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 13px;
+
+    cursor: pointer;
+}
+
+.categoria-item i {
+    color: var(--cor-laranja);
+    font-size: 1.85rem;
+}
+
+.categoria-item span {
+    overflow: hidden;
+
+    font-size: 0.63rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.categoria-item:hover {
+    border-color: var(--cor-laranja);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   PRODUTOS DO BACKEND
+========================= */
+
+.lista-produtos {
+    width: 100%;
+    min-height: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+/*
+    Os cards dos produtos serão criados pelo JavaScript
+    depois que fizermos o fetch para o backend.
+*/
+
+/* =========================
+   VANTAGENS
+========================= */
+
+.vantagens {
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px 12px;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+
+    background:
+        linear-gradient(145deg, #1c1c1c, #121212);
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 15px;
+}
+
+.vantagem-item {
+    min-width: 0;
+    padding: 0 6px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+
+    border-right: 1px solid #2c2c2c;
+}
+
+.vantagem-item:last-child {
+    border-right: none;
+}
+
+.vantagem-item > i {
+    flex-shrink: 0;
+
+    color: var(--cor-laranja);
+    font-size: 1.45rem;
+}
+
+.vantagem-item h3 {
+    font-size: 0.62rem;
+    line-height: 1.2;
+}
+
+.vantagem-item p {
+    margin-top: 4px;
+
+    color: var(--cor-texto-suave);
+    font-size: 0.51rem;
+    line-height: 1.25;
+}
+
+/* =========================
+   MENU INFERIOR
+========================= */
+
+.menu-inferior {
+    width: calc(100% + 40px);
+    min-height: 74px;
+    margin-top: 14px;
+    margin-left: -20px;
+    padding: 10px 14px;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+
+    background:
+        linear-gradient(180deg, #181818, #111111);
+
+    border-top: 1px solid #242424;
+    border-radius: 18px 18px 0 0;
+}
+
+.menu-item {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    color: var(--cor-texto-suave);
+    text-decoration: none;
+}
+
+.menu-item i {
+    font-size: 1.55rem;
+}
+
+.menu-item span {
+    font-size: 0.64rem;
+}
+
+.menu-item.ativo {
+    color: var(--cor-laranja);
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 450px) {
     .pagina {
-        padding: 14px;
+        padding-right: 14px;
+        padding-left: 14px;
     }
 
     .cabecalho-superior {
         grid-template-columns: 42px 1fr 42px;
     }
 
-    .logo {
-        width: 220px;
-    }
-
     .botao-menu,
     .botao-carrinho {
         width: 42px;
         height: 42px;
+    }
+
+    .logo {
+        width: 52px;
+        height: 58px;
+    }
+
+    .nome-marca {
+        font-size: 1.25rem;
+    }
+
+    .banner {
+        min-height: 225px;
+        padding: 20px;
+    }
+
+    .banner-conteudo {
+        width: 66%;
+    }
+
+    .banner h1 {
+        font-size: 1.4rem;
+    }
+
+    .categorias {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .categorias::-webkit-scrollbar {
+        display: none;
+    }
+
+    .categoria-item {
+        flex: 0 0 72px;
+    }
+
+    .vantagens {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 16px;
+    }
+
+    .vantagem-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .menu-inferior {
+        width: calc(100% + 28px);
+        margin-left: -14px;
     }
 }

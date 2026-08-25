@@ -3,181 +3,278 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> Inova 3D </title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Início - Inova 3D</title>
+
     <link rel="stylesheet" href="produtos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
 
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    >
 </head>
 
-
 <body>
+
     <div class="pagina">
+
+        <!-- Cabeçalho -->
         <header class="cabecalho">
+
             <div class="cabecalho-superior">
+
                 <button
                     type="button"
                     class="botao-menu"
                     aria-label="Abrir menu"
                 >
-    
                     <i class="ph ph-list"></i>
                 </button>
-                <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo"> 
+
+                <div class="marca">
+
+                    <img
+                        src="./assets/logo.png"
+                        alt="Logo Inova 3D"
+                        class="logo"
+                    >
+
+                    <div class="nome-marca">
+                        <span>INOVA</span>
+                        <strong>3D</strong>
+                        <small>INOVAÇÃO QUE GANHA FORMA</small>
+                    </div>
+
+                </div>
 
                 <button
                     type="button"
                     class="botao-carrinho"
                     aria-label="Abrir carrinho de compras"
                 >
-                    <i class="ph ph-shopping-cart"></i>
+                    <i class="ph ph-shopping-cart-simple"></i>
+
                     <span class="contador-carrinho">2</span>
                 </button>
 
             </div>
-            <p style="text-align: center;">--Inovação que Ganha Forma--</p>
-            
+
+            <!-- Campo de pesquisa -->
             <div class="campo-busca">
+
                 <i class="ph ph-magnifying-glass"></i>
-        
-                    <input
-                     type="search"
+
+                <input
+                    type="search"
                     id="busca"
-                    placeholder="Buscar produtos"
+                    placeholder="Buscar produtos..."
                     aria-label="Buscar produtos"
-                 >
+                >
+
             </div>
 
-            <h1> Soluções impressas /
-                em 3D para seu 
-            dia a dia. </h1>
+        </header>
 
+        <!-- Conteúdo principal -->
+        <main>
 
-            <i class="ph ph-shield-check"></i>
-            <p>Alta qualidade</p>
+            <!-- Banner -->
+            <section class="banner">
 
-            <i class="ph ph-cube"></i>
-            <p>Materiais Duraveis</p>
+                <div class="banner-conteudo">
 
-            <i class="ph ph-rocket-launch"></i>
-            <p>Design Inovador</p>
+                    <h1>
+                        Soluções impressas<br>
+                        em <span>3D</span> para o seu<br>
+                        dia a dia.
+                    </h1>
 
-            <h1> Categorias </h1>
+                    <div class="beneficios-banner">
 
+                        <div class="beneficio-banner">
+                            <i class="ph ph-shield-check"></i>
+                            <p>Alta<br>qualidade</p>
+                        </div>
 
+                        <div class="beneficio-banner">
+                            <i class="ph ph-cube"></i>
+                            <p>Materiais<br>duráveis</p>
+                        </div>
 
-<section class="categorias">
+                        <div class="beneficio-banner">
+                            <i class="ph ph-rocket-launch"></i>
+                            <p>Design<br>inovador</p>
+                        </div>
 
-    <button class="categoria-item">
-        <i class="ph ph-squares-four"></i>
-        <span>Todos</span>
-    </button>
+                    </div>
 
-    <button class="categoria-item">
-        <i class="ph ph-device-mobile"></i>
-        <span>Acessórios</span>
-    </button>
+                </div>
 
-    <button class="categoria-item">
-        <i class="ph ph-house"></i>
-        <span>Decoração</span>
-    </button>
+                <!-- Indicadores do banner -->
+                <div class="indicadores">
+                    <span class="indicador ativo"></span>
+                    <span class="indicador"></span>
+                    <span class="indicador"></span>
+                </div>
 
-    <button class="categoria-item">
-        <i class="ph ph-archive"></i>
-        <span>Organização</span>
-    </button>
+            </section>
 
-    <button class="categoria-item">
-        <i class="ph ph-paw-print"></i>
-        <span>Pet</span>
-    </button>
+            <!-- Categorias -->
+            <section class="secao-categorias">
 
-    <button class="categoria-item">
-        <i class="ph ph-wrench"></i>
-        <span>Oficina</span>
-    </button>
-<h1> Produtos em Destaque  </h1> <p>Ver Todos > </p>
+                <div class="titulo-secao">
+                    <h2>Categorias</h2>
 
+                    <a href="#" class="ver-todas">
+                        Ver todas
+                        <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
 
-<div class="vantagens">
+                <div class="categorias">
 
-    <div class="vantagem-item">
-        <i class="ph ph-shield-check"></i>
+                    <button type="button" class="categoria-item">
+                        <i class="ph ph-squares-four"></i>
+                        <span>Todos</span>
+                    </button>
 
-        <div>
-            <h3>Pagamento Seguro</h3>
-            <p>Seus dados protegidos</p>
-        </div>
+                    <button type="button" class="categoria-item">
+                        <i class="ph ph-device-mobile"></i>
+                        <span>Acessórios</span>
+                    </button>
+
+                    <button type="button" class="categoria-item">
+                        <i class="ph ph-house"></i>
+                        <span>Decoração</span>
+                    </button>
+
+                    <button type="button" class="categoria-item">
+                        <i class="ph ph-archive"></i>
+                        <span>Organização</span>
+                    </button>
+
+                    <button type="button" class="categoria-item">
+                        <i class="ph ph-paw-print"></i>
+                        <span>Pet</span>
+                    </button>
+
+                    <button type="button" class="categoria-item">
+                        <i class="ph ph-wrench"></i>
+                        <span>Oficina</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Produtos vindos do backend -->
+            <section class="secao-produtos">
+
+                <div class="titulo-secao">
+                    <h2>Produtos em destaque</h2>
+
+                    <a href="#" class="ver-todas">
+                        Ver todos
+                        <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+
+                <!-- O JavaScript colocará os produtos aqui -->
+                <div
+                    id="lista-produtos"
+                    class="lista-produtos"
+                ></div>
+
+            </section>
+
+            <!-- Vantagens da loja -->
+            <section class="vantagens">
+
+                <div class="vantagem-item">
+
+                    <i class="ph ph-shield-check"></i>
+
+                    <div>
+                        <h3>Pagamento Seguro</h3>
+                        <p>Seus dados protegidos</p>
+                    </div>
+
+                </div>
+
+                <div class="vantagem-item">
+
+                    <i class="ph ph-truck"></i>
+
+                    <div>
+                        <h3>Envio Rápido</h3>
+                        <p>Para todo o Brasil</p>
+                    </div>
+
+                </div>
+
+                <div class="vantagem-item">
+
+                    <i class="ph ph-seal-check"></i>
+
+                    <div>
+                        <h3>Qualidade Garantida</h3>
+                        <p>Impressão 3D de alta qualidade</p>
+                    </div>
+
+                </div>
+
+                <div class="vantagem-item">
+
+                    <i class="ph ph-headset"></i>
+
+                    <div>
+                        <h3>Atendimento Especializado</h3>
+                        <p>Estamos prontos para ajudar</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Menu inferior -->
+        <nav class="menu-inferior">
+
+            <a href="home.html" class="menu-item ativo">
+                <i class="ph ph-house"></i>
+                <span>Início</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="ph ph-squares-four"></i>
+                <span>Categorias</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="ph ph-heart"></i>
+                <span>Favoritos</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="ph ph-shopping-bag"></i>
+                <span>Pedidos</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="ph ph-user"></i>
+                <span>Conta</span>
+            </a>
+
+        </nav>
+
     </div>
 
-    <div class="vantagem-item">
-        <i class="ph ph-truck"></i>
-
-        <div>
-            <h3>Envio Rápido</h3>
-            <p>Para todo o Brasil</p>
-        </div>
-    </div>
-
-    <div class="vantagem-item">
-        <i class="ph ph-seal-check"></i>
-
-        <div>
-            <h3>Qualidade Garantida</h3>
-            <p>Impressão 3D de alta qualidade</p>
-        </div>
-    </div>
-
-    <div class="vantagem-item">
-        <i class="ph ph-headset"></i>
-
-        <div>
-            <h3>Atendimento Especializado</h3>
-            <p>Estamos prontos para ajudar</p>
-        </div>
-    </div>
-
-</div>
-<nav class="menu-inferior">
-
-    <a href="home.html" class="menu-item ativo">
-        <i class="ph ph-house"></i>
-        <span>Início</span>
-    </a>
-
-    <a href="#" class="menu-item">
-        <i class="ph ph-squares-four"></i>
-        <span>Categorias</span>
-    </a>
-
-    <a href="#" class="menu-item">
-        <i class="ph ph-heart"></i>
-        <span>Favoritos</span>
-    </a>
-
-    <a href="#" class="menu-item">
-        <i class="ph ph-shopping-bag"></i>
-        <span>Pedidos</span>
-    </a>
-
-    <a href="#" class="menu-item">
-        <i class="ph ph-user"></i>
-        <span>Conta</span>
-    </a>
-
-</nav>
-
-<div class="indicadores">
-    <span class="indicador ativo"></span>
-    <span class="indicador"></span>
-    <span class="indicador"></span>
-</div>
-</section>
-</header>
-    </div>
-
- </body>
+</body>
 
 </html>
