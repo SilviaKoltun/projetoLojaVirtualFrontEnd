@@ -64,7 +64,6 @@
 
             </div>
 
-            <!-- Campo de pesquisa -->
             <div class="campo-busca">
 
                 <i class="ph ph-magnifying-glass"></i>
@@ -80,10 +79,8 @@
 
         </header>
 
-        <!-- Conteúdo principal -->
         <main>
 
-            <!-- Banner -->
             <section class="banner">
 
                 <div class="banner-conteudo">
@@ -110,12 +107,12 @@
                             <i class="ph ph-rocket-launch"></i>
                             <p>Design<br>inovador</p>
                         </div>
-
                     </div>
 
                 </div>
 
-                <!-- Indicadores do banner -->
+                <!-- <img src="./assets/banner-impressora-3d.png" alt="Banner de produtos" class="banner-imagem"> -->
+                
                 <div class="indicadores">
                     <span class="indicador ativo"></span>
                     <span class="indicador"></span>
@@ -123,8 +120,7 @@
                 </div>
 
             </section>
-
-            <!-- Categorias -->
+            
             <section class="secao-categorias">
 
                 <div class="titulo-secao">
@@ -172,7 +168,6 @@
 
             </section>
 
-            <!-- Produtos vindos do backend -->
             <section class="secao-produtos">
 
                 <div class="titulo-secao">
@@ -184,7 +179,6 @@
                     </a>
                 </div>
 
-                <!-- O JavaScript colocará os produtos aqui -->
                 <div
                     id="lista-produtos"
                     class="lista-produtos"
@@ -192,7 +186,6 @@
 
             </section>
 
-            <!-- Vantagens da loja -->
             <section class="vantagens">
 
                 <div class="vantagem-item">
@@ -243,7 +236,6 @@
 
         </main>
 
-        <!-- Menu inferior -->
         <nav class="menu-inferior">
 
             <a href="home.html" class="menu-item ativo">
@@ -274,6 +266,40 @@
         </nav>
 
     </div>
+
+    <script>
+
+        let produtos;
+
+        const token = localStorage.getItem ( 'token' );
+
+        const fetchProdutos = async () => {
+            try {
+                const resposta = await fetch("http://localhost:3000/produtos", {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!resposta.ok) {
+                    throw new Error("Erro ao buscar produtos");
+                }
+                const dados = await resposta.json();
+                return dados;
+            } catch (erro) {
+                console.error(erro);
+                return [];
+            }
+        };
+
+        fetchProdutos().then((dados) => {
+            produtos = dados;
+
+        });
+         
+
+    </script>
 
 </body>
 
