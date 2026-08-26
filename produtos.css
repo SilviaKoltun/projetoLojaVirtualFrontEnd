@@ -212,10 +212,6 @@ body {
         ),
         url("./assets/banner-impressora-3d.png");
 
-    /*
-       O gradiente ocupa 100% do banner.
-       A imagem ocupa somente 62% no lado direito.
-    */
     background-size:
         100% 100%,
         62% 100%;

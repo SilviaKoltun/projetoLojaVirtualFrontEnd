@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Pagamento - Inova 3D</title>
+
+    <link rel="stylesheet" href="pagamento.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    >
+</head>
+
+<body>
+
+    <div class="pagina">
+
+        <header class="cabecalho">
+
+            <button
+                type="button"
+                class="botao-voltar"
+                aria-label="Voltar para o carrinho"
+            >
+                <i class="ph ph-arrow-left"></i>
+            </button>
+
+            <div class="marca">
+
+                <img
+                    src="./assets/logo.png"
+                    alt="Logo Inova 3D"
+                    class="logo"
+                >
+
+                <div class="nome-marca">
+                    <span>INOVA</span>
+                    <strong>3D</strong>
+                    <small>INOVAÇÃO QUE GANHA FORMA</small>
+                </div>
+
+            </div>
+
+            <div class="ambiente-seguro">
+                <i class="ph ph-lock"></i>
+
+                <span>
+                    Ambiente
+                    <strong>100% seguro</strong>
+                </span>
+            </div>
+
+        </header>
+
+
+        <nav class="etapas" aria-label="Etapas da compra">
+
+            <div class="etapa concluida">
+                <span class="etapa-circulo">
+                    <i class="ph ph-check"></i>
+                </span>
+
+                <span class="etapa-nome">Carrinho</span>
+            </div>
+
+            <div class="linha-etapa concluida"></div>
+
+            <div class="etapa concluida">
+                <span class="etapa-circulo">
+                    <i class="ph ph-check"></i>
+                </span>
+
+                <span class="etapa-nome">Entrega</span>
+            </div>
+
+            <div class="linha-etapa"></div>
+
+            <div class="etapa ativa">
+                <span class="etapa-circulo">3</span>
+
+                <span class="etapa-nome">Pagamento</span>
+            </div>
+
+        </nav>
+
+
+        <main>
+
+            <section class="introducao-pagamento">
+
+                <div>
+                    <h1>Pagamento</h1>
+                    <p>Escolha a melhor forma de pagar</p>
+                </div>
+
+                <div class="aviso-seguranca">
+                    <i class="ph ph-shield-check"></i>
+
+                    <span>
+                        Seus dados estão
+                        <strong>protegidos</strong> e seguros
+                    </span>
+                </div>
+
+            </section>
+
+
+            <form class="formulario-pagamento">
+
+                <fieldset class="grupo-pagamento">
+
+                    <legend>Formas de pagamento</legend>
+
+                    <label class="forma-pagamento selecionada">
+
+                        <input
+                            type="radio"
+                            name="forma-pagamento"
+                            value="cartao"
+                            checked
+                        >
+
+                        <i class="ph ph-credit-card icone-forma cartao"></i>
+
+                        <span class="descricao-forma">
+                            <strong>Cartão de crédito</strong>
+                            <small>Pague com seu cartão</small>
+                        </span>
+
+                        <span class="bandeiras">
+                            <strong class="visa">VISA</strong>
+                            <span class="mastercard">
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <strong class="elo">elo</strong>
+                            <strong class="amex">AM<br>EX</strong>
+                        </span>
+
+                        <span class="radio-personalizado"></span>
+
+                    </label>
+
+                    <label class="forma-pagamento">
+
+                        <input
+                            type="radio"
+                            name="forma-pagamento"
+                            value="pix"
+                        >
+
+                        <i class="ph ph-pix-logo icone-forma pix"></i>
+
+                        <span class="descricao-forma">
+                            <strong>PIX</strong>
+                            <small>Pagamento instantâneo</small>
+                        </span>
+
+                        <span class="radio-personalizado"></span>
+
+                    </label>
+
+                    <label class="forma-pagamento">
+
+                        <input
+                            type="radio"
+                            name="forma-pagamento"
+                            value="boleto"
+                        >
+
+                        <i class="ph ph-barcode icone-forma boleto"></i>
+
+                        <span class="descricao-forma">
+                            <strong>Boleto bancário</strong>
+                            <small>Vencimento em até 3 dias úteis</small>
+                        </span>
+
+                        <span class="radio-personalizado"></span>
+
+                    </label>
+
+                    <label class="forma-pagamento">
+
+                        <input
+                            type="radio"
+                            name="forma-pagamento"
+                            value="picpay"
+                        >
+
+                        <i class="ph ph-arrows-clockwise icone-forma pix"></i>
+
+                        <span class="descricao-forma">
+                            <strong>Pague com PicPay</strong>
+                            <small>Você será redirecionado para o app</small>
+                        </span>
+
+                        <span class="radio-personalizado"></span>
+
+                    </label>
+
+                </fieldset>
+
+                <fieldset class="dados-cartao">
+
+                    <legend>Dados do cartão</legend>
+
+                    <div class="campo campo-completo">
+
+                        <label for="numero-cartao">
+                            Número do cartão
+                        </label>
+
+                        <div class="controle-campo">
+                            <input
+                                type="text"
+                                id="numero-cartao"
+                                name="numero-cartao"
+                                placeholder="0000 0000 0000 0000"
+                                maxlength="19"
+                            >
+
+                            <i class="ph ph-credit-card"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="linha-campos">
+
+                        <div class="campo">
+                            <label for="nome-cartao">
+                                Nome no cartão
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nome-cartao"
+                                name="nome-cartao"
+                                placeholder="Como está escrito no cartão"
+                            >
+                        </div>
+
+
+                        <div class="campo campo-validade">
+                            <label for="validade">
+                                Validade
+                            </label>
+
+                            <input
+                                type="text"
+                                id="validade"
+                                name="validade"
+                                placeholder="MM/AA"
+                                maxlength="5"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="campo campo-completo">
+
+                        <label for="cvv">
+                            CVV
+                            <i
+                                class="ph ph-info"
+                                title="Código de segurança do cartão"
+                            ></i>
+                        </label>
+
+                        <div class="controle-campo">
+                            <input
+                                type="password"
+                                id="cvv"
+                                name="cvv"
+                                placeholder="123"
+                                maxlength="4"
+                            >
+
+                            <button
+                                type="button"
+                                class="mostrar-cvv"
+                                aria-label="Mostrar ou esconder CVV"
+                            >
+                                <i class="ph ph-eye"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+                <section class="resumo-pedido">
+
+                    <h2>Resumo do pedido</h2>
+
+                    <div class="resumo-card">
+
+                        <div class="linha-resumo">
+                            <span>Subtotal (3 itens)</span>
+                            <span>R$ </span>
+                        </div>
+
+                        <div class="linha-resumo">
+                            <span>Frete</span>
+                            <span>R$ </span>
+                        </div>
+
+                        <div class="linha-total">
+                            <strong>Total</strong>
+                            <strong>R$</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <button type="submit" class="botao-pagar">
+                    <i class="ph ph-lock"></i>
+                    Pagar R$
+                </button>
+
+                <p class="termos">
+                    Ao finalizar a compra, você concorda com nossos
+                    <a href="#">Termos de Uso</a>
+                    e
+                    <a href="#">Política de Privacidade</a>
+                </p>
+
+            </form>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
