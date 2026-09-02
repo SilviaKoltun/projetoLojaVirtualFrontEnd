@@ -37,7 +37,7 @@
           aria-label="Abrir carrinho"
         >
           <i class="ph ph-shopping-cart-simple"></i>
-          <span class="contador-carrinho">3</span>
+          <span class="contador-carrinho">0</span>
         </button>
       </header>
 
@@ -146,6 +146,7 @@
     });
   };
 
+  
   const mostrarCarrinho = (carrinho) => {
     const produtosPedido =
       document.querySelector(".produtos-pedido");
@@ -153,70 +154,87 @@
     produtosPedido.innerHTML = "";
 
     carrinho.forEach((item) => {
-      const produtoItem = document.createElement("li");
-      produtoItem.classList.add("produto-pedido");
 
-      produtoItem.innerHTML = `
+    const totalItem =
+        Number(item.produto.preco) *
+        Number(item.quantidade);
+
+    const produtoItem =
+        document.createElement("li");
+
+    produtoItem.classList.add("produto-pedido");
+
+    produtoItem.innerHTML = `
         <img
-          src="${item.produto.imagem || "./assets/sem-imagem.png"}"
-          alt="${item.produto.nome}"
-          class="imagem-produto"
-          onerror="this.onerror=null; this.src='./assets/sem-imagem.png'"
+            src="${item.produto.imagem || "./assets/sem-imagem.png"}"
+            alt="${item.produto.nome}"
+            class="imagem-produto"
+            onerror="this.onerror=null; this.src='./assets/sem-imagem.png'"
         >
 
         <div class="informacoes-produto">
-          <span class="nome-produto">
-            ${item.produto.nome}
-          </span>
 
-          <span class="quantidade-produto">
-            Quantidade: ${item.quantidade}
-          </span>
+            <span class="nome-produto">
+                ${item.produto.nome}
+            </span>
 
-          <span class="preco-produto">
-            R$ ${formatarPreco(item.produto.preco)}
-          </span>
+            <span class="quantidade-produto">
+                Quantidade: ${item.quantidade}
+            </span>
+
+            <span class="preco-produto">
+                R$ ${formatarPreco(totalItem)}
+            </span>
+
         </div>
 
         <button
-          type="button"
-          class="botao-remover"
-          aria-label="Remover ${item.produto.nome}"
+            type="button"
+            class="botao-remover"
+            data-id="${item.id}"
         >
-          <i class="ph ph-trash"></i>
+            <i class="ph ph-trash"></i>
         </button>
-      `;
+    `;
 
-      produtosPedido.appendChild(produtoItem);
-    });
+    produtosPedido.appendChild(produtoItem);
+  });
 
-    // Calcula a quantidade total de itens
-    const quantidadeTotal = carrinho.reduce((total, item) => {
-      return total + Number(item.quantidade);
-    }, 0);
+      document.querySelector(
+      ".contador-carrinho"
+      ).textContent = carrinho.length;
 
-    document.querySelector(".contador-carrinho").textContent =
-      quantidadeTotal;
+      const subtotal = carrinho.reduce(
+      (total, item) => {
 
-    // Calcula o subtotal depois de criar os produtos
-    const subtotal = carrinho.reduce((total, item) => {
-      const preco = Number(item.produto.preco);
-      const quantidade = Number(item.quantidade);
+      const preco =
+        Number(item.produto.preco);
+
+      const quantidade =
+        Number(item.quantidade);
 
       return total + preco * quantidade;
-    }, 0);
 
-    const linhasValor = document.querySelectorAll(".linha-valor");
+    },
+    0
+  );
 
-    linhasValor[0].querySelector("span:last-child").textContent =
+    const linhasValor =
+    document.querySelectorAll(".linha-valor");
+
+    linhasValor[0]
+    .querySelector("span:last-child")
+    .textContent =
       `R$ ${formatarPreco(subtotal)}`;
 
+
     document.querySelector(
-      ".linha-valor.total strong:last-child"
-    ).textContent = `R$ ${formatarPreco(subtotal)}`;
+    ".linha-valor.total strong:last-child"
+    ).textContent =
+      `R$ ${formatarPreco(subtotal)}`;
   };
 
-  const buscarDadosCarrinho = async () => {
+    const buscarDadosCarrinho = async () => {
     const produtosPedido =
       document.querySelector(".produtos-pedido");
 
@@ -225,7 +243,7 @@
         throw new Error("Token não encontrado. Faça login novamente.");
       }
 
-      const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+      const resposta = await fetch("http://localhost:3000/carrinho", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

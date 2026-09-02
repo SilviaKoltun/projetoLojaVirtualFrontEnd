@@ -177,6 +177,29 @@
 
     </div>
 
+
+    <script>
+
+         const token = localStorage.getItem("token");
+         const resposta = await fetch("http://localhost:3000/carrinho", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!resposta.ok) {
+        const dadosErro = await resposta.json().catch(() => ({}));
+
+        throw new Error(
+          dadosErro.erro || `Erro HTTP ${resposta.status}`
+        );
+      }
+
+
+    </script>
 </body>
 
 </html>

@@ -116,58 +116,96 @@
             </p>
         </main>
     </div>
-    <script>
-        const botoesSenha = document.querySelectorAll(".toggle-password");
-        botoesSenha.forEach((botao) => {
-            botao.addEventListener("click", () => {
-                const input = botao.parentElement.querySelector("input");
-                const icone = botao.querySelector("i");
-                const senhaEstaVisivel = input.type === "text";
-                input.type = senhaEstaVisivel ? "password" : "text";
-                icone.classList.toggle("ph-eye");
-                icone.classList.toggle("ph-eye-slash");
-            });
+   
+   <script>
+
+    const botoesSenha = document.querySelectorAll(".toggle-password");
+
+    botoesSenha.forEach((botao) => {
+        botao.addEventListener("click", () => {
+            const input = botao.parentElement.querySelector("input");
+            const icone = botao.querySelector("i");
+
+            const senhaEstaVisivel = input.type === "text";
+
+            input.type = senhaEstaVisivel ? "password" : "text";
+
+            icone.classList.toggle("ph-eye");
+            icone.classList.toggle("ph-eye-slash");
         });
+    });
 
-        const form = document.querySelector("#login")
 
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
+    const form = document.querySelector("#login");
 
-            const formData = new FormData(form);
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-            const data = {
-                email: formData.get("email"),
-                senha: formData.get("senha")
-            }
+        const formData = new FormData(form);
 
-            try {
-                const response = await fetch("http://localhost:3000/auth/login", {
+        const data = {
+            email: formData.get("email"),
+            senha: formData.get("senha")
+        };
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:3000/auth/login",
+                {
                     method: "POST",
+
                     headers: {
-                        'Content-Type': 'application/json',
+                        "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(data),
-                })
 
-                const dados = await response.json();
-
-                if (!response.ok) {
-                    alert(dados.erro || "Não foi possível entrar.");
-                    return;
+                    body: JSON.stringify(data)
                 }
+            );
 
-                localStorage.setItem("token", dados.token);
-                localStorage.setItem("usuario", JSON.stringify(dados.usuario));
-                window.location.href = "./produtos.html";
-            } catch (erro) {
-                alert("Não foi possível conectar ao servidor.");
+
+            const dados = await response.json();
+
+            console.log("Resposta do backend:", dados);
+
+
+            if (!response.ok) {
+                alert(dados.erro || "Não foi possível entrar.");
+                return;
             }
-        })
-            
-    
-    </script>
 
+
+            // salva o token
+            localStorage.setItem("token", dados.token);
+
+            // salva os dados do usuário
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(dados.usuario)
+            );
+
+
+            console.log(
+                "Token salvo:",
+                localStorage.getItem("token")
+            );
+
+
+            // vai para a página de produtos
+            window.location.href = "./produtos.html";
+
+
+        } catch (erro) {
+
+            console.error("Erro no login:", erro);
+
+            alert(
+                "Não foi possível conectar ao servidor."
+            );
+        }
+    });
+
+    </script>
 
 </body>
 
