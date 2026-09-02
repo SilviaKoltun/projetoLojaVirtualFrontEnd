@@ -95,9 +95,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="telefone">
-                        Telefone <span class="optional">(opcional)</span>
-                    </label>
+                    <label for="telefone">Telefone</label>
 
                     <div class="input-wrapper">
                         <i class="ph ph-phone"></i>
@@ -151,10 +149,7 @@
                     </label>
                 </div>
 
-                <button class="btn-submit">
-                    <a href="./login.html"> Cadastrar </a>
-                    
-                </button>
+                <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
 
             <div class="divider">
@@ -197,23 +192,42 @@
             event.preventDefault();
 
             const formData = new FormData(form);
+            const senha = formData.get("senha");
+            const confirmarSenha = document.querySelector("#confirmar-senha").value;
+
+            if (senha !== confirmarSenha) {
+                alert("As senhas precisam ser iguais.");
+                return;
+            }
      
             const data = {
                 nome: formData.get("nome"),
                 email: formData.get("email"),
                 telefone: formData.get("telefone"),
-                senha: formData.get("senha")
+                senha
             }
 
-            const response = await fetch("http://localhost:3000/auth/register", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            }).then(() => {
-                alert("Logado")
-            });
+            try {
+                const response = await fetch("http://localhost:3000/auth/register", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const dados = await response.json();
+
+                if (!response.ok) {
+                    alert(dados.erro || "Não foi possível criar a conta.");
+                    return;
+                }
+
+                alert("Conta criada com sucesso.");
+                window.location.href = "./login.html";
+            } catch (erro) {
+                alert("Não foi possível conectar ao servidor.");
+            }
 
         });
 

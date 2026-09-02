@@ -29,6 +29,7 @@
                 type="button"
                 class="botao-voltar"
                 aria-label="Voltar para o carrinho"
+                onclick="window.location.href='./carrinho.html'"
             >
                 <i class="ph ph-arrow-left"></i>
             </button>
@@ -341,6 +342,14 @@
 
     </div>
 
+    <script>
+        const formularioPagamento = document.querySelector(".formulario-pagamento");
+
+        formularioPagamento.addEventListener("submit", (event) => {
+            event.preventDefault();
+            window.location.href = "./pedido.html";
+        });
+    </script>
 </body>
 
 </html>

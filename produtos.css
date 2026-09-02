@@ -488,6 +488,8 @@ body {
 
 /* Cartão de cada produto */
 .produto {
+    position: relative;
+
     min-width: 0;
     overflow: hidden;
 
@@ -501,6 +503,24 @@ body {
     border-radius: 14px;
 }
 
+.botao-favorito{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.botao-favorito i {
+    color: var(--cor-texto);
+    font-size: 1.3rem;
+}
+
+.botao-favorito.favorito i {
+    color: var(--cor-laranja);
+}
 
 /* Imagem */
 .imagem-produto {

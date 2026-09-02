@@ -1,171 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Meu Carrinho - Inova 3D</title>
 
-    <link rel="stylesheet" href="carrinho.css">
+    <link rel="stylesheet" href="carrinho.css" />
 
     <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    >
-</head>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+  </head>
 
-<body>
-
+  <body>
     <div class="pagina">
+      <header class="cabecalho">
+        <button type="button" class="botao-cabecalho" aria-label="Voltar">
+          <i class="ph ph-arrow-left"></i>
+        </button>
 
-        <header class="cabecalho">
+        <div class="marca">
+          <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo" />
 
-            <button
-                type="button"
-                class="botao-cabecalho"
-                aria-label="Voltar"
-            >
-                <i class="ph ph-arrow-left"></i>
-            </button>
+          <div class="nome-marca">
+            <span>INOVA</span>
+            <strong>3D</strong>
+            <small>INOVAÇÃO QUE GANHA FORMA</small>
+          </div>
+        </div>
 
-            <div class="marca">
+        <button
+          type="button"
+          class="botao-cabecalho botao-carrinho"
+          aria-label="Abrir carrinho"
+        >
+          <i class="ph ph-shopping-cart-simple"></i>
+          <span class="contador-carrinho">3</span>
+        </button>
+      </header>
 
-                <img
-                    src="./assets/logo.png"
-                    alt="Logo Inova 3D"
-                    class="logo"
-                >
+      <main class="conteudo">
+        <section class="titulo-carrinho">
+          <h3>Meu carrinho</h3>
+          <!--<p>3 itens</p> colocar um contador de itens no carrinho, que vai ser atualizado dinamicamente com JS</p>-->
+        </section>
 
-                <div class="nome-marca">
-                    <span>INOVA</span>
-                    <strong>3D</strong>
-                    <small>INOVAÇÃO QUE GANHA FORMA</small>
-                </div>
-
-            </div>
-
-            <button
-                type="button"
-                class="botao-cabecalho botao-carrinho"
-                aria-label="Abrir carrinho"
-            >
-                <i class="ph ph-shopping-cart-simple"></i>
-                <span class="contador-carrinho">3</span>
-            </button>
-
-        </header>
-
-        <main class="conteudo">
-            
-            <section class="titulo-carrinho">
-                <h3>Meu carrinho</h3>
-                <!--<p>3 itens</p> colocar um contador de itens no carrinho, que vai ser atualizado dinamicamente com JS</p>-->
-            </section>
-
-
-            <section class="resumo-pedido">
-
-             <div class="valores-pedido">
-
+        <section class="resumo-pedido">
+          <div class="valores-pedido">
             <h2>Resumo do pedido</h2>
 
+            <ul class="produtos-pedido"></ul>
+
             <div class="linha-valor">
-            <span>Subtotal (itens)</span>
-            <span>R$ </span>
+              <span>Subtotal (itens)</span>
+              <span>R$ </span>
             </div>
 
             <div class="linha-valor">
-            <span>Frete</span>
-            <span>R$ </span>
+              <span>Frete</span>
+              <span>R$ </span>
             </div>
 
             <div class="linha-valor total">
-            <strong>Total</strong>
-            <strong>R$ </strong>
+              <strong>Total</strong>
+              <strong>R$ </strong>
             </div>
+          </div>
 
-     </div>
+          <button type="button" class="opcao-pedido">
+            <i class="ph ph-truck icone-opcao"></i>
 
-    <button type="button" class="opcao-pedido">
+            <span class="texto-opcao">
+              <strong>Calcular frete</strong>
+              <small>Informe seu CEP para calcular o frete</small>
+            </span>
 
-        <i class="ph ph-truck icone-opcao"></i>
+            <i class="ph ph-caret-right seta-opcao"></i>
+          </button>
 
-        <span class="texto-opcao">
-            <strong>Calcular frete</strong>
-            <small>Informe seu CEP para calcular o frete</small>
-        </span>
+          <button type="button" class="opcao-pedido">
+            <i class="ph ph-tag icone-opcao"></i>
 
-        <i class="ph ph-caret-right seta-opcao"></i>
+            <span class="texto-opcao">
+              <strong>Cupom de desconto</strong>
+              <small>Adicionar cupom</small>
+            </span>
 
-    </button>
+            <i class="ph ph-caret-right seta-opcao"></i>
+          </button>
+        </section>
+      </main>
+      <button
+        type="button"
+        class="btn-submit"
+        onclick="window.location.href = './pagamento.html'"
+      >
+        <i class="ph ph-lock"></i>
+        <span>Finalizar pedido</span>
+      </button>
 
-    <button type="button" class="opcao-pedido">
+      <div class="aviso-seguranca">
+        <i class="ph ph-shield-check"></i>
+        <span>Ambiente 100% seguro</span>
+      </div>
 
-        <i class="ph ph-tag icone-opcao"></i>
+      <footer class="rodape">
+        <nav class="menu-inferior">
+          <a href="produtos.html" class="menu-item">
+            <i class="ph ph-house"></i>
+            <span>Início</span>
+          </a>
 
-        <span class="texto-opcao">
-            <strong>Cupom de desconto</strong>
-            <small>Adicionar cupom</small>
-        </span>
+          <a href="#" class="menu-item">
+            <i class="ph ph-squares-four"></i>
+            <span>Categorias</span>
+          </a>
 
-        <i class="ph ph-caret-right seta-opcao"></i>
+          <a href="#" class="menu-item">
+            <i class="ph ph-heart"></i>
+            <span>Favoritos</span>
+          </a>
 
-    </button>
+          <a href="#" class="menu-item">
+            <i class="ph ph-shopping-bag"></i>
+            <span>Pedidos</span>
+          </a>
 
-</section>
-           
-           
-
-        </main>
-         <button type="button" class="btn-submit">
-                <i class="ph ph-lock"></i>
-                <span>Finalizar pedido</span>
-            </button>
-
-            <div class="aviso-seguranca">
-                <i class="ph ph-shield-check"></i>
-                <span>Ambiente 100% seguro</span>
-            </div>
-
-        <footer class="rodape">
-
-            <nav class="menu-inferior">
-
-                <a href="home.html" class="menu-item">
-                    <i class="ph ph-house"></i>
-                    <span>Início</span>
-                </a>
-
-                <a href="#" class="menu-item">
-                    <i class="ph ph-squares-four"></i>
-                    <span>Categorias</span>
-                </a>
-
-                <a href="#" class="menu-item">
-                    <i class="ph ph-heart"></i>
-                    <span>Favoritos</span>
-                </a>
-
-                <a href="#" class="menu-item">
-                    <i class="ph ph-shopping-bag"></i>
-                    <span>Pedidos</span>
-                </a>
-
-                <a href="#" class="menu-item">
-                    <i class="ph ph-user"></i>
-                    <span>Conta</span>
-                </a>
-
-            </nav>
-
-        </footer>
-
+          <a href="#" class="menu-item">
+            <i class="ph ph-user"></i>
+            <span>Conta</span>
+          </a>
+        </nav>
+      </footer>
     </div>
 
-</body>
+<script>
+  const token = localStorage.getItem("token");
 
+  const formatarPreco = (preco) => {
+    return Number(preco).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
+  const mostrarCarrinho = (carrinho) => {
+    const produtosPedido =
+      document.querySelector(".produtos-pedido");
+
+    produtosPedido.innerHTML = "";
+
+    carrinho.forEach((item) => {
+      const produtoItem = document.createElement("li");
+      produtoItem.classList.add("produto-pedido");
+
+      produtoItem.innerHTML = `
+        <img
+          src="${item.produto.imagem || "./assets/sem-imagem.png"}"
+          alt="${item.produto.nome}"
+          class="imagem-produto"
+          onerror="this.onerror=null; this.src='./assets/sem-imagem.png'"
+        >
+
+        <div class="informacoes-produto">
+          <span class="nome-produto">
+            ${item.produto.nome}
+          </span>
+
+          <span class="quantidade-produto">
+            Quantidade: ${item.quantidade}
+          </span>
+
+          <span class="preco-produto">
+            R$ ${formatarPreco(item.produto.preco)}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          class="botao-remover"
+          aria-label="Remover ${item.produto.nome}"
+        >
+          <i class="ph ph-trash"></i>
+        </button>
+      `;
+
+      produtosPedido.appendChild(produtoItem);
+    });
+
+    // Calcula a quantidade total de itens
+    const quantidadeTotal = carrinho.reduce((total, item) => {
+      return total + Number(item.quantidade);
+    }, 0);
+
+    document.querySelector(".contador-carrinho").textContent =
+      quantidadeTotal;
+
+    // Calcula o subtotal depois de criar os produtos
+    const subtotal = carrinho.reduce((total, item) => {
+      const preco = Number(item.produto.preco);
+      const quantidade = Number(item.quantidade);
+
+      return total + preco * quantidade;
+    }, 0);
+
+    const linhasValor = document.querySelectorAll(".linha-valor");
+
+    linhasValor[0].querySelector("span:last-child").textContent =
+      `R$ ${formatarPreco(subtotal)}`;
+
+    document.querySelector(
+      ".linha-valor.total strong:last-child"
+    ).textContent = `R$ ${formatarPreco(subtotal)}`;
+  };
+
+  const buscarDadosCarrinho = async () => {
+    const produtosPedido =
+      document.querySelector(".produtos-pedido");
+
+    try {
+      if (!token) {
+        throw new Error("Token não encontrado. Faça login novamente.");
+      }
+
+      const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!resposta.ok) {
+        const dadosErro = await resposta.json().catch(() => ({}));
+
+        throw new Error(
+          dadosErro.erro || `Erro HTTP ${resposta.status}`
+        );
+      }
+
+      const carrinho = await resposta.json();
+
+      if (!Array.isArray(carrinho)) {
+        throw new Error("O servidor não retornou uma lista de produtos.");
+      }
+
+      mostrarCarrinho(carrinho);
+    } catch (erro) {
+      console.error("Erro ao carregar carrinho:", erro);
+
+      produtosPedido.innerHTML = `
+        <li class="mensagem-erro">
+          ${erro.message}
+        </li>
+      `;
+    }
+  };
+
+  buscarDadosCarrinho();
+</script>
+  </body>
 </html>

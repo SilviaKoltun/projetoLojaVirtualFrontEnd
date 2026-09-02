@@ -37,6 +37,7 @@
             type="button"
             class="botao-carrinho"
             aria-label="Abrir carrinho de compras"
+            onclick="window.location.href = './carrinho.html'"
           >
             <i class="ph ph-shopping-cart-simple"></i>
 
@@ -188,7 +189,7 @@
       </main>
 
       <nav class="menu-inferior">
-        <a href="home.html" class="menu-item ativo">
+        <a href="produtos.html" class="menu-item ativo">
           <i class="ph ph-house"></i>
           <span>Início</span>
         </a>
@@ -216,38 +217,99 @@
     </div>
 
     <script>
-      let produtos;
       const listarProdutos = document.querySelector("#lista-produtos");
+      const token = localStorage.getItem("token");
+      const imagemPadrao = "./assets/suporte_para_Celular_3d.png";
 
-      const addProdutos = () => {
+      console.log("Token:", token); // Adicione este log para verificar o valor do token
+
+      if (!token) {
+        alert("Entre na sua conta para adicionar produtos ao carrinho.");
+        window.location.href = "./login.html";
+      }
+
+      const formatarPreco = (valor) =>
+        Number(valor).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+
+      const adicionarAoCarrinho = async (produtoId) => {
+        try {
+          const resposta = await fetch("http://localhost:3000/carrinho", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ produtoId, quantidade: 1 }),
+          });
+
+          const dados = await resposta.json();
+
+          if (!resposta.ok) {
+            alert(dados.erro || "Não foi possível adicionar ao carrinho.");
+            return;
+          }
+
+          window.location.href = "./carrinho.html";
+        } catch (erro) {
+          alert("Não foi possível conectar ao servidor.");
+        }
+      };
+
+      const mostrarProdutos = (produtos) => {
+        listarProdutos.innerHTML = "";
+
+        if (!produtos.length) {
+          listarProdutos.innerHTML = `
+                 <p class="mensagem-erro">Nenhum produto encontrado.</p>
+               `;
+          return;
+        }
 
         produtos.forEach((produto) => {
           const elementoProduto = document.createElement("article");
+          elementoProduto.className = "produto";
 
           elementoProduto.innerHTML = `
-            <img
-            src="${produto.imagem}"
-            alt="${produto.nome}"
-            class="imagem-produto"
-            >
-            <p>${produto.nome}</p>    
-            <p>${produto.descricao}</p>
-            <p>${produto.preco}</p>
-            <button type="submit" class="btn-submit">
-                    Comprar
-            </button>
-          `
+                 <img
+                   src="${produto.imagem || imagemPadrao}"
+                   alt="${produto.nome}"
+                   class="imagem-produto"
+                 >
+                 <div class="produto-conteudo">
+                    <button type="button" class="botao-favorito" aria-label="Adicionar aos favoritos">
+                      <i class="ph ph-heart"></i>
+                    </button>
+                   <h3>${produto.nome}</h3>
+                   <p class="descricao">${produto.descricao || "Produto fabricado com impressão 3D"}</p>
+                   <strong class="preco">${formatarPreco(produto.preco)}</strong>
+                   <button type="button" class="botao-comprar" data-produto-id="${produto.id}">
+                     Comprar
+                   </button>
+                 </div>
+               `;
+
+          const botaoComprar = elementoProduto.querySelector(".botao-comprar");
+          const botaoFavoritar = elementoProduto.querySelector(".botao-favorito");
+
+          botaoComprar.addEventListener("click", () => {
+            adicionarAoCarrinho(produto.id);
+          });
+
+
+          if(produto?.carrinho?.length > 0){
+            botaoFavoritar.classList.add("favorito");
+          }
 
           listarProdutos.appendChild(elementoProduto);
         });
       };
 
-
-      const token = localStorage.getItem("token");
-
-      const fetchProdutos = async () => {
+      async function fetchProdutos() {
         try {
-          const resposta = await fetch("http://localhost:3000/produtos", {
+          const resposta = await fetch("http://127.0.0.1:3000/produtos", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -258,21 +320,15 @@
             throw new Error("Erro ao buscar produtos");
           }
           const produtos = await resposta.json();
-          console.log("Produtos receebidos:", produtos);
-           mostrarProdutos(produtos);
+          mostrarProdutos(produtos);
         } catch (erro) {
-        console.error(erro);
-
-        listaProdutos.innerHTML = `
-        <p class="mensagem-erro">
-          Não foi possível carregar os produtos.
-        </p>
-      `;
-    }
-  }
-
-  buscarProdutos();
-        
+          listarProdutos.innerHTML = `
+                 <p class="mensagem-erro">
+                   Não foi possível carregar os produtos.
+                 </p>
+               `;
+        }
+      }
 
       fetchProdutos();
     </script>

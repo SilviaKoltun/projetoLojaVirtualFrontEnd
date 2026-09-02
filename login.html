@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Criar Conta - Inova 3D</title>
+    <title>Entrar - Inova 3D</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
@@ -141,17 +141,28 @@
                 senha: formData.get("senha")
             }
 
-            const response = await fetch("http://localhost:3000/auth/login", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
+            try {
+                const response = await fetch("http://localhost:3000/auth/login", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
 
-            const dados = await response.json();
+                const dados = await response.json();
 
-            localStorage.setItem ('token', dados.token); 
+                if (!response.ok) {
+                    alert(dados.erro || "Não foi possível entrar.");
+                    return;
+                }
+
+                localStorage.setItem("token", dados.token);
+                localStorage.setItem("usuario", JSON.stringify(dados.usuario));
+                window.location.href = "./produtos.html";
+            } catch (erro) {
+                alert("Não foi possível conectar ao servidor.");
+            }
         })
             
     
