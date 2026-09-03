@@ -301,7 +301,61 @@ body {
 .botao-remover:hover {
     color: #ff4d4d;
 }
+.controle-quantidade {
+    width: 170px;
+    height: 42px;
 
+    margin-top: 12px;
+
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+
+    overflow: hidden;
+
+    background-color: #202020;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+}
+
+.controle-quantidade button,
+.quantidade-atual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controle-quantidade button {
+    border: none;
+
+    background: transparent;
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+.controle-quantidade button:first-child {
+    border-right: 1px solid #292929;
+}
+
+.controle-quantidade button:last-child {
+    border-left: 1px solid #292929;
+}
+
+.controle-quantidade button i {
+    font-size: 1.3rem;
+}
+
+.quantidade-atual {
+    color: #ffffff;
+
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.controle-quantidade button:hover {
+    background-color: #292929;
+}
 
 /* =========================
    VALORES

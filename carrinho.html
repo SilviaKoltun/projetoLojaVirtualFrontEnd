@@ -139,6 +139,11 @@
 <script>
   const token = localStorage.getItem("token");
 
+
+  // ================================
+  // FORMATAR PREÇO
+  // ================================
+
   const formatarPreco = (preco) => {
     return Number(preco).toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
@@ -146,139 +151,470 @@
     });
   };
 
-  
+
+  // ================================
+  // MOSTRAR CARRINHO
+  // ================================
+
   const mostrarCarrinho = (carrinho) => {
+
     const produtosPedido =
       document.querySelector(".produtos-pedido");
 
     produtosPedido.innerHTML = "";
 
+
+    // CRIA OS PRODUTOS
     carrinho.forEach((item) => {
 
-    const totalItem =
-        Number(item.produto.preco) *
-        Number(item.quantidade);
+      console.log("ITEM DO CARRINHO:", item);
+      console.log("ID DO CARRINHO:", item.id);
+      console.log("ID DO PRODUTO:", item.produtoId);
 
-    const produtoItem =
+
+      const produtoItem =
         document.createElement("li");
 
-    produtoItem.classList.add("produto-pedido");
+      produtoItem.classList.add("produto-pedido");
 
-    produtoItem.innerHTML = `
+
+      produtoItem.innerHTML = `
         <img
-            src="${item.produto.imagem || "./assets/sem-imagem.png"}"
-            alt="${item.produto.nome}"
-            class="imagem-produto"
-            onerror="this.onerror=null; this.src='./assets/sem-imagem.png'"
+          src="${item.produto.imagem || "./assets/sem-imagem.png"}"
+          alt="${item.produto.nome}"
+          class="imagem-produto"
+          onerror="this.onerror=null; this.src='./assets/sem-imagem.png'"
         >
 
         <div class="informacoes-produto">
 
-            <span class="nome-produto">
-                ${item.produto.nome}
+          <span class="nome-produto">
+            ${item.produto.nome}
+          </span>
+
+          <span class="preco-produto">
+            R$ ${formatarPreco(item.produto.preco)}
+          </span>
+
+
+          <div class="controle-quantidade">
+
+            <button
+              type="button"
+              class="botao-diminuir"
+              data-id="${item.id}"
+              data-quantidade="${item.quantidade}"
+            >
+              <i class="ph ph-minus"></i>
+            </button>
+
+
+            <span class="quantidade-atual">
+              ${item.quantidade}
             </span>
 
-            <span class="quantidade-produto">
-                Quantidade: ${item.quantidade}
-            </span>
 
-            <span class="preco-produto">
-                R$ ${formatarPreco(totalItem)}
-            </span>
+            <button
+              type="button"
+              class="botao-aumentar"
+              data-id="${item.id}"
+              data-quantidade="${item.quantidade}"
+            >
+              <i class="ph ph-plus"></i>
+            </button>
+
+          </div>
 
         </div>
 
+
         <button
-            type="button"
-            class="botao-remover"
-            data-id="${item.id}"
+          type="button"
+          class="botao-remover"
+          data-id="${item.id}"
+          aria-label="Remover ${item.produto.nome}"
         >
-            <i class="ph ph-trash"></i>
+          <i class="ph ph-trash"></i>
         </button>
-    `;
+      `;
 
-    produtosPedido.appendChild(produtoItem);
-  });
 
-      document.querySelector(
-      ".contador-carrinho"
-      ).textContent = carrinho.length;
+      produtosPedido.appendChild(produtoItem);
 
-      const subtotal = carrinho.reduce(
-      (total, item) => {
+    });
 
-      const preco =
-        Number(item.produto.preco);
 
-      const quantidade =
-        Number(item.quantidade);
-
-      return total + preco * quantidade;
-
-    },
-    0
-  );
-
-    const linhasValor =
-    document.querySelectorAll(".linha-valor");
-
-    linhasValor[0]
-    .querySelector("span:last-child")
-    .textContent =
-      `R$ ${formatarPreco(subtotal)}`;
-
+    // ================================
+    // CONTADOR
+    // ================================
 
     document.querySelector(
-    ".linha-valor.total strong:last-child"
+      ".contador-carrinho"
+    ).textContent = carrinho.length;
+
+
+    // ================================
+    // SUBTOTAL
+    // ================================
+
+    const subtotal = carrinho.reduce(
+      (total, item) => {
+
+        const preco =
+          Number(item.produto.preco);
+
+        const quantidade =
+          Number(item.quantidade);
+
+        return total + preco * quantidade;
+
+      },
+      0
+    );
+
+
+    // mostra subtotal
+    const linhasValor =
+      document.querySelectorAll(".linha-valor");
+
+    linhasValor[0]
+      .querySelector("span:last-child")
+      .textContent =
+        `R$ ${formatarPreco(subtotal)}`;
+
+
+    // mostra total
+    document.querySelector(
+      ".linha-valor.total strong:last-child"
     ).textContent =
       `R$ ${formatarPreco(subtotal)}`;
+
   };
 
-    const buscarDadosCarrinho = async () => {
-    const produtosPedido =
-      document.querySelector(".produtos-pedido");
+
+  // ================================
+  // ATUALIZAR QUANTIDADE
+  // ================================
+
+  const atualizarQuantidade = async (
+    id,
+    novaQuantidade
+  ) => {
 
     try {
-      if (!token) {
-        throw new Error("Token não encontrado. Faça login novamente.");
-      }
 
-      const resposta = await fetch("http://localhost:3000/carrinho", {
-          method: "GET",
+      const resposta = await fetch(
+        `http://localhost:3000/carrinho/${id}`,
+        {
+          method: "PUT",
+
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+
+          body: JSON.stringify({
+            quantidade: novaQuantidade,
+          }),
+        }
+      );
+
+
+      const dados = await resposta.json();
+
+
+      if (!resposta.ok) {
+
+        throw new Error(
+          dados.erro ||
+          "Erro ao atualizar quantidade."
+        );
+
+      }
+
+
+      await buscarDadosCarrinho();
+
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao atualizar quantidade:",
+        erro
+      );
+
+      alert(erro.message);
+
+    }
+
+  };
+
+
+  // ================================
+  // REMOVER ITEM
+  // ================================
+
+  const removerItemCarrinho = async (id) => {
+
+    try {
+
+      console.log(
+        "ID enviado para exclusão:",
+        id
+      );
+
+
+      const resposta = await fetch(
+        `http://localhost:3000/carrinho/${id}`,
+        {
+          method: "DELETE",
+
+          headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
 
+
       if (!resposta.ok) {
-        const dadosErro = await resposta.json().catch(() => ({}));
+
+        const dados = await resposta
+          .json()
+          .catch(() => ({}));
+
 
         throw new Error(
-          dadosErro.erro || `Erro HTTP ${resposta.status}`
+          dados.erro ||
+          "Erro ao remover produto."
         );
+
       }
 
-      const carrinho = await resposta.json();
+
+      await buscarDadosCarrinho();
+
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao remover item:",
+        erro
+      );
+
+      alert(erro.message);
+
+    }
+
+  };
+
+
+  // ================================
+  // CLIQUES NO CARRINHO
+  // ================================
+
+  const listaCarrinho =
+    document.querySelector(".produtos-pedido");
+
+
+  listaCarrinho.addEventListener(
+    "click",
+    async (event) => {
+
+
+      // ============================
+      // BOTÃO +
+      // ============================
+
+      const botaoAumentar =
+        event.target.closest(
+          ".botao-aumentar"
+        );
+
+
+      if (botaoAumentar) {
+
+        const id =
+          Number(botaoAumentar.dataset.id);
+
+        const quantidade =
+          Number(
+            botaoAumentar.dataset.quantidade
+          );
+
+
+        await atualizarQuantidade(
+          id,
+          quantidade + 1
+        );
+
+
+        return;
+      }
+
+
+      // ============================
+      // BOTÃO -
+      // ============================
+
+      const botaoDiminuir =
+        event.target.closest(
+          ".botao-diminuir"
+        );
+
+
+      if (botaoDiminuir) {
+
+        const id =
+          Number(botaoDiminuir.dataset.id);
+
+        const quantidade =
+          Number(
+            botaoDiminuir.dataset.quantidade
+          );
+
+
+        if (quantidade <= 1) {
+          return;
+        }
+
+
+        await atualizarQuantidade(
+          id,
+          quantidade - 1
+        );
+
+
+        return;
+      }
+
+
+      // ============================
+      // LIXEIRA
+      // ============================
+
+      const botaoRemover =
+        event.target.closest(
+          ".botao-remover"
+        );
+
+
+      if (botaoRemover) {
+
+        const id =
+          Number(botaoRemover.dataset.id);
+
+
+        console.log(
+          "ID recebido pela lixeira:",
+          id
+        );
+
+
+        await removerItemCarrinho(id);
+
+        return;
+      }
+
+    }
+  );
+
+
+  // ================================
+  // BUSCAR CARRINHO
+  // ================================
+
+  const buscarDadosCarrinho = async () => {
+
+    const produtosPedido =
+      document.querySelector(
+        ".produtos-pedido"
+      );
+
+
+    try {
+
+      if (!token) {
+
+        throw new Error(
+          "Token não encontrado. Faça login novamente."
+        );
+
+      }
+
+
+      const resposta = await fetch(
+        "http://localhost:3000/carrinho",
+        {
+          method: "GET",
+
+          headers: {
+            "Content-Type":
+              "application/json",
+
+            Authorization:
+              `Bearer ${token}`,
+          },
+        }
+      );
+
+
+      if (!resposta.ok) {
+
+        const dadosErro =
+          await resposta
+            .json()
+            .catch(() => ({}));
+
+
+        throw new Error(
+          dadosErro.erro ||
+          `Erro HTTP ${resposta.status}`
+        );
+
+      }
+
+
+      const carrinho =
+        await resposta.json();
+
 
       if (!Array.isArray(carrinho)) {
-        throw new Error("O servidor não retornou uma lista de produtos.");
+
+        throw new Error(
+          "O servidor não retornou uma lista de produtos."
+        );
+
       }
 
+
       mostrarCarrinho(carrinho);
+
+
     } catch (erro) {
-      console.error("Erro ao carregar carrinho:", erro);
+
+      console.error(
+        "Erro ao carregar carrinho:",
+        erro
+      );
+
 
       produtosPedido.innerHTML = `
         <li class="mensagem-erro">
           ${erro.message}
         </li>
       `;
+
     }
+
   };
 
+
+  // ================================
+  // INICIAR
+  // ================================
+
   buscarDadosCarrinho();
+
 </script>
   </body>
 </html>
