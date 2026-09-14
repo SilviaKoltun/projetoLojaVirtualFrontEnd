@@ -26,9 +26,7 @@ body {
 }
 
 
-/* =========================
-   PÁGINA
-========================= */
+/* PÁGINA */
 
 .pagina {
     width: 100%;
@@ -40,9 +38,7 @@ body {
 }
 
 
-/* =========================
-   CABEÇALHO
-========================= */
+/* CABEÇALHO*/
 
 .cabecalho {
     min-height: 100px;
@@ -108,9 +104,7 @@ body {
 }
 
 
-/* =========================
-   LOGO
-========================= */
+/* LOGO */
 
 .marca {
     display: flex;
@@ -158,9 +152,7 @@ body {
 }
 
 
-/* =========================
-   CONTEÚDO
-========================= */
+/* CONTEÚDO */
 
 .conteudo {
     padding: 20px;
@@ -176,9 +168,7 @@ body {
 }
 
 
-/* =========================
-   RESUMO DO PEDIDO
-========================= */
+/* RESUMO DO PEDIDO */
 
 .resumo-pedido {
     width: 100%;
@@ -274,9 +264,7 @@ body {
 }
 
 
-/* =========================
-   BOTÃO EXCLUIR
-========================= */
+/* BOTÃO EXCLUIR*/
 
 .botao-remover {
     width: 40px;
@@ -357,9 +345,7 @@ body {
     background-color: #292929;
 }
 
-/* =========================
-   VALORES
-========================= */
+/*VALORES*/
 
 .linha-valor {
     width: 100%;
@@ -399,9 +385,77 @@ body {
 }
 
 
-/* =========================
-   FRETE / CUPOM
-========================= */
+/*FRETE / CUPOM*/
+.opcao-frete {
+  padding: 24px 20px;
+  border-bottom: 1px solid #333;
+}
+
+.cabecalho-frete {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.campo-cep {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.campo-cep input {
+  flex: 1;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1f1f1f;
+  color: white;
+  font-size: 16px;
+}
+
+.botao-cep {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: #ff6500;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.endereco-cep {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.endereco-cep input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #181818;
+  color: #ddd;
+}
+
+.cidade-uf {
+  display: flex;
+  gap: 8px;
+}
+
+.cidade-uf #cidade {
+  flex: 1;
+}
+
+.cidade-uf #uf {
+  width: 80px;
+}
 
 .opcao-pedido {
     width: 100%;
@@ -462,9 +516,7 @@ body {
 }
 
 
-/* =========================
-   FINALIZAR PEDIDO
-========================= */
+/* FINALIZAR PEDIDO*/
 
 .btn-submit {
     width: calc(100% - 40px);
@@ -504,9 +556,7 @@ body {
 }
 
 
-/* =========================
-   SEGURANÇA
-========================= */
+/* SEGURANÇA*/
 
 .aviso-seguranca {
     height: 58px;
@@ -526,9 +576,7 @@ body {
 }
 
 
-/* =========================
-   RODAPÉ
-========================= */
+/*RODAPÉ*/
 
 .rodape {
     margin-top: 5px;
@@ -575,9 +623,7 @@ body {
 }
 
 
-/* =========================
-   MENSAGEM DE ERRO
-========================= */
+/* MENSAGEM DE ERRO */
 
 .mensagem-erro {
     padding: 20px;
@@ -586,8 +632,6 @@ body {
 
     text-align: center;
 }
-
-
 
 @media (max-width: 450px) {
 

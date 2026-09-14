@@ -305,28 +305,26 @@
 
                     <div class="resumo-card">
 
-                        <div class="linha-resumo">
-                            <span>Subtotal (3 itens)</span>
-                            <span>R$ </span>
-                        </div>
+                    <div class="linha-resumo">
+                    <span>Subtotal</span>
+                    <span id="pagamento-subtotal">R$ 0,00</span>
+                    </div>
 
-                        <div class="linha-resumo">
-                            <span>Frete</span>
-                            <span>R$ </span>
-                        </div>
+                    <div class="linha-resumo">
+                    <span>Frete</span>
+                    <span id="pagamento-frete">R$ 0,00</span>
+                    </div>
 
-                        <div class="linha-total">
-                            <strong>Total</strong>
-                            <strong>R$</strong>
-                        </div>
-
+                    <div class="linha-total">
+                    <strong>Total</strong>
+                    <strong id="pagamento-total">R$ 0,00</strong>
                     </div>
 
                 </section>
 
                 <button type="submit" class="botao-pagar">
                     <i class="ph ph-lock"></i>
-                    Pagar R$
+                    <span id="texto-pagar">Pagar R$ 0,00</span>
                 </button>
 
                 <p class="termos">
@@ -342,14 +340,60 @@
 
     </div>
 
-    <script>
-        const formularioPagamento = document.querySelector(".formulario-pagamento");
+<script>
 
-        formularioPagamento.addEventListener("submit", (event) => {
-            event.preventDefault();
-            window.location.href = "./pedido.html";
+    const formularioPagamento =
+        document.querySelector(".formulario-pagamento");
+
+    const formatarPreco = (preco) => {
+        return Number(preco).toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         });
-    </script>
+    };
+
+    const dadosEntrega =
+        JSON.parse(localStorage.getItem("dadosEntrega"));
+
+    if (!dadosEntrega) {
+        alert("Dados do pedido não encontrados.");
+        window.location.href = "./carrinho.html";
+    } else {
+
+        document.getElementById(
+            "pagamento-subtotal"
+        ).textContent =
+            `R$ ${formatarPreco(dadosEntrega.subtotal)}`;
+
+        document.getElementById(
+            "pagamento-frete"
+        ).textContent =
+            `R$ ${formatarPreco(dadosEntrega.frete)}`;
+
+        document.getElementById(
+            "pagamento-total"
+        ).textContent =
+            `R$ ${formatarPreco(dadosEntrega.total)}`;
+
+        document.getElementById(
+            "texto-pagar"
+        ).textContent =
+            `Pagar R$ ${formatarPreco(dadosEntrega.total)}`;
+    }
+
+
+    formularioPagamento.addEventListener(
+        "submit",
+        (event) => {
+
+            event.preventDefault();
+
+            window.location.href =
+                "./pedido.html";
+        }
+    );
+
+</script>
 </body>
 
 </html>

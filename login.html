@@ -7,8 +7,10 @@
 
     <title>Entrar - Inova 3D</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
 </head>
 
 <body>
@@ -107,10 +109,8 @@
                 <span>ou</span>
             </div>
 
-            <button type="button" class="btn-google">
-                <span class="google-icon">G</span>
-                Entrar com Google
-            </button>
+            <div id="google-btn"></div>
+
             <p class="footer-text">
                 ainda não tem uma conta? <a href="./index.html">Criar Conta</a>
             </p>
@@ -119,33 +119,48 @@
    
    <script>
 
+
+    // ========================================
+    // MOSTRAR / ESCONDER SENHA
+    // ========================================
+
     const botoesSenha = document.querySelectorAll(".toggle-password");
 
     botoesSenha.forEach((botao) => {
+
         botao.addEventListener("click", () => {
+
             const input = botao.parentElement.querySelector("input");
             const icone = botao.querySelector("i");
 
-            const senhaEstaVisivel = input.type === "text";
+            const senhaVisivel = input.type === "text";
 
-            input.type = senhaEstaVisivel ? "password" : "text";
+            input.type = senhaVisivel ? "password" : "text";
 
             icone.classList.toggle("ph-eye");
             icone.classList.toggle("ph-eye-slash");
+
         });
+
     });
 
+
+    // ========================================
+    // LOGIN NORMAL
+    // ========================================
 
     const form = document.querySelector("#login");
 
     form.addEventListener("submit", async (event) => {
+
         event.preventDefault();
 
-        const formData = new FormData(form);
+        const email = document.querySelector("#email").value.trim();
+        const senha = document.querySelector("#senha").value;
 
         const data = {
-            email: formData.get("email"),
-            senha: formData.get("senha")
+            email,
+            senha
         };
 
         try {
@@ -163,49 +178,127 @@
                 }
             );
 
-
             const dados = await response.json();
 
-            console.log("Resposta do backend:", dados);
-
-
             if (!response.ok) {
-                alert(dados.erro || "Não foi possível entrar.");
+
+                alert(
+                    dados.erro ||
+                    dados.message ||
+                    "E-mail ou senha inválidos."
+                );
+
                 return;
             }
 
-
-            // salva o token
             localStorage.setItem("token", dados.token);
 
-            // salva os dados do usuário
             localStorage.setItem(
                 "usuario",
                 JSON.stringify(dados.usuario)
             );
 
-
-            console.log(
-                "Token salvo:",
-                localStorage.getItem("token")
-            );
-
-
-            // vai para a página de produtos
             window.location.href = "./produtos.html";
-
 
         } catch (erro) {
 
             console.error("Erro no login:", erro);
 
-            alert(
-                "Não foi possível conectar ao servidor."
-            );
+            alert("Não foi possível conectar ao servidor.");
+
         }
+
     });
 
-    </script>
+
+    // ========================================
+    // LOGIN COM GOOGLE
+    // ========================================
+
+    async function loginComGoogle(response) {
+
+        try {
+
+            const respostaBackend = await fetch(
+                "http://localhost:3000/auth/google",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        credential: response.credential
+                    })
+                }
+            );
+
+            const dados = await respostaBackend.json();
+
+            if (!respostaBackend.ok) {
+
+                alert(
+                    dados.erro ||
+                    dados.message ||
+                    "Não foi possível entrar com Google."
+                );
+
+                return;
+            }
+
+            localStorage.setItem("token", dados.token);
+
+            localStorage.setItem(
+                "usuario",
+                JSON.stringify(dados.usuario)
+            );
+
+            window.location.href = "./produtos.html";
+
+        } catch (erro) {
+
+            console.error("Erro no login Google:", erro);
+
+            alert("Não foi possível entrar com Google.");
+
+        }
+
+    }
+
+
+    // ========================================
+    // CRIAR BOTÃO DO GOOGLE
+    // ========================================
+
+    window.addEventListener("load", () => {
+
+        google.accounts.id.initialize({
+
+            client_id: "1074203320076-b3makfs3nk7e4mt9bsj43rs9nmu7pm24.apps.googleusercontent.com",
+
+            callback: loginComGoogle
+
+        });
+
+        google.accounts.id.renderButton(
+
+            document.getElementById("google-btn"),
+
+            {
+                theme: "outline",
+                size: "large",
+                text: "signin_with",
+                shape: "rectangular",
+                width: 300
+            }
+
+        );
+
+    });
+
+</script>
+
 
 </body>
 

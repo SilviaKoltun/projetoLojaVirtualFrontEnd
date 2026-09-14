@@ -53,6 +53,7 @@
 
             <ul class="produtos-pedido"></ul>
 
+
             <div class="linha-valor">
               <span>Subtotal (itens)</span>
               <span>R$ </span>
@@ -60,7 +61,7 @@
 
             <div class="linha-valor">
               <span>Frete</span>
-              <span>R$ </span>
+              <span id="valor-frete">R$ 0,00</span>
             </div>
 
             <div class="linha-valor total">
@@ -69,16 +70,37 @@
             </div>
           </div>
 
-          <button type="button" class="opcao-pedido">
-            <i class="ph ph-truck icone-opcao"></i>
+          
+          <div class="opcao-frete">
+          <div class="cabecalho-frete">
+          <i class="ph ph-truck icone-opcao"></i>
 
-            <span class="texto-opcao">
-              <strong>Calcular frete</strong>
-              <small>Informe seu CEP para calcular o frete</small>
-            </span>
+        <span class="texto-opcao">
+        <strong>Calcular frete</strong>
+        <small>Informe seu CEP para calcular o frete</small>
+        </span>
+        </div>
 
-            <i class="ph ph-caret-right seta-opcao"></i>
-          </button>
+      <div class="campo-cep">
+      <input type="text" id="cep" maxlength="9" placeholder="00000-000" onblur="pesquisarCep(this.value)">
+
+      <button type="button" class="botao-cep" onclick="pesquisarCep(document.getElementById('cep').value)">
+      <i class="ph ph-caret-right"></i>
+      </button>
+    </div>
+
+      <div class="endereco-cep">
+      <input type="text" id="rua" placeholder="Rua" readonly>
+      <input type="text" id="bairro" placeholder="Bairro" readonly>
+
+      <div class="cidade-uf">
+      <input type="text" id="cidade" placeholder="Cidade" readonly>
+      <input type="text" id="uf" placeholder="UF" readonly>
+    </div>
+  </div>
+</div>
+
+        
 
           <button type="button" class="opcao-pedido">
             <i class="ph ph-tag icone-opcao"></i>
@@ -92,10 +114,11 @@
           </button>
         </section>
       </main>
+      
       <button
         type="button"
         class="btn-submit"
-        onclick="window.location.href = './pagamento.html'"
+        onclick="finalizarPedido()"
       >
         <i class="ph ph-lock"></i>
         <span>Finalizar pedido</span>
@@ -138,11 +161,8 @@
 
 <script>
   const token = localStorage.getItem("token");
-
-
-  // ================================
-  // FORMATAR PREÇO
-  // ================================
+  let frete = 0;
+  let subtotalAtual = 0;
 
   const formatarPreco = (preco) => {
     return Number(preco).toLocaleString("pt-BR", {
@@ -151,11 +171,6 @@
     });
   };
 
-
-  // ================================
-  // MOSTRAR CARRINHO
-  // ================================
-
   const mostrarCarrinho = (carrinho) => {
 
     const produtosPedido =
@@ -163,14 +178,12 @@
 
     produtosPedido.innerHTML = "";
 
-
     // CRIA OS PRODUTOS
     carrinho.forEach((item) => {
 
       console.log("ITEM DO CARRINHO:", item);
       console.log("ID DO CARRINHO:", item.id);
       console.log("ID DO PRODUTO:", item.produtoId);
-
 
       const produtoItem =
         document.createElement("li");
@@ -243,19 +256,9 @@
 
     });
 
-
-    // ================================
-    // CONTADOR
-    // ================================
-
     document.querySelector(
       ".contador-carrinho"
     ).textContent = carrinho.length;
-
-
-    // ================================
-    // SUBTOTAL
-    // ================================
 
     const subtotal = carrinho.reduce(
       (total, item) => {
@@ -271,30 +274,20 @@
       },
       0
     );
+      subtotalAtual = subtotal;
 
-
-    // mostra subtotal
-    const linhasValor =
+      const linhasValor =
       document.querySelectorAll(".linha-valor");
 
     linhasValor[0]
       .querySelector("span:last-child")
       .textContent =
         `R$ ${formatarPreco(subtotal)}`;
-
-
-    // mostra total
-    document.querySelector(
-      ".linha-valor.total strong:last-child"
-    ).textContent =
-      `R$ ${formatarPreco(subtotal)}`;
+  
+   atualizarTotal();
 
   };
 
-
-  // ================================
-  // ATUALIZAR QUANTIDADE
-  // ================================
 
   const atualizarQuantidade = async (
     id,
@@ -349,11 +342,6 @@
 
   };
 
-
-  // ================================
-  // REMOVER ITEM
-  // ================================
-
   const removerItemCarrinho = async (id) => {
 
     try {
@@ -407,11 +395,6 @@
 
   };
 
-
-  // ================================
-  // CLIQUES NO CARRINHO
-  // ================================
-
   const listaCarrinho =
     document.querySelector(".produtos-pedido");
 
@@ -420,10 +403,6 @@
     "click",
     async (event) => {
 
-
-      // ============================
-      // BOTÃO +
-      // ============================
 
       const botaoAumentar =
         event.target.closest(
@@ -450,11 +429,6 @@
 
         return;
       }
-
-
-      // ============================
-      // BOTÃO -
-      // ============================
 
       const botaoDiminuir =
         event.target.closest(
@@ -488,10 +462,6 @@
       }
 
 
-      // ============================
-      // LIXEIRA
-      // ============================
-
       const botaoRemover =
         event.target.closest(
           ".botao-remover"
@@ -518,11 +488,6 @@
     }
   );
 
-
-  // ================================
-  // BUSCAR CARRINHO
-  // ================================
-
   const buscarDadosCarrinho = async () => {
 
     const produtosPedido =
@@ -540,6 +505,37 @@
         );
 
       }
+
+      function finalizarPedido() {
+      const cep = document.getElementById("cep").value;
+      const rua = document.getElementById("rua").value;
+      const bairro = document.getElementById("bairro").value;
+      const cidade = document.getElementById("cidade").value;
+      const uf = document.getElementById("uf").value;
+
+      if (!cep || !rua || frete === 0) {
+      alert("Informe um CEP válido antes de finalizar o pedido.");
+      return;
+    }
+
+    const dadosEntrega = {
+    cep,
+    rua,
+    bairro,
+    cidade,
+    uf,
+    frete,
+    subtotal: subtotalAtual,
+    total: subtotalAtual + frete
+  };
+
+  localStorage.setItem(
+    "dadosEntrega",
+    JSON.stringify(dadosEntrega)
+  );
+
+  window.location.href = "./pagamento.html";
+}
 
 
       const resposta = await fetch(
@@ -608,11 +604,103 @@
 
   };
 
+      function calcularFrete(uf) {
+      if (uf === "PR") {
+      frete = 10;
+      } else if (uf === "SP" || uf === "SC") {
+      frete = 15;
+      } else {
+      frete = 25;
+      }
+      atualizarTotal();
+    }
 
-  // ================================
-  // INICIAR
-  // ================================
+async function pesquisarCep(valor) {
+  const cep = valor.replace(/\D/g, '');
 
+  if (cep.length !== 8) {
+    alert('CEP inválido');
+    return;
+  }
+
+  const token = localStorage.getItem('token');
+
+  try {
+    const resposta = await fetch(
+      `http://127.0.0.1:3000/carrinho/endereco/${cep}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    const endereco = await resposta.json();
+
+    if (!resposta.ok) {
+      alert(endereco.erro || 'Erro ao consultar CEP');
+      return;
+    }
+
+    document.getElementById('rua').value = endereco.logradouro;
+    document.getElementById('bairro').value = endereco.bairro;
+    document.getElementById('cidade').value = endereco.localidade;
+    document.getElementById('uf').value = endereco.uf;
+    calcularFrete(endereco.uf);
+
+  } catch (erro) {
+    console.error('Erro ao consultar CEP:', erro);
+    alert('Não foi possível consultar o CEP.');
+  }
+}
+function atualizarTotal() {
+  const total = subtotalAtual + frete;
+
+  const elementoFrete =
+    document.getElementById("valor-frete");
+
+  if (elementoFrete) {
+    elementoFrete.textContent =
+      `R$ ${formatarPreco(frete)}`;
+  }
+
+  document.querySelector(
+    ".linha-valor.total strong:last-child"
+  ).textContent =
+    `R$ ${formatarPreco(total)}`;
+}
+
+function finalizarPedido() {
+  const cep = document.getElementById("cep").value;
+  const rua = document.getElementById("rua").value;
+  const bairro = document.getElementById("bairro").value;
+  const cidade = document.getElementById("cidade").value;
+  const uf = document.getElementById("uf").value;
+
+  if (!cep || !rua || frete === 0) {
+    alert("Informe um CEP válido antes de finalizar o pedido.");
+    return;
+  }
+
+  const dadosEntrega = {
+    cep: cep,
+    rua: rua,
+    bairro: bairro,
+    cidade: cidade,
+    uf: uf,
+    frete: frete,
+    subtotal: subtotalAtual,
+    total: subtotalAtual + frete
+  };
+
+  localStorage.setItem(
+    "dadosEntrega",
+    JSON.stringify(dadosEntrega)
+  );
+
+  window.location.href = "./pagamento.html";
+}
   buscarDadosCarrinho();
 
 </script>
