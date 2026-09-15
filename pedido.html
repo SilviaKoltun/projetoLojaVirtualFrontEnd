@@ -78,41 +78,42 @@
                         <i class="ph ph-check"></i>
                     </div>
 
-                    <div class="numero-pedido">
-                        <h2>Pedido #12458</h2> <!--colocar um contador?-->
-                        <p>Realizado em 24/06/2026 às 14:32</p> <!--colocar data e hora do pedido-->
-                    </div>
+                    <strong id="numero-pedido">Pedido #</strong>
+                    <span id="data-pedido"></span>
 
-                    <span class="status-pago">Pago</span>
+                    <!-- <div class="numero-pedido">
+                        <h2>Pedido #12458</h2> --> <!--colocar um contador?-->
+                        <!--<p>Realizado em 24/06/2026 às 14:32</p> colocar data e hora do pedido
+                    </div> -->
+
+                    <span id="status-pedido">Pago</span>
 
                 </div>
 
 
                 <div class="conteudo-pedido">
 
-                    <h3>Resumo do pedido</h3>
-
+                   <h3>Resumo do pedido</h3>
 
                     <div class="valores-pedido">
 
-                        <div class="linha-valor">
-                            <span>Subtotal (itens)</span>
-                            <span>R$ </span>
-                        </div>
-
-                        <div class="linha-valor">
-                            <span>Frete</span>
-                            <span>R$ </span>
-                        </div>
-
-                        <div class="total-pedido">
-                            <strong>Total pago</strong>
-                            <strong>R$ </strong>
-                        </div>
-
+                    <div class="linha-valor">
+                    <span>Subtotal (itens)</span>
+                    <span id="resumo-subtotal">R$ 0,00</span>
                     </div>
 
-                </div>
+            <div class="linha-valor">
+            <span>Frete</span>
+            <span id="resumo-frete">R$ 0,00</span>
+            </div>
+
+            <div class="total-pedido">
+            <strong>Total pago</strong>
+            <strong id="resumo-total">R$ 0,00</strong>
+            </div>
+
+        </div>
+            
 
             </section>
 
@@ -124,7 +125,8 @@
 
                 <div class="informacoes-entrega">
                     <h2>Entrega estimada</h2>
-                    <strong>28/06 a 30/06/26</strong> <!--colocar calendario?-->
+                    <span id="data-entrega">Calculando...</span>
+                
                     <p>Você receberá o código de rastreio por e-mail.</p>
                 </div>
 
@@ -132,7 +134,7 @@
 
             <div class="acoes-pedido">
 
-                <a href="#" class="botao-acompanhar">
+                <a href="./acompanhar-pedido.html" class="botao-acompanhar">
                     <i class="ph ph-cube"></i>
                     Acompanhar pedido
                 </a>
@@ -176,37 +178,225 @@
         </nav>
 
     </div>
+<script>
+    const token = localStorage.getItem("token");
 
 
-    <script>
+    // =========================================
+    // FORMATAR PREÇO
+    // =========================================
 
-         const token = localStorage.getItem("token");
-         const resposta = await fetch("http://localhost:3000/carrinho", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    const formatarPreco = (preco) => {
+        return Number(preco).toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    };
 
-      if (!resposta.ok) {
-        const dadosErro = await resposta.json().catch(() => ({}));
 
-        throw new Error(
-          dadosErro.erro || `Erro HTTP ${resposta.status}`
+    // =========================================
+    // FORMATAR DATA DA ENTREGA
+    // =========================================
+
+    const formatarDataEntrega = (data) => {
+        return data.toLocaleDateString(
+            "pt-BR",
+            {
+                timeZone: "America/Sao_Paulo",
+                day: "2-digit",
+                month: "2-digit",
+                year: "2-digit"
+            }
         );
-      }
-
-    const agora = new Date();
-    const dataHoraFormatada = agora.toLocaleString('pt-BR', {
-    timeZone: 'America/Sao_Paulo'
-    });
-
-console.log(dataHoraFormatada);
+    };
 
 
-    </script>
+    // =========================================
+    // CARREGAR PEDIDO
+    // =========================================
+
+    async function carregarPedido() {
+
+        const pedidoId =
+            localStorage.getItem("pedidoId");
+
+
+        if (!pedidoId) {
+            console.error("pedidoId não encontrado.");
+            return;
+        }
+
+
+        try {
+
+            const resposta =
+                await fetch(
+                    `http://127.0.0.1:3000/pedidos/${pedidoId}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+
+
+            const pedido =
+                await resposta.json();
+
+
+            if (!resposta.ok) {
+                throw new Error(
+                    pedido.erro ||
+                    "Erro ao buscar pedido."
+                );
+            }
+
+
+            console.log(
+                "PEDIDO RECEBIDO:",
+                pedido
+            );
+
+
+            // =====================================
+            // NÚMERO DO PEDIDO
+            // =====================================
+
+            document.getElementById(
+                "numero-pedido"
+            ).textContent =
+                `Pedido #${pedido.id}`;
+
+
+            // =====================================
+            // DATA DO PEDIDO
+            // =====================================
+
+            const dataPedido =
+                new Date(pedido.data);
+
+
+            const dataFormatada =
+                dataPedido.toLocaleString(
+                    "pt-BR",
+                    {
+                        timeZone: "America/Sao_Paulo",
+                        dateStyle: "short",
+                        timeStyle: "short"
+                    }
+                );
+
+
+            document.getElementById(
+                "data-pedido"
+            ).textContent =
+                `Realizado em ${dataFormatada}`;
+
+
+            // =====================================
+            // STATUS
+            // =====================================
+
+            document.getElementById(
+                "status-pedido"
+            ).textContent =
+                pedido.status === "pago"
+                    ? "Pago"
+                    : pedido.status;
+
+
+            // =====================================
+            // ENTREGA ESTIMADA
+            // =====================================
+
+            const inicioEntrega =
+                new Date(pedido.data);
+
+            inicioEntrega.setDate(
+                inicioEntrega.getDate() + 5
+            );
+
+
+            const fimEntrega =
+                new Date(pedido.data);
+
+            fimEntrega.setDate(
+                fimEntrega.getDate() + 7
+            );
+
+
+            document.getElementById(
+                "data-entrega"
+            ).textContent =
+                `${formatarDataEntrega(inicioEntrega)} a ${formatarDataEntrega(fimEntrega)}`;
+
+
+            // =====================================
+            // RESUMO DO PEDIDO
+            // =====================================
+
+            const dadosEntrega =
+                JSON.parse(
+                    localStorage.getItem("dadosEntrega")
+                );
+
+
+            console.log(
+                "DADOS ENTREGA:",
+                dadosEntrega
+            );
+
+
+            if (dadosEntrega) {
+
+                document.getElementById(
+                    "resumo-subtotal"
+                ).textContent =
+                    `R$ ${formatarPreco(
+                        dadosEntrega.subtotal
+                    )}`;
+
+
+                document.getElementById(
+                    "resumo-frete"
+                ).textContent =
+                    `R$ ${formatarPreco(
+                        dadosEntrega.frete
+                    )}`;
+
+
+                document.getElementById(
+                    "resumo-total"
+                ).textContent =
+                    `R$ ${formatarPreco(
+                        dadosEntrega.total
+                    )}`;
+
+            }
+
+
+        } catch (erro) {
+
+            console.error(
+                "Erro ao carregar pedido:",
+                erro
+            );
+
+        }
+
+    }
+
+
+    // =========================================
+    // INICIAR
+    // =========================================
+
+    carregarPedido();
+</script>
+
+
+
 </body>
 
 </html>

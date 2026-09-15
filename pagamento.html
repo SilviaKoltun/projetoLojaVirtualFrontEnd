@@ -120,7 +120,7 @@
 
                     <legend>Formas de pagamento</legend>
 
-                    <label class="forma-pagamento selecionada">
+                    <label class="forma-pagamento">
 
                         <input
                             type="radio"
@@ -318,9 +318,10 @@
                     <div class="linha-total">
                     <strong>Total</strong>
                     <strong id="pagamento-total">R$ 0,00</strong>
-                    </div>
+                </div>
+            </div>
 
-                </section>
+            </section>
 
                 <button type="submit" class="botao-pagar">
                     <i class="ph ph-lock"></i>
@@ -341,9 +342,21 @@
     </div>
 
 <script>
+    const token = localStorage.getItem("token");
 
     const formularioPagamento =
         document.querySelector(".formulario-pagamento");
+
+    const formasPagamento =
+        document.querySelectorAll(".forma-pagamento");
+
+    const dadosCartao =
+        document.querySelector(".dados-cartao");
+
+
+    // =========================================
+    // FORMATAR PREÇO
+    // =========================================
 
     const formatarPreco = (preco) => {
         return Number(preco).toLocaleString("pt-BR", {
@@ -352,12 +365,22 @@
         });
     };
 
+
+    // =========================================
+    // RECUPERAR DADOS DO CARRINHO
+    // =========================================
+
     const dadosEntrega =
         JSON.parse(localStorage.getItem("dadosEntrega"));
 
+
     if (!dadosEntrega) {
+
         alert("Dados do pedido não encontrados.");
-        window.location.href = "./carrinho.html";
+
+        window.location.href =
+            "./carrinho.html";
+
     } else {
 
         document.getElementById(
@@ -365,15 +388,18 @@
         ).textContent =
             `R$ ${formatarPreco(dadosEntrega.subtotal)}`;
 
+
         document.getElementById(
             "pagamento-frete"
         ).textContent =
             `R$ ${formatarPreco(dadosEntrega.frete)}`;
 
+
         document.getElementById(
             "pagamento-total"
         ).textContent =
             `R$ ${formatarPreco(dadosEntrega.total)}`;
+
 
         document.getElementById(
             "texto-pagar"
@@ -382,18 +408,230 @@
     }
 
 
+    // =========================================
+    // SELECIONAR FORMA DE PAGAMENTO
+    // =========================================
+
+    formasPagamento.forEach((forma) => {
+
+        forma.addEventListener("click", () => {
+
+            // Remove destaque de todas
+            formasPagamento.forEach((item) => {
+                item.classList.remove("selecionada");
+            });
+
+
+            // Destaca a escolhida
+            forma.classList.add("selecionada");
+
+
+            // Encontra o radio dentro da opção
+            const radio =
+                forma.querySelector(
+                    'input[type="radio"]'
+                );
+
+
+            // Marca o radio
+            radio.checked = true;
+
+
+            console.log(
+                "Forma selecionada:",
+                radio.value
+            );
+
+
+            // Mostra campos de cartão somente
+            // quando cartão estiver selecionado
+
+            if (radio.value === "cartao") {
+
+                dadosCartao.style.display =
+                    "block";
+
+            } else {
+
+                dadosCartao.style.display =
+                    "none";
+
+            }
+
+        });
+
+    });
+
+
+    // =========================================
+    // FINALIZAR PAGAMENTO
+    // =========================================
+
     formularioPagamento.addEventListener(
         "submit",
-        (event) => {
+        async (event) => {
 
             event.preventDefault();
 
-            window.location.href =
-                "./pedido.html";
+
+            try {
+
+                if (!token) {
+
+                    throw new Error(
+                        "Sessão expirada. Faça login novamente."
+                    );
+
+                }
+
+
+                // Verifica qual pagamento está marcado
+
+                const formaSelecionada =
+                    document.querySelector(
+                        'input[name="forma-pagamento"]:checked'
+                    );
+
+
+                if (!formaSelecionada) {
+
+                    throw new Error(
+                        "Escolha uma forma de pagamento."
+                    );
+
+                }
+
+
+                const formaPagamento =
+                    formaSelecionada.value;
+
+
+                console.log(
+                    "Pagamento escolhido:",
+                    formaPagamento
+                );
+
+
+                // =================================
+                // 1 - CRIAR PEDIDO
+                // =================================
+
+
+            const respostaPedido =
+            await fetch(
+            "http://127.0.0.1:3000/pedidos",
+            {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+
+                body: JSON.stringify({
+                cep: dadosEntrega.cep,
+                rua: dadosEntrega.rua,
+                bairro: dadosEntrega.bairro,
+                cidade: dadosEntrega.cidade,
+                uf: dadosEntrega.uf,
+                frete: dadosEntrega.frete
+                })
+             }
+        );
+        const pedido = await respostaPedido.json();
+        if( !respostaPedido.ok) {
+            throw new Error(
+                pedido.erro ||
+                "Erro ao criar pedido."
+            );
+        }
+        console.log(
+            "PEDIDO CRIADO:",
+            pedido
+        );
+        
+
+                // =================================
+                // 2 - CRIAR PAGAMENTO
+                // =================================
+
+                const respostaPagamento =
+                    await fetch(
+                        "http://127.0.0.1:3000/pagamentos",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`
+                            },
+
+                            body: JSON.stringify({
+                                formaPagamento:
+                                    formaPagamento,
+
+                                pedidoId:
+                                    pedido.id
+                            })
+                        }
+                    );
+
+
+                const pagamento =
+                    await respostaPagamento.json();
+
+
+                if (!respostaPagamento.ok) {
+
+                    throw new Error(
+                        pagamento.erro ||
+                        "Erro ao realizar pagamento."
+                    );
+
+                }
+
+
+                console.log(
+                    "PAGAMENTO CRIADO:",
+                    pagamento
+                );
+
+
+                // =================================
+                // 3 - SALVAR DADOS DO PEDIDO
+                // =================================
+
+                localStorage.setItem(
+                    "pedidoId",
+                    pedido.id
+                );
+
+
+                localStorage.setItem(
+                    "formaPagamento",
+                    formaPagamento
+                );
+
+
+                // =================================
+                // 4 - IR PARA PEDIDO
+                // =================================
+
+                window.location.href =
+                    "./pedido.html";
+
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao finalizar pedido:",
+                    erro
+                );
+
+                alert(erro.message);
+
+            }
+
         }
     );
-
 </script>
-</body>
-
-</html>
