@@ -30,9 +30,9 @@ body {
 
 .pagina {
     width: 100%;
-    max-width: 530px;
+    max-width: 1200px;
     min-height: 100vh;
-    padding: 14px 20px 0;
+    padding: 20px 30px 0;
 
     color: var(--cor-texto);
     background-color: var(--cor-fundo);
@@ -476,15 +476,6 @@ body {
 .menu-item.ativo {
     color: var(--cor-laranja);
 }
-/* Lista com os três produtos */
-.lista-produtos {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-
-    width: 100%;
-}
-
 
 /* Cartão de cada produto */
 .produto {
@@ -525,7 +516,7 @@ body {
 /* Imagem */
 .imagem-produto {
     width: 100%;
-    height: 185px;
+    aspect-ratio: 1 / 1;
 
     display: block;
     object-fit: cover;
@@ -612,14 +603,128 @@ body {
     color: var(--cor-texto-suave);
     text-align: center;
 }
-@media (max-width: 450px) {
+/* ==================================================
+   RESPONSIVIDADE
+================================================== */
+
+/* ========================================
+   NOTEBOOK
+   até 1024px
+======================================== */
+
+@media (max-width: 1024px) {
+
     .pagina {
-        padding-right: 14px;
-        padding-left: 14px;
+        max-width: 900px;
+        padding: 18px 25px 0;
+    }
+
+    .banner {
+        min-height: 235px;
+    }
+
+    .lista-produtos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .categorias {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}
+
+
+/* ========================================
+   TABLET
+   até 768px
+======================================== */
+
+@media (max-width: 768px) {
+
+    .pagina {
+        max-width: 100%;
+        padding: 16px 20px 0;
+    }
+
+    .cabecalho-superior {
+        grid-template-columns: 46px 1fr 46px;
+    }
+
+    .botao-menu,
+    .botao-carrinho {
+        width: 46px;
+        height: 46px;
+    }
+
+    .logo {
+        width: 55px;
+        height: auto;
+    }
+
+    .nome-marca span,
+    .nome-marca strong {
+        font-size: 1.45rem;
+    }
+
+    .banner {
+        min-height: 230px;
+        padding: 22px;
+    }
+
+    .banner-conteudo {
+        width: 64%;
+    }
+
+    .banner h1 {
+        font-size: 1.45rem;
+    }
+
+    .categorias {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .categoria-item {
+        min-height: 78px;
+    }
+
+    .lista-produtos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .vantagens {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 16px;
+    }
+
+    .vantagem-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .produto h3 {
+        font-size: 0.95rem;
+    }
+
+    .produto .descricao {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* ========================================
+   CELULAR
+   até 500px
+======================================== */
+
+@media (max-width: 500px) {
+
+    .pagina {
+        padding: 14px 14px 0;
     }
 
     .cabecalho-superior {
         grid-template-columns: 42px 1fr 42px;
+        gap: 6px;
     }
 
     .botao-menu,
@@ -628,31 +733,66 @@ body {
         height: 42px;
     }
 
-    .logo {
-        width: 52px;
-        height: 58px;
+    .botao-menu i {
+        font-size: 2rem;
     }
 
-    .nome-marca {
+    .botao-carrinho i {
+        font-size: 1.8rem;
+    }
+
+    .logo {
+        width: 52px;
+        height: auto;
+    }
+
+    .nome-marca span,
+    .nome-marca strong {
         font-size: 1.25rem;
     }
 
+    .nome-marca small {
+        font-size: 0.34rem;
+    }
+
+    .campo-busca {
+        height: 46px;
+        margin: 12px 0 14px;
+    }
+
     .banner {
-        min-height: 225px;
+        min-height: 220px;
         padding: 20px;
     }
 
     .banner-conteudo {
-        width: 66%;
+        width: 68%;
     }
 
     .banner h1 {
-        font-size: 1.4rem;
+        font-size: 1.35rem;
     }
+
+    .beneficios-banner {
+        margin-top: 20px;
+        gap: 8px;
+    }
+
+    .beneficio-banner i {
+        font-size: 1.5rem;
+    }
+
+    .beneficio-banner p {
+        font-size: 0.58rem;
+    }
+
+    /* Categorias com rolagem horizontal */
 
     .categorias {
         display: flex;
         overflow-x: auto;
+        gap: 9px;
+
         scrollbar-width: none;
     }
 
@@ -662,6 +802,73 @@ body {
 
     .categoria-item {
         flex: 0 0 72px;
+        min-height: 80px;
+    }
+
+    /*
+       No celular os produtos continuam em
+       duas colunas.
+    */
+
+    .lista-produtos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.imagem-produto {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.produto-conteudo {
+    padding: 12px;
+}
+
+.produto h3 {
+    font-size: 0.95rem;
+}
+
+.produto .descricao {
+    min-height: auto;
+    font-size: 0.78rem;
+}
+
+.produto .preco {
+    padding-top: 12px;
+    font-size: 1rem;
+}
+
+.botao-comprar {
+    min-height: 42px;
+    font-size: 0.85rem;
+}
+
+    .produto-conteudo {
+        padding: 10px;
+    }
+
+    .produto h3 {
+        font-size: 0.82rem;
+    }
+
+    .produto .descricao {
+        min-height: 34px;
+        font-size: 0.7rem;
+    }
+
+    .produto .preco {
+        padding-top: 10px;
+        font-size: 0.92rem;
+    }
+
+    .botao-comprar {
+        min-height: 40px;
+
+        font-size: 0.76rem;
+    }
+
+    .botao-comprar i {
+        font-size: 1.05rem;
     }
 
     .vantagens {
@@ -676,5 +883,176 @@ body {
     .menu-inferior {
         width: calc(100% + 28px);
         margin-left: -14px;
+    }
+}
+
+
+/* ========================================
+   CELULAR PEQUENO
+   até 400px
+======================================== */
+
+@media (max-width: 400px) {
+
+    .pagina {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .cabecalho-superior {
+        grid-template-columns: 38px 1fr 38px;
+    }
+
+    .botao-menu,
+    .botao-carrinho {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logo {
+        width: 46px;
+    }
+
+    .nome-marca {
+        column-gap: 5px;
+    }
+
+    .nome-marca span,
+    .nome-marca strong {
+        font-size: 1.1rem;
+    }
+
+    .banner {
+        min-height: 205px;
+        padding: 17px;
+    }
+
+    .banner-conteudo {
+        width: 70%;
+    }
+
+    .banner h1 {
+        font-size: 1.2rem;
+    }
+
+    .beneficios-banner {
+        margin-top: 17px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 1.05rem;
+    }
+
+    .lista-produtos {
+        gap: 8px;
+    }
+
+    .produto-conteudo {
+        padding: 9px;
+    }
+
+    .produto h3 {
+        font-size: 0.78rem;
+    }
+
+    .produto .descricao {
+        font-size: 0.67rem;
+    }
+
+    .produto .preco {
+        font-size: 0.88rem;
+    }
+
+    .botao-comprar {
+        font-size: 0.7rem;
+        gap: 4px;
+    }
+
+    .vantagens {
+        padding: 12px 8px;
+    }
+
+    .menu-inferior {
+        width: calc(100% + 24px);
+        margin-left: -12px;
+    }
+
+    .menu-item span {
+        font-size: 0.58rem;
+    }
+
+    .menu-item i {
+        font-size: 1.4rem;
+    }
+}
+
+
+/* ========================================
+   CELULAR MUITO PEQUENO
+   até 360px
+======================================== */
+
+@media (max-width: 360px) {
+
+    .pagina {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .nome-marca span,
+    .nome-marca strong {
+        font-size: 1rem;
+    }
+
+    .logo {
+        width: 43px;
+    }
+
+    .banner {
+        min-height: 195px;
+        padding: 15px;
+    }
+
+    .banner h1 {
+        font-size: 1.1rem;
+    }
+
+    .beneficio-banner p {
+        font-size: 0.52rem;
+    }
+
+    /*
+       Em telas muito pequenas,
+       passamos para um produto por linha.
+    */
+
+    .imagem-produto {
+        aspect-ratio: 16 / 10;
+    }
+
+    .produto h3 {
+        font-size: 0.9rem;
+    }
+
+    .produto .descricao {
+        min-height: auto;
+        font-size: 0.76rem;
+    }
+
+    .produto .preco {
+        font-size: 1rem;
+    }
+
+    .botao-comprar {
+        font-size: 0.8rem;
+    }
+
+    .menu-inferior {
+        width: calc(100% + 20px);
+        margin-left: -10px;
+    }
+
+    .menu-item span {
+        font-size: 0.54rem;
     }
 }

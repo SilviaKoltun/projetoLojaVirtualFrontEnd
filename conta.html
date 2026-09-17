@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Minha Conta - Inova 3D</title>
+
+    <link rel="stylesheet" href="conta.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+  </head>
+
+  <body>
+    <div class="pagina">
+
+      <header class="cabecalho">
+        <button
+          type="button"
+          class="botao-voltar"
+          aria-label="Voltar"
+          onclick="window.location.href='./produtos.html'"
+        >
+          <i class="ph ph-arrow-left"></i>
+        </button>
+
+        <img
+          src="./assets/logo.png"
+          alt="Inova 3D"
+          class="logo"
+        />
+      </header>
+
+      <main class="conteudo">
+
+        <h1>Minha conta</h1>
+
+        <section class="perfil">
+
+          <div class="avatar">
+            <i class="ph ph-user"></i>
+          </div>
+
+          <div class="dados-usuario">
+
+            <div class="campo">
+              <span>Nome</span>
+              <strong id="nome-usuario">Carregando...</strong>
+            </div>
+
+            <div class="campo">
+              <span>E-mail</span>
+              <strong id="email-usuario">Carregando...</strong>
+            </div>
+
+            <div class="campo">
+              <span>Telefone</span>
+              <strong id="telefone-usuario">—</strong>
+            </div>
+
+          </div>
+
+        </section>
+
+        <button type="button" class="botao-sair" id="botao-sair">
+          <i class="ph ph-sign-out"></i>
+          Sair da conta
+        </button>
+
+      </main>
+
+      <nav class="menu-inferior">
+
+        <a href="./produtos.html" class="menu-item">
+          <i class="ph ph-house"></i>
+          <span>Início</span>
+        </a>
+
+        <a href="./produtos.html#categorias" class="menu-item">
+          <i class="ph ph-squares-four"></i>
+          <span>Categorias</span>
+        </a>
+
+        <a href="./produtos.html#favoritos" class="menu-item">
+          <i class="ph ph-heart"></i>
+          <span>Favoritos</span>
+        </a>
+
+        <a href="#" class="menu-item">
+          <i class="ph ph-shopping-bag"></i>
+          <span>Pedidos</span>
+        </a>
+
+        <a href="./conta.html" class="menu-item ativo">
+          <i class="ph ph-user"></i>
+          <span>Conta</span>
+        </a>
+
+      </nav>
+
+    </div>
+
+    <script>
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    window.location.href = "./login.html";
+  }
+
+  async function carregarUsuario() {
+    try {
+      const resposta = await fetch(
+        "http://127.0.0.1:3000/usuarios",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Não foi possível carregar o usuário.");
+      }
+
+      const usuario = await resposta.json();
+
+     if (!usuario || !usuario.id) {
+        throw new Error("Usuário não encontrado.");
+        }
+
+      document.getElementById("nome-usuario").textContent =
+        usuario.nome || "Não informado";
+
+      document.getElementById("email-usuario").textContent =
+        usuario.email || "Não informado";
+
+      document.getElementById("telefone-usuario").textContent =
+        usuario.telefone || "Não informado";
+
+    } catch (erro) {
+      console.error("Erro ao carregar conta:", erro);
+    }
+  }
+
+  document
+    .getElementById("botao-sair")
+    .addEventListener("click", () => {
+      localStorage.removeItem("token");
+      window.location.href = "./login.html";
+    });
+
+  carregarUsuario();
+
+</script>
+    
+  </body>
+</html>

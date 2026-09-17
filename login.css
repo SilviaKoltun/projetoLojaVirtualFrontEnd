@@ -410,7 +410,64 @@ body {
     font-weight: 600;
 }
 
+/* ==================================================
+   RESPONSIVIDADE
+================================================== */
+
+/* ========================================
+   NOTEBOOK / TABLET GRANDE
+   até 1024px
+======================================== */
+
+@media (max-width: 1024px) {
+
+    body {
+        padding: 24px 18px;
+    }
+
+    .container {
+        max-width: 625px;
+    }
+}
+
+/* ========================================
+   TABLET
+   até 768px
+======================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px 15px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 625px;
+    }
+
+    .sidebar {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .form-painel {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .form-painel h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ========================================
+   CELULAR
+   até 650px
+======================================== */
+
 @media (max-width: 650px) {
+
     body {
         padding: 0;
         align-items: flex-start;
@@ -419,22 +476,25 @@ body {
     .container {
         width: 100%;
         min-height: 100vh;
+
         flex-direction: column;
+
         border-radius: 0;
+        box-shadow: none;
     }
 
     .sidebar {
         width: 100%;
-        padding: 35px 25px;
+        padding: 30px 20px 25px;
     }
 
     .logo-area {
         min-height: auto;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     .logo {
-        width: 190px;
+        width: 170px;
     }
 
     .features {
@@ -461,11 +521,138 @@ body {
     }
 
     .feature-item i {
+        width: 36px;
+        height: 36px;
         font-size: 2rem;
     }
 
     .form-painel {
         width: 100%;
-        padding: 40px 25px;
+        padding: 35px 25px 40px;
+    }
+
+    .form-header {
+        margin-bottom: 28px;
+    }
+
+    .form-painel h1 {
+        font-size: 1.7rem;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    .input-wrapper {
+        height: 56px;
+    }
+
+    .btn-submit,
+    .btn-google {
+        height: 54px;
+    }
+
+    .footer-text {
+        margin-top: 30px;
+    }
+}
+
+/* ========================================
+   CELULAR PEQUENO
+   até 400px
+======================================== */
+
+@media (max-width: 400px) {
+
+    .sidebar {
+        padding: 25px 15px 20px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .features {
+        gap: 4px;
+    }
+
+    .feature-item {
+        padding: 8px 2px;
+    }
+
+    .feature-item h3 {
+        font-size: 0.7rem;
+    }
+
+    .feature-item i {
+        font-size: 1.75rem;
+    }
+
+    .form-painel {
+        padding: 30px 18px 35px;
+    }
+
+    .form-painel h1 {
+        font-size: 1.55rem;
+    }
+
+    .form-desc {
+        font-size: 0.85rem;
+    }
+
+    .input-wrapper {
+        height: 54px;
+        padding: 0 14px;
+        gap: 12px;
+    }
+
+    .input-wrapper input {
+        font-size: 0.85rem;
+    }
+
+    .checkbox-group {
+        margin: 22px 0;
+    }
+
+    .divider {
+        margin: 24px 0;
+    }
+}
+
+/* ========================================
+   CELULAR MUITO PEQUENO
+   até 360px
+======================================== */
+
+@media (max-width: 360px) {
+
+    .logo {
+        width: 140px;
+    }
+
+    .feature-item h3 {
+        font-size: 0.66rem;
+    }
+
+    .feature-item i {
+        font-size: 1.6rem;
+    }
+
+    .form-painel {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .form-painel h1 {
+        font-size: 1.45rem;
+    }
+
+    .input-wrapper {
+        padding: 0 12px;
+    }
+
+    .btn-google {
+        gap: 10px;
+        font-size: 0.84rem;
     }
 }

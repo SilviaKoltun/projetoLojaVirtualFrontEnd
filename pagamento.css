@@ -658,28 +658,407 @@ fieldset {
     text-decoration: none;
 }
 
+/* ==================================================
+   RESPONSIVIDADE
+================================================== */
+
+
+/* ========================================
+   NOTEBOOK
+   até 1024px
+======================================== */
+
+@media (max-width: 1024px) {
+
+    .pagina {
+        max-width: 760px;
+        padding-left: 26px;
+        padding-right: 26px;
+    }
+
+    .card-pedido,
+    .entrega {
+        width: 100%;
+    }
+
+    .cabecalho-pedido {
+        margin-left: 22px;
+        margin-right: 22px;
+    }
+
+    .conteudo-pedido {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+}
+
+
+/* ========================================
+   TABLET
+   até 768px
+======================================== */
+
+@media (max-width: 768px) {
+
+    .pagina {
+        max-width: 100%;
+        padding-left: 22px;
+        padding-right: 22px;
+
+        border-radius: 0;
+    }
+
+    .logo {
+        width: 62px;
+        height: auto;
+    }
+
+    .nome-marca span,
+    .nome-marca strong {
+        font-size: 1.75rem;
+    }
+
+    .confirmacao {
+        padding-top: 17px;
+    }
+
+    .cabecalho-pedido {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .conteudo-pedido {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .menu-inferior {
+        width: calc(100% + 44px);
+        margin-left: -22px;
+    }
+}
+
+
+/* ========================================
+   CELULAR
+   até 500px
+======================================== */
+
 @media (max-width: 500px) {
+
     body {
         background-color: var(--cor-fundo);
     }
 
     .pagina {
-        padding-right: 15px;
         padding-left: 15px;
+        padding-right: 15px;
+
         border-radius: 0;
     }
 
+    /* LOGO */
+
     .cabecalho {
-        grid-template-columns: 40px 1fr 78px;
+        min-height: 75px;
     }
 
-    .botao-voltar {
-        width: 40px;
+    .logo {
+        width: 56px;
+        height: auto;
+    }
+
+    .nome-marca span,
+    .nome-marca strong {
+        font-size: 1.5rem;
+    }
+
+    .nome-marca small {
+        font-size: 0.34rem;
+    }
+
+    /* CONFIRMAÇÃO */
+
+    .confirmacao {
+        padding: 15px 8px 17px;
+    }
+
+    .icone-aprovado {
+        width: 78px;
+        height: 78px;
+
+        margin-bottom: 15px;
+    }
+
+    .icone-aprovado > i {
+        font-size: 2.9rem;
+    }
+
+    .confirmacao h1 {
+        font-size: 1.45rem;
+    }
+
+    .confirmacao p {
+        font-size: 0.82rem;
+    }
+
+    /* PEDIDO */
+
+    .cabecalho-pedido {
+        min-height: 68px;
+
+        margin-left: 14px;
+        margin-right: 14px;
+
+        grid-template-columns: 36px minmax(0, 1fr) auto;
+
+        gap: 10px;
+    }
+
+    .icone-pedido {
+        width: 34px;
+        height: 40px;
+    }
+
+    .icone-pedido .ph-bag-simple {
+        font-size: 2rem;
+    }
+
+    .numero-pedido h2 {
+        font-size: 0.92rem;
+    }
+
+    .numero-pedido p {
+        font-size: 0.7rem;
+    }
+
+    .status-pago {
+        padding: 6px 9px;
+
+        font-size: 0.72rem;
+    }
+
+    .conteudo-pedido {
+        padding: 14px;
+    }
+
+    .conteudo-pedido h3 {
+        font-size: 0.88rem;
+    }
+
+    /*
+       Produtos do pedido.
+       Mantidos porque podem ser criados
+       dinamicamente pelo JavaScript.
+    */
+
+    .produto {
+        grid-template-columns: 65px minmax(0, 1fr) auto;
+        gap: 9px;
+    }
+
+    .imagem-produto {
+        width: 65px;
+        height: 60px;
+
+        object-fit: cover;
+    }
+
+    .informacoes-produto {
+        min-width: 0;
+    }
+
+    .informacoes-produto h4 {
+        font-size: 0.76rem;
+    }
+
+    .preco-produto {
+        font-size: 0.82rem;
+
+        white-space: nowrap;
+    }
+
+    /* VALORES */
+
+    .linha-valor {
+        font-size: 0.78rem;
+    }
+
+    .total-pedido strong:first-child {
+        font-size: 0.9rem;
+    }
+
+    .total-pedido strong:last-child {
+        font-size: 1.15rem;
+    }
+
+    /* ENTREGA */
+
+    .entrega {
+        min-height: 85px;
+
+        padding: 12px 14px;
+
+        gap: 14px;
+    }
+
+    .icone-entrega {
+        width: 58px;
+        height: 58px;
+    }
+
+    .icone-entrega i {
+        font-size: 1.9rem;
+    }
+
+    .informacoes-entrega h2 {
+        font-size: 0.85rem;
+    }
+
+    .informacoes-entrega strong {
+        font-size: 0.88rem;
+    }
+
+    .informacoes-entrega p {
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+
+    /* BOTÕES */
+
+    .acoes-pedido {
+        margin-top: 12px;
+
+        gap: 9px;
+    }
+
+    .botao-acompanhar,
+    .botao-inicio {
+        height: 46px;
+
+        font-size: 0.87rem;
+    }
+
+    /* MENU */
+
+    .menu-inferior {
+        width: calc(100% + 30px);
+
+        min-height: 74px;
+
+        margin-left: -15px;
+
+        padding: 9px 8px;
+    }
+
+    .menu-item i {
+        font-size: 1.45rem;
+    }
+
+    .menu-item span {
+        font-size: 0.61rem;
+    }
+}
+
+
+/* ========================================
+   CELULAR PEQUENO
+   até 400px
+======================================== */
+
+@media (max-width: 400px) {
+
+    .pagina {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .logo {
+        width: 50px;
+    }
+
+    .nome-marca span,
+    .nome-marca strong {
+        font-size: 1.3rem;
+    }
+
+    .confirmacao h1 {
+        font-size: 1.35rem;
+    }
+
+    .icone-aprovado {
+        width: 72px;
+        height: 72px;
+    }
+
+    .icone-aprovado > i {
+        font-size: 2.6rem;
+    }
+
+    .cabecalho-pedido {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .conteudo-pedido {
+        padding: 12px;
+    }
+
+    .produto {
+        grid-template-columns: 60px minmax(0, 1fr) auto;
+
+        gap: 8px;
+    }
+
+    .imagem-produto {
+        width: 60px;
+        height: 56px;
+    }
+
+    .entrega {
+        padding: 11px 12px;
+
+        gap: 11px;
+    }
+
+    .icone-entrega {
+        width: 54px;
+        height: 54px;
+    }
+
+    .menu-inferior {
+        width: calc(100% + 24px);
+
+        margin-left: -12px;
+
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .menu-item i {
+        font-size: 1.35rem;
+    }
+
+    .menu-item span {
+        font-size: 0.57rem;
+    }
+}
+
+
+/* ========================================
+   CELULAR MUITO PEQUENO
+   até 360px
+======================================== */
+
+@media (max-width: 360px) {
+
+    .pagina {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .logo {
         width: 47px;
-        height: 56px;
     }
 
     .nome-marca span,
@@ -691,51 +1070,81 @@ fieldset {
         font-size: 0.28rem;
     }
 
-    .ambiente-seguro span {
-        font-size: 0.58rem;
+    .confirmacao h1 {
+        font-size: 1.25rem;
     }
 
-    .etapas {
-        width: 90%;
+    /*
+       Status passa para baixo para não
+       comprimir o número do pedido.
+    */
+
+    .cabecalho-pedido {
+        grid-template-columns: 34px minmax(0, 1fr);
+
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
-    .introducao-pagamento {
-        align-items: flex-start;
+    .status-pago {
+        grid-column: 2;
+
+        justify-self: start;
     }
 
-    .aviso-seguranca {
-        min-width: 130px;
-        padding: 9px;
+    /*
+       Produto reorganizado.
+    */
+
+    .produto {
+        grid-template-columns: 58px minmax(0, 1fr);
     }
 
-    .aviso-seguranca span {
-        font-size: 0.62rem;
+    .imagem-produto {
+        width: 58px;
+        height: 55px;
     }
 
-    .bandeiras {
-        display: none;
-    }
-}
+    .preco-produto {
+        grid-column: 2;
 
-@media (max-width: 360px) {
-    .ambiente-seguro {
-        display: none;
+        margin-top: -8px;
     }
 
-    .cabecalho {
-        grid-template-columns: 40px 1fr 40px;
+    /*
+       Entrega mais compacta.
+    */
+
+    .entrega {
+        padding: 10px;
+
+        gap: 10px;
     }
 
-    .introducao-pagamento {
-        flex-direction: column;
+    .icone-entrega {
+        width: 50px;
+        height: 50px;
     }
 
-    .aviso-seguranca {
-        width: 100%;
+    .icone-entrega i {
+        font-size: 1.7rem;
     }
 
-    .linha-campos {
-        grid-template-columns: 1fr;
-        gap: 13px;
+    .informacoes-entrega strong {
+        font-size: 0.82rem;
+    }
+
+    /*
+       Menu inferior
+    */
+
+    .menu-inferior {
+        width: calc(100% + 20px);
+
+        margin-left: -10px;
+    }
+
+    .menu-item span {
+        font-size: 0.52rem;
     }
 }

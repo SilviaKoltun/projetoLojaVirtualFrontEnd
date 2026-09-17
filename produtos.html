@@ -41,7 +41,7 @@
           >
             <i class="ph ph-shopping-cart-simple"></i>
 
-            <span class="contador-carrinho">2</span>
+            <span class="contador-carrinho" id="contador-carrinho">0</span>
           </button>
         </div>
 
@@ -93,7 +93,7 @@
           </div>
         </section>
 
-        <section class="secao-categorias">
+        <section class="secao-categorias" id="categorias">
           <div class="titulo-secao">
             <h2>Categorias</h2>
 
@@ -194,12 +194,12 @@
           <span>Início</span>
         </a>
 
-        <a href="#" class="menu-item">
-          <i class="ph ph-squares-four"></i>
-          <span>Categorias</span>
-        </a>
+       <a href="#categorias" class="menu-item" id="menu-categorias">
+      <i class="ph ph-squares-four"></i>
+      <span>Categorias</span>
+      </a>
 
-        <a href="#" class="menu-item">
+        <a href="#" class="menu-item" id="menu-favoritos">
           <i class="ph ph-heart"></i>
           <span>Favoritos</span>
         </a>
@@ -209,15 +209,52 @@
           <span>Pedidos</span>
         </a>
 
-        <a href="#" class="menu-item">
+        <a href="./conta.html" class="menu-item">
           <i class="ph ph-user"></i>
           <span>Conta</span>
         </a>
       </nav>
     </div>
 
-    <script>
+<script>
       const token = localStorage.getItem("token");
+      const contadorCarrinho = document.getElementById("contador-carrinho");
+      let todosProdutos = [];
+
+async function atualizarContadorCarrinho() {
+  try {
+    const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar carrinho");
+    }
+
+    const carrinho = await resposta.json();
+
+    const quantidadeTotal = carrinho.reduce(
+      (total, item) => total + item.quantidade,
+      0
+    );
+
+    contadorCarrinho.textContent = quantidadeTotal;
+
+    if (quantidadeTotal === 0) {
+      contadorCarrinho.style.display = "none";
+    } else {
+      contadorCarrinho.style.display = "flex";
+    }
+
+  } catch (erro) {
+    console.error("Erro ao atualizar contador do carrinho:", erro);
+    contadorCarrinho.style.display = "none";
+  }
+}
 
       const listarProdutos = document.querySelector("#lista-produtos");
     
@@ -238,7 +275,7 @@
 
       const adicionarAoCarrinho = async (produtoId) => {
         try {
-          const resposta = await fetch("http://localhost:3000/carrinho", {
+          const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -261,53 +298,142 @@
       };
 
       const mostrarProdutos = (produtos) => {
-        listarProdutos.innerHTML = "";
+      listarProdutos.innerHTML = "";
 
-        if (!produtos.length) {
-          listarProdutos.innerHTML = `
-                 <p class="mensagem-erro">Nenhum produto encontrado.</p>
-               `;
-          return;
+      if (produtos.length === 0) {
+      listarProdutos.innerHTML = `
+        <p class="mensagem-erro">
+            Nenhum produto encontrado.
+        </p>
+    `;
+    return;
+  }
+
+      produtos.forEach((produto) => {
+
+        const elementoProduto = document.createElement("article");
+        elementoProduto.className = "produto";
+
+        elementoProduto.innerHTML = `
+            <img
+                src="${produto.imagem || imagemPadrao}"
+                alt="${produto.nome}"
+                class="imagem-produto"
+            >
+
+            <div class="produto-conteudo">
+
+                <button
+                    type="button"
+                    class="botao-favorito"
+                    aria-label="Adicionar aos favoritos"
+                >
+                    <i class="ph ph-heart"></i>
+                </button>
+
+                <h3>${produto.nome}</h3>
+
+                <p class="descricao">
+                    ${produto.descricao || "Produto fabricado com impressão 3D"}
+                </p>
+
+                <strong class="preco">
+                    ${formatarPreco(produto.preco)}
+                </strong>
+
+                <button
+                    type="button"
+                    class="botao-comprar"
+                    data-produto-id="${produto.id}"
+                >
+                    Comprar
+                </button>
+
+            </div>
+        `;
+
+
+        // BOTÃO COMPRAR
+        const botaoComprar =
+            elementoProduto.querySelector(".botao-comprar");
+
+        botaoComprar.addEventListener("click", () => {
+            adicionarAoCarrinho(produto.id);
+        });
+
+
+        // BOTÃO FAVORITO
+      const botaoFavoritar =
+      elementoProduto.querySelector(".botao-favorito");
+
+// Busca os favoritos salvos
+    let favoritos =
+    JSON.parse(localStorage.getItem("favoritos")) || [];
+
+// Se esse produto já estiver salvo, deixa o coração laranja
+    if (favoritos.includes(produto.id)) {
+    botaoFavoritar.classList.add("favorito");
+  }
+
+// Clique no coração
+    botaoFavoritar.addEventListener("click", () => {
+
+    favoritos =
+        JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    if (favoritos.includes(produto.id)) {
+
+        // Remove dos favoritos
+        favoritos = favoritos.filter(
+            id => id !== produto.id
+        );
+
+        botaoFavoritar.classList.remove("favorito");
+
+    } else {
+
+        // Adiciona aos favoritos
+        favoritos.push(produto.id);
+
+        botaoFavoritar.classList.add("favorito");
+    }
+
+    // Salva novamente
+    localStorage.setItem(
+        "favoritos",
+        JSON.stringify(favoritos)
+    );
+});
+
+        // ADICIONA O PRODUTO NA TELA
+        listarProdutos.appendChild(elementoProduto);
+
+    });
+};
+      const botoesCategorias = document.querySelectorAll(".categoria-item");
+
+  botoesCategorias.forEach((botao) => {
+
+    botao.addEventListener("click", () => {
+
+        const categoriaSelecionada =
+            botao.querySelector("span").textContent.trim();
+
+        // Se clicar em Todos, mostra todos os produtos
+        if (categoriaSelecionada === "Todos") {
+            mostrarProdutos(todosProdutos);
+            return;
         }
 
-        produtos.forEach((produto) => {
-          const elementoProduto = document.createElement("article");
-          elementoProduto.className = "produto";
-
-          elementoProduto.innerHTML = `
-                 <img
-                   src="${produto.imagem || imagemPadrao}"
-                   alt="${produto.nome}"
-                   class="imagem-produto"
-                 >
-                 <div class="produto-conteudo">
-                    <button type="button" class="botao-favorito" aria-label="Adicionar aos favoritos">
-                      <i class="ph ph-heart"></i>
-                    </button>
-                   <h3>${produto.nome}</h3>
-                   <p class="descricao">${produto.descricao || "Produto fabricado com impressão 3D"}</p>
-                   <strong class="preco">${formatarPreco(produto.preco)}</strong>
-                   <button type="button" class="botao-comprar" data-produto-id="${produto.id}">
-                     Comprar
-                   </button>
-                 </div>
-               `;
-
-          const botaoComprar = elementoProduto.querySelector(".botao-comprar");
-          const botaoFavoritar = elementoProduto.querySelector(".botao-favorito");
-
-          botaoComprar.addEventListener("click", () => {
-            adicionarAoCarrinho(produto.id);
-          });
-
-
-          if(produto?.carrinho?.length > 0){
-            botaoFavoritar.classList.add("favorito");
-          }
-
-          listarProdutos.appendChild(elementoProduto);
+        // Filtra pela categoria do produto
+        const produtosFiltrados = todosProdutos.filter((produto) => {
+            return produto.categoria?.nome === categoriaSelecionada;
         });
-      };
+
+        mostrarProdutos(produtosFiltrados);
+    });
+
+});
 
       async function fetchProdutos() {
         try {
@@ -322,6 +448,8 @@
             throw new Error("Erro ao buscar produtos");
           }
           const produtos = await resposta.json();
+          todosProdutos = produtos; // Armazena os produtos em todosProdutos
+
           mostrarProdutos(produtos);
         } catch (erro) {
           listarProdutos.innerHTML = `
@@ -331,8 +459,46 @@
                `;
         }
       }
+      const menuFavoritos = document.getElementById("menu-favoritos");
 
+      menuFavoritos.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const favoritos =
+        JSON.parse(localStorage.getItem("favoritos")) || [];
+
+      const produtosFavoritos = todosProdutos.filter((produto) =>
+        favoritos.includes(produto.id)
+      );
+
+      mostrarProdutos(produtosFavoritos);
+      });
+  
       fetchProdutos();
+      const campoBusca = document.getElementById("busca");
+
+    campoBusca.addEventListener("input", () => {
+    const textoBusca = campoBusca.value
+        .toLowerCase()
+        .trim();
+
+    const produtosEncontrados = todosProdutos.filter((produto) => {
+
+        const nome = produto.nome.toLowerCase();
+
+        const descricao =
+            (produto.descricao || "").toLowerCase();
+
+        return (
+            nome.includes(textoBusca) ||
+            descricao.includes(textoBusca)
+        );
+    });
+
+    mostrarProdutos(produtosEncontrados);
+});
+      atualizarContadorCarrinho();
+
     </script>
   </body>
 </html>

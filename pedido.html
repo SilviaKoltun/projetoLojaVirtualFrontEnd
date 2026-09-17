@@ -25,6 +25,15 @@
 
         <header class="cabecalho">
 
+            <button
+            type="button"
+            class="botao-voltar"
+            aria-label="Voltar para o início"
+            onclick="window.location.href='./produtos.html'"
+            >
+            <i class="ph ph-arrow-left"></i>
+            </button>
+
             <div class="marca">
 
                 <img
@@ -134,11 +143,6 @@
 
             <div class="acoes-pedido">
 
-                <a href="./acompanhar-pedido.html" class="botao-acompanhar">
-                    <i class="ph ph-cube"></i>
-                    Acompanhar pedido
-                </a>
-
                 <a href="./produtos.html" class="botao-inicio">
                     <i class="ph ph-house"></i>
                     Voltar para o início
@@ -160,7 +164,7 @@
                 <span>Categorias</span>
             </a>
 
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item" id="menu-favoritos">
                 <i class="ph ph-heart"></i>
                 <span>Favoritos</span>
             </a>
@@ -178,13 +182,11 @@
         </nav>
 
     </div>
+
 <script>
+
     const token = localStorage.getItem("token");
 
-
-    // =========================================
-    // FORMATAR PREÇO
-    // =========================================
 
     const formatarPreco = (preco) => {
         return Number(preco).toLocaleString("pt-BR", {
@@ -192,11 +194,6 @@
             maximumFractionDigits: 2
         });
     };
-
-
-    // =========================================
-    // FORMATAR DATA DA ENTREGA
-    // =========================================
 
     const formatarDataEntrega = (data) => {
         return data.toLocaleDateString(
@@ -211,10 +208,6 @@
     };
 
 
-    // =========================================
-    // CARREGAR PEDIDO
-    // =========================================
-
     async function carregarPedido() {
 
         const pedidoId =
@@ -225,7 +218,6 @@
             console.error("pedidoId não encontrado.");
             return;
         }
-
 
         try {
 
@@ -258,20 +250,11 @@
                 pedido
             );
 
-
-            // =====================================
-            // NÚMERO DO PEDIDO
-            // =====================================
-
             document.getElementById(
                 "numero-pedido"
             ).textContent =
                 `Pedido #${pedido.id}`;
 
-
-            // =====================================
-            // DATA DO PEDIDO
-            // =====================================
 
             const dataPedido =
                 new Date(pedido.data);
@@ -293,22 +276,12 @@
             ).textContent =
                 `Realizado em ${dataFormatada}`;
 
-
-            // =====================================
-            // STATUS
-            // =====================================
-
             document.getElementById(
                 "status-pedido"
             ).textContent =
                 pedido.status === "pago"
                     ? "Pago"
                     : pedido.status;
-
-
-            // =====================================
-            // ENTREGA ESTIMADA
-            // =====================================
 
             const inicioEntrega =
                 new Date(pedido.data);
@@ -332,21 +305,15 @@
                 `${formatarDataEntrega(inicioEntrega)} a ${formatarDataEntrega(fimEntrega)}`;
 
 
-            // =====================================
-            // RESUMO DO PEDIDO
-            // =====================================
-
             const dadosEntrega =
                 JSON.parse(
                     localStorage.getItem("dadosEntrega")
                 );
 
-
             console.log(
                 "DADOS ENTREGA:",
                 dadosEntrega
             );
-
 
             if (dadosEntrega) {
 
@@ -357,14 +324,12 @@
                         dadosEntrega.subtotal
                     )}`;
 
-
                 document.getElementById(
                     "resumo-frete"
                 ).textContent =
                     `R$ ${formatarPreco(
                         dadosEntrega.frete
                     )}`;
-
 
                 document.getElementById(
                     "resumo-total"
@@ -374,7 +339,6 @@
                     )}`;
 
             }
-
 
         } catch (erro) {
 
@@ -387,15 +351,9 @@
 
     }
 
-
-    // =========================================
-    // INICIAR
-    // =========================================
-
     carregarPedido();
+
 </script>
-
-
 
 </body>
 

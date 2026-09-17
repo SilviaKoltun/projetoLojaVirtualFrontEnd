@@ -278,13 +278,8 @@
                         </label>
 
                         <div class="controle-campo">
-                            <input
-                                type="password"
-                                id="cvv"
-                                name="cvv"
-                                placeholder="123"
-                                maxlength="4"
-                            >
+                    <input type="password" id="cvv" name="cvv" placeholder="123" maxlength="4" autocomplete="cc-csc"
+                    >
 
                             <button
                                 type="button"
@@ -353,11 +348,6 @@
     const dadosCartao =
         document.querySelector(".dados-cartao");
 
-
-    // =========================================
-    // FORMATAR PREÇO
-    // =========================================
-
     const formatarPreco = (preco) => {
         return Number(preco).toLocaleString("pt-BR", {
             minimumFractionDigits: 2,
@@ -365,10 +355,6 @@
         });
     };
 
-
-    // =========================================
-    // RECUPERAR DADOS DO CARRINHO
-    // =========================================
 
     const dadosEntrega =
         JSON.parse(localStorage.getItem("dadosEntrega"));
@@ -408,10 +394,6 @@
     }
 
 
-    // =========================================
-    // SELECIONAR FORMA DE PAGAMENTO
-    // =========================================
-
     formasPagamento.forEach((forma) => {
 
         forma.addEventListener("click", () => {
@@ -421,10 +403,8 @@
                 item.classList.remove("selecionada");
             });
 
-
             // Destaca a escolhida
             forma.classList.add("selecionada");
-
 
             // Encontra o radio dentro da opção
             const radio =
@@ -432,16 +412,13 @@
                     'input[type="radio"]'
                 );
 
-
             // Marca o radio
             radio.checked = true;
-
 
             console.log(
                 "Forma selecionada:",
                 radio.value
             );
-
 
             // Mostra campos de cartão somente
             // quando cartão estiver selecionado
@@ -462,11 +439,6 @@
 
     });
 
-
-    // =========================================
-    // FINALIZAR PAGAMENTO
-    // =========================================
-
     formularioPagamento.addEventListener(
         "submit",
         async (event) => {
@@ -484,9 +456,6 @@
 
                 }
 
-
-                // Verifica qual pagamento está marcado
-
                 const formaSelecionada =
                     document.querySelector(
                         'input[name="forma-pagamento"]:checked'
@@ -501,22 +470,16 @@
 
                 }
 
-
                 const formaPagamento =
                     formaSelecionada.value;
-
 
                 console.log(
                     "Pagamento escolhido:",
                     formaPagamento
                 );
 
-
-                // =================================
-                // 1 - CRIAR PEDIDO
-                // =================================
-
-
+            console.log("DADOS ENTREGA ANTES DO POST:", dadosEntrega);
+            
             const respostaPedido =
             await fetch(
             "http://127.0.0.1:3000/pedidos",
@@ -531,6 +494,8 @@
                 body: JSON.stringify({
                 cep: dadosEntrega.cep,
                 rua: dadosEntrega.rua,
+                numero: dadosEntrega.numero,
+                complemento: dadosEntrega.complemento,
                 bairro: dadosEntrega.bairro,
                 cidade: dadosEntrega.cidade,
                 uf: dadosEntrega.uf,
@@ -550,11 +515,6 @@
             pedido
         );
         
-
-                // =================================
-                // 2 - CRIAR PAGAMENTO
-                // =================================
-
                 const respostaPagamento =
                     await fetch(
                         "http://127.0.0.1:3000/pagamentos",
@@ -596,11 +556,6 @@
                     pagamento
                 );
 
-
-                // =================================
-                // 3 - SALVAR DADOS DO PEDIDO
-                // =================================
-
                 localStorage.setItem(
                     "pedidoId",
                     pedido.id
@@ -611,11 +566,6 @@
                     "formaPagamento",
                     formaPagamento
                 );
-
-
-                // =================================
-                // 4 - IR PARA PEDIDO
-                // =================================
 
                 window.location.href =
                     "./pedido.html";
@@ -635,3 +585,5 @@
         }
     );
 </script>
+</body>
+</html>

@@ -17,8 +17,13 @@
   <body>
     <div class="pagina">
       <header class="cabecalho">
-        <button type="button" class="botao-cabecalho" aria-label="Voltar">
-          <i class="ph ph-arrow-left"></i>
+        <button
+        type="button"
+        class="botao-cabecalho"
+        aria-label="Voltar para produtos"
+        onclick="window.location.href='./produtos.html'"
+        >
+        <i class="ph ph-arrow-left"></i>
         </button>
 
         <div class="marca">
@@ -90,28 +95,54 @@
     </div>
 
       <div class="endereco-cep">
-      <input type="text" id="rua" placeholder="Rua" readonly>
-      <input type="text" id="bairro" placeholder="Bairro" readonly>
 
-      <div class="cidade-uf">
-      <input type="text" id="cidade" placeholder="Cidade" readonly>
-      <input type="text" id="uf" placeholder="UF" readonly>
-    </div>
+  <input
+    type="text"
+    id="rua"
+    placeholder="Rua"
+    readonly
+  >
+
+  <div class="numero-complemento">
+    <input
+      type="text"
+      id="numero"
+      placeholder="Número"
+      inputmode="numeric"
+    >
+
+    <input
+      type="text"
+      id="complemento"
+      placeholder="Complemento (opcional)"
+    >
   </div>
+
+  <input
+    type="text"
+    id="bairro"
+    placeholder="Bairro"
+    readonly
+  >
+
+  <div class="cidade-uf">
+    <input
+      type="text"
+      id="cidade"
+      placeholder="Cidade"
+      readonly
+    >
+
+    <input
+      type="text"
+      id="uf"
+      placeholder="UF"
+      readonly
+    >
+  </div>
+
 </div>
-
-        
-
-          <button type="button" class="opcao-pedido">
-            <i class="ph ph-tag icone-opcao"></i>
-
-            <span class="texto-opcao">
-              <strong>Cupom de desconto</strong>
-              <small>Adicionar cupom</small>
-            </span>
-
-            <i class="ph ph-caret-right seta-opcao"></i>
-          </button>
+</div>          
         </section>
       </main>
       
@@ -233,7 +264,7 @@
               data-id="${item.id}"
               data-quantidade="${item.quantidade}"
             >
-              <i class="ph ph-plus"></i>
+            <i class="ph ph-plus"></i>
             </button>
 
           </div>
@@ -297,7 +328,7 @@
     try {
 
       const resposta = await fetch(
-        `http://localhost:3000/carrinho/${id}`,
+        `http://127.0.0.1:3000/carrinho/${id}`,
         {
           method: "PUT",
 
@@ -353,7 +384,7 @@
 
 
       const resposta = await fetch(
-        `http://localhost:3000/carrinho/${id}`,
+        `http://127.0.0.1:3000/carrinho/${id}`,
         {
           method: "DELETE",
 
@@ -506,40 +537,8 @@
 
       }
 
-      function finalizarPedido() {
-      const cep = document.getElementById("cep").value;
-      const rua = document.getElementById("rua").value;
-      const bairro = document.getElementById("bairro").value;
-      const cidade = document.getElementById("cidade").value;
-      const uf = document.getElementById("uf").value;
-
-      if (!cep || !rua || frete === 0) {
-      alert("Informe um CEP válido antes de finalizar o pedido.");
-      return;
-    }
-
-    const dadosEntrega = {
-    cep,
-    rua,
-    bairro,
-    cidade,
-    uf,
-    frete,
-    subtotal: subtotalAtual,
-    total: subtotalAtual + frete
-  };
-
-  localStorage.setItem(
-    "dadosEntrega",
-    JSON.stringify(dadosEntrega)
-  );
-
-  window.location.href = "./pagamento.html";
-}
-
-
       const resposta = await fetch(
-        "http://localhost:3000/carrinho",
+        "http://127.0.0.1:3000/carrinho",
         {
           method: "GET",
 
@@ -670,39 +669,51 @@ function atualizarTotal() {
   ).textContent =
     `R$ ${formatarPreco(total)}`;
 }
-
 function finalizarPedido() {
-  const cep = document.getElementById("cep").value;
-  const rua = document.getElementById("rua").value;
-  const bairro = document.getElementById("bairro").value;
-  const cidade = document.getElementById("cidade").value;
-  const uf = document.getElementById("uf").value;
+    const cep = document.getElementById("cep").value;
+    const rua = document.getElementById("rua").value;
+    const numero = document.getElementById("numero").value.trim();
+    const complemento = document.getElementById("complemento").value.trim();
+    const bairro = document.getElementById("bairro").value;
+    const cidade = document.getElementById("cidade").value;
+    const uf = document.getElementById("uf").value;
 
-  if (!cep || !rua || frete === 0) {
-    alert("Informe um CEP válido antes de finalizar o pedido.");
-    return;
-  }
+    if (!cep || !rua || frete === 0) {
+        alert("Informe um CEP válido antes de finalizar o pedido.");
+        return;
+    }
 
-  const dadosEntrega = {
-    cep: cep,
-    rua: rua,
-    bairro: bairro,
-    cidade: cidade,
-    uf: uf,
-    frete: frete,
-    subtotal: subtotalAtual,
-    total: subtotalAtual + frete
-  };
+    if (!numero) {
+        alert("Informe o número do endereço.");
+        document.getElementById("numero").focus();
+        return;
+    }
 
-  localStorage.setItem(
-    "dadosEntrega",
-    JSON.stringify(dadosEntrega)
-  );
+    const dadosEntrega = {
+        cep,
+        rua,
+        numero,
+        complemento,
+        bairro,
+        cidade,
+        uf,
+        frete,
+        subtotal: subtotalAtual,
+        total: subtotalAtual + frete
+    };
 
-  window.location.href = "./pagamento.html";
+    localStorage.setItem(
+        "dadosEntrega",
+        JSON.stringify(dadosEntrega)
+    );
+
+    window.location.href = "./pagamento.html";
 }
-  buscarDadosCarrinho();
+
+buscarDadosCarrinho();
+
+
 
 </script>
-  </body>
+</body>
 </html>
