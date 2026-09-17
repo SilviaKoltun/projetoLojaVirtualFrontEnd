@@ -4,19 +4,13 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Pagamento - Inova 3D</title>
 
     <link rel="stylesheet" href="pagamento.css">
 
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
 </head>
 
 <body>
@@ -25,22 +19,14 @@
 
         <header class="cabecalho">
 
-            <button
-                type="button"
-                class="botao-voltar"
-                aria-label="Voltar para o carrinho"
-                onclick="window.location.href='./carrinho.html'"
-            >
+            <button type="button" class="botao-voltar" aria-label="Voltar para o carrinho"
+                onclick="window.location.href='./carrinho.html'">
                 <i class="ph ph-arrow-left"></i>
             </button>
 
             <div class="marca">
 
-                <img
-                    src="./assets/logo.png"
-                    alt="Logo Inova 3D"
-                    class="logo"
-                >
+                <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo">
 
                 <div class="nome-marca">
                     <span>INOVA</span>
@@ -122,12 +108,7 @@
 
                     <label class="forma-pagamento">
 
-                        <input
-                            type="radio"
-                            name="forma-pagamento"
-                            value="cartao"
-                            checked
-                        >
+                        <input type="radio" name="forma-pagamento" value="cartao" checked>
 
                         <i class="ph ph-credit-card icone-forma cartao"></i>
 
@@ -152,11 +133,7 @@
 
                     <label class="forma-pagamento">
 
-                        <input
-                            type="radio"
-                            name="forma-pagamento"
-                            value="pix"
-                        >
+                        <input type="radio" name="forma-pagamento" value="pix">
 
                         <i class="ph ph-pix-logo icone-forma pix"></i>
 
@@ -171,11 +148,7 @@
 
                     <label class="forma-pagamento">
 
-                        <input
-                            type="radio"
-                            name="forma-pagamento"
-                            value="boleto"
-                        >
+                        <input type="radio" name="forma-pagamento" value="boleto">
 
                         <i class="ph ph-barcode icone-forma boleto"></i>
 
@@ -190,11 +163,7 @@
 
                     <label class="forma-pagamento">
 
-                        <input
-                            type="radio"
-                            name="forma-pagamento"
-                            value="picpay"
-                        >
+                        <input type="radio" name="forma-pagamento" value="picpay">
 
                         <i class="ph ph-arrows-clockwise icone-forma pix"></i>
 
@@ -220,13 +189,8 @@
                         </label>
 
                         <div class="controle-campo">
-                            <input
-                                type="text"
-                                id="numero-cartao"
-                                name="numero-cartao"
-                                placeholder="0000 0000 0000 0000"
-                                maxlength="19"
-                            >
+                            <input type="text" id="numero-cartao" name="numero-cartao" placeholder="0000 0000 0000 0000"
+                                maxlength="19">
 
                             <i class="ph ph-credit-card"></i>
                         </div>
@@ -241,12 +205,8 @@
                                 Nome no cartão
                             </label>
 
-                            <input
-                                type="text"
-                                id="nome-cartao"
-                                name="nome-cartao"
-                                placeholder="Como está escrito no cartão"
-                            >
+                            <input type="text" id="nome-cartao" name="nome-cartao"
+                                placeholder="Como está escrito no cartão">
                         </div>
 
 
@@ -255,13 +215,7 @@
                                 Validade
                             </label>
 
-                            <input
-                                type="text"
-                                id="validade"
-                                name="validade"
-                                placeholder="MM/AA"
-                                maxlength="5"
-                            >
+                            <input type="text" id="validade" name="validade" placeholder="MM/AA" maxlength="5">
                         </div>
 
                     </div>
@@ -271,21 +225,14 @@
 
                         <label for="cvv">
                             CVV
-                            <i
-                                class="ph ph-info"
-                                title="Código de segurança do cartão"
-                            ></i>
+                            <i class="ph ph-info" title="Código de segurança do cartão"></i>
                         </label>
 
                         <div class="controle-campo">
-                    <input type="password" id="cvv" name="cvv" placeholder="123" maxlength="4" autocomplete="cc-csc"
-                    >
+                            <input type="password" id="cvv" name="cvv" placeholder="123" maxlength="4"
+                                autocomplete="cc-csc">
 
-                            <button
-                                type="button"
-                                class="mostrar-cvv"
-                                aria-label="Mostrar ou esconder CVV"
-                            >
+                            <button type="button" class="mostrar-cvv" aria-label="Mostrar ou esconder CVV">
                                 <i class="ph ph-eye"></i>
                             </button>
                         </div>
@@ -300,23 +247,23 @@
 
                     <div class="resumo-card">
 
-                    <div class="linha-resumo">
-                    <span>Subtotal</span>
-                    <span id="pagamento-subtotal">R$ 0,00</span>
+                        <div class="linha-resumo">
+                            <span>Subtotal</span>
+                            <span id="pagamento-subtotal">R$ 0,00</span>
+                        </div>
+
+                        <div class="linha-resumo">
+                            <span>Frete</span>
+                            <span id="pagamento-frete">R$ 0,00</span>
+                        </div>
+
+                        <div class="linha-total">
+                            <strong>Total</strong>
+                            <strong id="pagamento-total">R$ 0,00</strong>
+                        </div>
                     </div>
 
-                    <div class="linha-resumo">
-                    <span>Frete</span>
-                    <span id="pagamento-frete">R$ 0,00</span>
-                    </div>
-
-                    <div class="linha-total">
-                    <strong>Total</strong>
-                    <strong id="pagamento-total">R$ 0,00</strong>
-                </div>
-            </div>
-
-            </section>
+                </section>
 
                 <button type="submit" class="botao-pagar">
                     <i class="ph ph-lock"></i>
@@ -336,254 +283,241 @@
 
     </div>
 
-<script>
-    const token = localStorage.getItem("token");
+    <script>
+        const token = localStorage.getItem("token");
 
-    const formularioPagamento =
-        document.querySelector(".formulario-pagamento");
+        const formularioPagamento =
+            document.querySelector(".formulario-pagamento");
 
-    const formasPagamento =
-        document.querySelectorAll(".forma-pagamento");
+        const formasPagamento =
+            document.querySelectorAll(".forma-pagamento");
 
-    const dadosCartao =
-        document.querySelector(".dados-cartao");
+        const dadosCartao =
+            document.querySelector(".dados-cartao");
 
-    const formatarPreco = (preco) => {
-        return Number(preco).toLocaleString("pt-BR", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-    };
-
-
-    const dadosEntrega =
-        JSON.parse(localStorage.getItem("dadosEntrega"));
+        const formatarPreco = (preco) => {
+            return Number(preco).toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        };
 
 
-    if (!dadosEntrega) {
-
-        alert("Dados do pedido não encontrados.");
-
-        window.location.href =
-            "./carrinho.html";
-
-    } else {
-
-        document.getElementById(
-            "pagamento-subtotal"
-        ).textContent =
-            `R$ ${formatarPreco(dadosEntrega.subtotal)}`;
+        const dadosEntrega =
+            JSON.parse(localStorage.getItem("dadosEntrega"));
 
 
-        document.getElementById(
-            "pagamento-frete"
-        ).textContent =
-            `R$ ${formatarPreco(dadosEntrega.frete)}`;
+        if (!dadosEntrega) {
 
+            alert("Dados do pedido não encontrados.");
 
-        document.getElementById(
-            "pagamento-total"
-        ).textContent =
-            `R$ ${formatarPreco(dadosEntrega.total)}`;
+            window.location.href =
+                "./carrinho.html";
 
+        } else {
 
-        document.getElementById(
-            "texto-pagar"
-        ).textContent =
-            `Pagar R$ ${formatarPreco(dadosEntrega.total)}`;
-    }
+            document.getElementById(
+                "pagamento-subtotal"
+            ).textContent =
+                `R$ ${formatarPreco(dadosEntrega.subtotal)}`;
 
+            document.getElementById(
+                "pagamento-frete"
+            ).textContent =
+                `R$ ${formatarPreco(dadosEntrega.frete)}`;
 
-    formasPagamento.forEach((forma) => {
+            document.getElementById(
+                "pagamento-total"
+            ).textContent =
+                `R$ ${formatarPreco(dadosEntrega.total)}`;
 
-        forma.addEventListener("click", () => {
+            document.getElementById(
+                "texto-pagar"
+            ).textContent =
+                `Pagar R$ ${formatarPreco(dadosEntrega.total)}`;
+        }
 
-            // Remove destaque de todas
-            formasPagamento.forEach((item) => {
-                item.classList.remove("selecionada");
+        formasPagamento.forEach((forma) => {
+
+            forma.addEventListener("click", () => {
+
+                formasPagamento.forEach((item) => {
+                    item.classList.remove("selecionada");
+                });
+
+                forma.classList.add("selecionada");
+
+                const radio =
+                    forma.querySelector(
+                        'input[type="radio"]'
+                    );
+
+                radio.checked = true;
+
+                console.log(
+                    "Forma selecionada:",
+                    radio.value
+                );
+
+                if (radio.value === "cartao") {
+
+                    dadosCartao.style.display =
+                        "block";
+
+                } else {
+
+                    dadosCartao.style.display =
+                        "none";
+
+                }
+
             });
 
-            // Destaca a escolhida
-            forma.classList.add("selecionada");
-
-            // Encontra o radio dentro da opção
-            const radio =
-                forma.querySelector(
-                    'input[type="radio"]'
-                );
-
-            // Marca o radio
-            radio.checked = true;
-
-            console.log(
-                "Forma selecionada:",
-                radio.value
-            );
-
-            // Mostra campos de cartão somente
-            // quando cartão estiver selecionado
-
-            if (radio.value === "cartao") {
-
-                dadosCartao.style.display =
-                    "block";
-
-            } else {
-
-                dadosCartao.style.display =
-                    "none";
-
-            }
-
         });
 
-    });
+        formularioPagamento.addEventListener(
+            "submit",
+            async (event) => {
 
-    formularioPagamento.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
+                event.preventDefault();
 
 
-            try {
+                try {
 
-                if (!token) {
+                    if (!token) {
 
-                    throw new Error(
-                        "Sessão expirada. Faça login novamente."
+                        throw new Error(
+                            "Sessão expirada. Faça login novamente."
+                        );
+
+                    }
+
+                    const formaSelecionada =
+                        document.querySelector(
+                            'input[name="forma-pagamento"]:checked'
+                        );
+
+
+                    if (!formaSelecionada) {
+
+                        throw new Error(
+                            "Escolha uma forma de pagamento."
+                        );
+
+                    }
+
+                    const formaPagamento =
+                        formaSelecionada.value;
+
+                    console.log(
+                        "Pagamento escolhido:",
+                        formaPagamento
                     );
+
+                    console.log("DADOS ENTREGA ANTES DO POST:", dadosEntrega);
+
+                    const respostaPedido =
+                        await fetch(
+                            "http://127.0.0.1:3000/pedidos",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Authorization: `Bearer ${token}`
+                                },
+
+                                body: JSON.stringify({
+                                    cep: dadosEntrega.cep,
+                                    rua: dadosEntrega.rua,
+                                    numero: dadosEntrega.numero,
+                                    complemento: dadosEntrega.complemento,
+                                    bairro: dadosEntrega.bairro,
+                                    cidade: dadosEntrega.cidade,
+                                    uf: dadosEntrega.uf,
+                                    frete: dadosEntrega.frete
+                                })
+                            }
+                        );
+                    const pedido = await respostaPedido.json();
+                    if (!respostaPedido.ok) {
+                        throw new Error(
+                            pedido.erro ||
+                            "Erro ao criar pedido."
+                        );
+                    }
+                    console.log(
+                        "PEDIDO CRIADO:",
+                        pedido
+                    );
+
+                    const respostaPagamento =
+                        await fetch(
+                            "http://127.0.0.1:3000/pagamentos",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Authorization: `Bearer ${token}`
+                                },
+
+                                body: JSON.stringify({
+                                    formaPagamento:
+                                        formaPagamento,
+
+                                    pedidoId:
+                                        pedido.id
+                                })
+                            }
+                        );
+
+
+                    const pagamento =
+                        await respostaPagamento.json();
+
+                    if (!respostaPagamento.ok) {
+
+                        throw new Error(
+                            pagamento.erro ||
+                            "Erro ao realizar pagamento."
+                        );
+
+                    }
+
+                    console.log(
+                        "PAGAMENTO CRIADO:",
+                        pagamento
+                    );
+
+                    localStorage.setItem(
+                        "pedidoId",
+                        pedido.id
+                    );
+
+                    localStorage.setItem(
+                        "formaPagamento",
+                        formaPagamento
+                    );
+
+                    window.location.href =
+                        "./pedido.html";
+
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro ao finalizar pedido:",
+                        erro
+                    );
+
+                    alert(erro.message);
 
                 }
-
-                const formaSelecionada =
-                    document.querySelector(
-                        'input[name="forma-pagamento"]:checked'
-                    );
-
-
-                if (!formaSelecionada) {
-
-                    throw new Error(
-                        "Escolha uma forma de pagamento."
-                    );
-
-                }
-
-                const formaPagamento =
-                    formaSelecionada.value;
-
-                console.log(
-                    "Pagamento escolhido:",
-                    formaPagamento
-                );
-
-            console.log("DADOS ENTREGA ANTES DO POST:", dadosEntrega);
-            
-            const respostaPedido =
-            await fetch(
-            "http://127.0.0.1:3000/pedidos",
-            {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-
-                body: JSON.stringify({
-                cep: dadosEntrega.cep,
-                rua: dadosEntrega.rua,
-                numero: dadosEntrega.numero,
-                complemento: dadosEntrega.complemento,
-                bairro: dadosEntrega.bairro,
-                cidade: dadosEntrega.cidade,
-                uf: dadosEntrega.uf,
-                frete: dadosEntrega.frete
-                })
-             }
-        );
-        const pedido = await respostaPedido.json();
-        if( !respostaPedido.ok) {
-            throw new Error(
-                pedido.erro ||
-                "Erro ao criar pedido."
-            );
-        }
-        console.log(
-            "PEDIDO CRIADO:",
-            pedido
-        );
-        
-                const respostaPagamento =
-                    await fetch(
-                        "http://127.0.0.1:3000/pagamentos",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type": "application/json",
-                                Authorization: `Bearer ${token}`
-                            },
-
-                            body: JSON.stringify({
-                                formaPagamento:
-                                    formaPagamento,
-
-                                pedidoId:
-                                    pedido.id
-                            })
-                        }
-                    );
-
-
-                const pagamento =
-                    await respostaPagamento.json();
-
-
-                if (!respostaPagamento.ok) {
-
-                    throw new Error(
-                        pagamento.erro ||
-                        "Erro ao realizar pagamento."
-                    );
-
-                }
-
-
-                console.log(
-                    "PAGAMENTO CRIADO:",
-                    pagamento
-                );
-
-                localStorage.setItem(
-                    "pedidoId",
-                    pedido.id
-                );
-
-
-                localStorage.setItem(
-                    "formaPagamento",
-                    formaPagamento
-                );
-
-                window.location.href =
-                    "./pedido.html";
-
-
-            } catch (erro) {
-
-                console.error(
-                    "Erro ao finalizar pedido:",
-                    erro
-                );
-
-                alert(erro.message);
 
             }
-
-        }
-    );
-</script>
+        );
+    </script>
 </body>
+
 </html>

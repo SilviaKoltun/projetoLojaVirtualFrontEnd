@@ -48,12 +48,10 @@ button {
     padding: 14px 24px 26px;
 
     background:
-        radial-gradient(
-            circle at center,
+        radial-gradient(circle at center,
             #101010 0%,
             #080808 55%,
-            #030303 100%
-        );
+            #030303 100%);
 
     border-radius: 20px;
 }
@@ -225,12 +223,11 @@ button {
 
 .linha-etapa.concluida {
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             var(--cor-laranja),
-            #5d5d5d
-        );
+            #5d5d5d);
 }
+
 .introducao-pagamento {
     margin-bottom: 22px;
 
@@ -260,11 +257,9 @@ button {
     gap: 9px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #1b1b1b,
-            #101010
-        );
+            #101010);
 
     border: 1px solid #292929;
     border-radius: 10px;
@@ -284,6 +279,7 @@ button {
 .aviso-seguranca strong {
     color: var(--cor-laranja);
 }
+
 fieldset {
     border: none;
 }
@@ -311,11 +307,9 @@ fieldset {
     gap: 14px;
 
     background:
-        linear-gradient(
-            120deg,
+        linear-gradient(120deg,
             #191919,
-            #101010
-        );
+            #101010);
 
     border: 1px solid #292929;
     border-radius: 10px;
@@ -482,11 +476,9 @@ fieldset {
 
     color: #ffffff;
     background:
-        linear-gradient(
-            100deg,
+        linear-gradient(100deg,
             #181818,
-            #101010
-        );
+            #101010);
 
     border: 1px solid #383838;
     border-radius: 8px;
@@ -513,7 +505,7 @@ fieldset {
     padding-right: 48px;
 }
 
-.controle-campo > i {
+.controle-campo>i {
     position: absolute;
     top: 50%;
     right: 15px;
@@ -566,11 +558,9 @@ fieldset {
     padding: 14px;
 
     background:
-        linear-gradient(
-            120deg,
+        linear-gradient(120deg,
             #191919,
-            #101010
-        );
+            #101010);
 
     border: 1px solid #292929;
     border-radius: 10px;
@@ -618,11 +608,9 @@ fieldset {
 
     color: #ffffff;
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             #ff7100,
-            #ff5b00
-        );
+            #ff5b00);
 
     border: none;
     border-radius: 9px;
@@ -658,16 +646,6 @@ fieldset {
     text-decoration: none;
 }
 
-/* ==================================================
-   RESPONSIVIDADE
-================================================== */
-
-
-/* ========================================
-   NOTEBOOK
-   até 1024px
-======================================== */
-
 @media (max-width: 1024px) {
 
     .pagina {
@@ -691,12 +669,6 @@ fieldset {
         padding-right: 22px;
     }
 }
-
-
-/* ========================================
-   TABLET
-   até 768px
-======================================== */
 
 @media (max-width: 768px) {
 
@@ -738,12 +710,6 @@ fieldset {
     }
 }
 
-
-/* ========================================
-   CELULAR
-   até 500px
-======================================== */
-
 @media (max-width: 500px) {
 
     body {
@@ -777,8 +743,6 @@ fieldset {
         font-size: 0.34rem;
     }
 
-    /* CONFIRMAÇÃO */
-
     .confirmacao {
         padding: 15px 8px 17px;
     }
@@ -790,7 +754,7 @@ fieldset {
         margin-bottom: 15px;
     }
 
-    .icone-aprovado > i {
+    .icone-aprovado>i {
         font-size: 2.9rem;
     }
 
@@ -801,8 +765,6 @@ fieldset {
     .confirmacao p {
         font-size: 0.82rem;
     }
-
-    /* PEDIDO */
 
     .cabecalho-pedido {
         min-height: 68px;
@@ -846,12 +808,6 @@ fieldset {
         font-size: 0.88rem;
     }
 
-    /*
-       Produtos do pedido.
-       Mantidos porque podem ser criados
-       dinamicamente pelo JavaScript.
-    */
-
     .produto {
         grid-template-columns: 65px minmax(0, 1fr) auto;
         gap: 9px;
@@ -878,8 +834,6 @@ fieldset {
         white-space: nowrap;
     }
 
-    /* VALORES */
-
     .linha-valor {
         font-size: 0.78rem;
     }
@@ -891,8 +845,6 @@ fieldset {
     .total-pedido strong:last-child {
         font-size: 1.15rem;
     }
-
-    /* ENTREGA */
 
     .entrega {
         min-height: 85px;
@@ -924,8 +876,6 @@ fieldset {
         line-height: 1.4;
     }
 
-    /* BOTÕES */
-
     .acoes-pedido {
         margin-top: 12px;
 
@@ -938,8 +888,6 @@ fieldset {
 
         font-size: 0.87rem;
     }
-
-    /* MENU */
 
     .menu-inferior {
         width: calc(100% + 30px);
@@ -959,12 +907,6 @@ fieldset {
         font-size: 0.61rem;
     }
 }
-
-
-/* ========================================
-   CELULAR PEQUENO
-   até 400px
-======================================== */
 
 @media (max-width: 400px) {
 
@@ -991,7 +933,7 @@ fieldset {
         height: 72px;
     }
 
-    .icone-aprovado > i {
+    .icone-aprovado>i {
         font-size: 2.6rem;
     }
 
@@ -1045,11 +987,6 @@ fieldset {
 }
 
 
-/* ========================================
-   CELULAR MUITO PEQUENO
-   até 360px
-======================================== */
-
 @media (max-width: 360px) {
 
     .pagina {
@@ -1074,11 +1011,6 @@ fieldset {
         font-size: 1.25rem;
     }
 
-    /*
-       Status passa para baixo para não
-       comprimir o número do pedido.
-    */
-
     .cabecalho-pedido {
         grid-template-columns: 34px minmax(0, 1fr);
 
@@ -1091,10 +1023,6 @@ fieldset {
 
         justify-self: start;
     }
-
-    /*
-       Produto reorganizado.
-    */
 
     .produto {
         grid-template-columns: 58px minmax(0, 1fr);
@@ -1110,10 +1038,6 @@ fieldset {
 
         margin-top: -8px;
     }
-
-    /*
-       Entrega mais compacta.
-    */
 
     .entrega {
         padding: 10px;
@@ -1133,10 +1057,6 @@ fieldset {
     .informacoes-entrega strong {
         font-size: 0.82rem;
     }
-
-    /*
-       Menu inferior
-    */
 
     .menu-inferior {
         width: calc(100% + 20px);

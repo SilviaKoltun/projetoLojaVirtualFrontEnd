@@ -1,313 +1,301 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Início - Inova 3D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="produtos.css" />
+  <title>Início - Inova 3D</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    />
-  </head>
+  <link rel="stylesheet" href="produtos.css" />
 
-  <body>
-    <div class="pagina">
-      <header class="cabecalho">
-        <div class="cabecalho-superior">
-          <button type="button" class="botao-menu" aria-label="Abrir menu">
-            <i class="ph ph-list"></i>
-          </button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+</head>
 
-          <div class="marca">
-            <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo" />
+<body>
+  <div class="pagina">
+    <header class="cabecalho">
+      <div class="cabecalho-superior">
+        <button type="button" class="botao-menu" aria-label="Abrir menu">
+          <i class="ph ph-list"></i>
+        </button>
 
-            <div class="nome-marca">
-              <span>INOVA</span>
-              <strong>3D</strong>
-              <small>INOVAÇÃO QUE GANHA FORMA</small>
-            </div>
+        <div class="marca">
+          <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo" />
+
+          <div class="nome-marca">
+            <span>INOVA</span>
+            <strong>3D</strong>
+            <small>INOVAÇÃO QUE GANHA FORMA</small>
           </div>
-
-          <button
-            type="button"
-            class="botao-carrinho"
-            aria-label="Abrir carrinho de compras"
-            onclick="window.location.href = './carrinho.html'"
-          >
-            <i class="ph ph-shopping-cart-simple"></i>
-
-            <span class="contador-carrinho" id="contador-carrinho">0</span>
-          </button>
         </div>
 
-        <div class="campo-busca">
-          <i class="ph ph-magnifying-glass"></i>
+        <button type="button" class="botao-carrinho" aria-label="Abrir carrinho de compras"
+          onclick="window.location.href = './carrinho.html'">
+          <i class="ph ph-shopping-cart-simple"></i>
 
-          <input
-            type="search"
-            id="busca"
-            placeholder="Buscar produtos..."
-            aria-label="Buscar produtos"
-          />
+          <span class="contador-carrinho" id="contador-carrinho">0</span>
+        </button>
+      </div>
+
+      <div class="campo-busca">
+        <i class="ph ph-magnifying-glass"></i>
+
+        <input type="search" id="busca" placeholder="Buscar produtos..." aria-label="Buscar produtos" />
+      </div>
+    </header>
+
+    <main>
+      <section class="banner">
+        <div class="banner-conteudo">
+          <h1>
+            Soluções impressas<br />
+            em <span>3D</span> para o seu<br />
+            dia a dia.
+          </h1>
+
+          <div class="beneficios-banner">
+            <div class="beneficio-banner">
+              <i class="ph ph-shield-check"></i>
+              <p>Alta<br />qualidade</p>
+            </div>
+
+            <div class="beneficio-banner">
+              <i class="ph ph-cube"></i>
+              <p>Materiais<br />duráveis</p>
+            </div>
+
+            <div class="beneficio-banner">
+              <i class="ph ph-rocket-launch"></i>
+              <p>Design<br />inovador</p>
+            </div>
+          </div>
         </div>
-      </header>
 
-      <main>
-        <section class="banner">
-          <div class="banner-conteudo">
-            <h1>
-              Soluções impressas<br />
-              em <span>3D</span> para o seu<br />
-              dia a dia.
-            </h1>
+        <!-- <img src="./assets/banner-impressora-3d.png" alt="Banner de produtos" class="banner-imagem"> -->
 
-            <div class="beneficios-banner">
-              <div class="beneficio-banner">
-                <i class="ph ph-shield-check"></i>
-                <p>Alta<br />qualidade</p>
-              </div>
+        <div class="indicadores">
+          <span class="indicador ativo"></span>
+          <span class="indicador"></span>
+          <span class="indicador"></span>
+        </div>
+      </section>
 
-              <div class="beneficio-banner">
-                <i class="ph ph-cube"></i>
-                <p>Materiais<br />duráveis</p>
-              </div>
+      <section class="secao-categorias" id="categorias">
+        <div class="titulo-secao">
+          <h2>Categorias</h2>
 
-              <div class="beneficio-banner">
-                <i class="ph ph-rocket-launch"></i>
-                <p>Design<br />inovador</p>
-              </div>
-            </div>
+          <a href="#" class="ver-todas">
+            
+            <i class="ph ph-caret-right"></i>
+          </a>
+        </div>
+
+        <div class="categorias">
+          <button type="button" class="categoria-item">
+            <i class="ph ph-squares-four"></i>
+          </button>
+
+          <button type="button" class="categoria-item">
+            <i class="ph ph-device-mobile"></i>
+            <span>Acessórios</span>
+          </button>
+
+          <button type="button" class="categoria-item">
+            <i class="ph ph-house"></i>
+            <span>Decoração</span>
+          </button>
+
+          <button type="button" class="categoria-item">
+            <i class="ph ph-archive"></i>
+            <span>Organização</span>
+          </button>
+
+          <button type="button" class="categoria-item">
+            <i class="ph ph-paw-print"></i>
+            <span>Pet</span>
+          </button>
+
+          <button type="button" class="categoria-item">
+            <i class="ph ph-wrench"></i>
+            <span>Oficina</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="secao-produtos">
+        <div class="titulo-secao">
+          <h2>Produtos</h2>
+
+          <a href="#" class="ver-todas">
+          
+            <i class="ph ph-caret-right"></i>
+          </a>
+        </div>
+
+        <div id="lista-produtos" class="lista-produtos"></div>
+      </section>
+
+      <section class="vantagens">
+        <div class="vantagem-item">
+          <i class="ph ph-shield-check"></i>
+
+          <div>
+            <h3>Pagamento Seguro</h3>
+            <p>Seus dados protegidos</p>
           </div>
+        </div>
 
-          <!-- <img src="./assets/banner-impressora-3d.png" alt="Banner de produtos" class="banner-imagem"> -->
+        <div class="vantagem-item">
+          <i class="ph ph-truck"></i>
 
-          <div class="indicadores">
-            <span class="indicador ativo"></span>
-            <span class="indicador"></span>
-            <span class="indicador"></span>
+          <div>
+            <h3>Envio Rápido</h3>
+            <p>Para todo o Brasil</p>
           </div>
-        </section>
+        </div>
 
-        <section class="secao-categorias" id="categorias">
-          <div class="titulo-secao">
-            <h2>Categorias</h2>
+        <div class="vantagem-item">
+          <i class="ph ph-seal-check"></i>
 
-            <a href="#" class="ver-todas">
-              Ver todas
-              <i class="ph ph-caret-right"></i>
-            </a>
+          <div>
+            <h3>Qualidade Garantida</h3>
+            <p>Impressão 3D de alta qualidade</p>
           </div>
+        </div>
 
-          <div class="categorias">
-            <button type="button" class="categoria-item">
-              <i class="ph ph-squares-four"></i>
-              <span>Todos</span>
-            </button>
+        <div class="vantagem-item">
+          <i class="ph ph-headset"></i>
 
-            <button type="button" class="categoria-item">
-              <i class="ph ph-device-mobile"></i>
-              <span>Acessórios</span>
-            </button>
-
-            <button type="button" class="categoria-item">
-              <i class="ph ph-house"></i>
-              <span>Decoração</span>
-            </button>
-
-            <button type="button" class="categoria-item">
-              <i class="ph ph-archive"></i>
-              <span>Organização</span>
-            </button>
-
-            <button type="button" class="categoria-item">
-              <i class="ph ph-paw-print"></i>
-              <span>Pet</span>
-            </button>
-
-            <button type="button" class="categoria-item">
-              <i class="ph ph-wrench"></i>
-              <span>Oficina</span>
-            </button>
+          <div>
+            <h3>Atendimento Especializado</h3>
+            <p>Estamos prontos para ajudar</p>
           </div>
-        </section>
+        </div>
+      </section>
+    </main>
 
-        <section class="secao-produtos">
-          <div class="titulo-secao">
-            <h2>Produtos em destaque</h2>
-
-            <a href="#" class="ver-todas">
-              Ver todos
-              <i class="ph ph-caret-right"></i>
-            </a>
-          </div>
-
-          <div id="lista-produtos" class="lista-produtos"></div>
-        </section>
-
-        <section class="vantagens">
-          <div class="vantagem-item">
-            <i class="ph ph-shield-check"></i>
-
-            <div>
-              <h3>Pagamento Seguro</h3>
-              <p>Seus dados protegidos</p>
-            </div>
-          </div>
-
-          <div class="vantagem-item">
-            <i class="ph ph-truck"></i>
-
-            <div>
-              <h3>Envio Rápido</h3>
-              <p>Para todo o Brasil</p>
-            </div>
-          </div>
-
-          <div class="vantagem-item">
-            <i class="ph ph-seal-check"></i>
-
-            <div>
-              <h3>Qualidade Garantida</h3>
-              <p>Impressão 3D de alta qualidade</p>
-            </div>
-          </div>
-
-          <div class="vantagem-item">
-            <i class="ph ph-headset"></i>
-
-            <div>
-              <h3>Atendimento Especializado</h3>
-              <p>Estamos prontos para ajudar</p>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <nav class="menu-inferior">
-        <a href="produtos.html" class="menu-item ativo">
-          <i class="ph ph-house"></i>
-          <span>Início</span>
-        </a>
-
-       <a href="#categorias" class="menu-item" id="menu-categorias">
-      <i class="ph ph-squares-four"></i>
-      <span>Categorias</span>
+    <nav class="menu-inferior">
+      <a href="produtos.html" class="menu-item ativo">
+        <i class="ph ph-house"></i>
+        <span>Início</span>
       </a>
 
-        <a href="#" class="menu-item" id="menu-favoritos">
-          <i class="ph ph-heart"></i>
-          <span>Favoritos</span>
-        </a>
+      <a href="#categorias" class="menu-item" id="menu-categorias">
+        <i class="ph ph-squares-four"></i>
+        <span>Categorias</span>
+      </a>
 
-        <a href="#" class="menu-item">
-          <i class="ph ph-shopping-bag"></i>
-          <span>Pedidos</span>
-        </a>
+      <a href="#" class="menu-item" id="menu-favoritos">
+        <i class="ph ph-heart"></i>
+        <span>Favoritos</span>
+      </a>
 
-        <a href="./conta.html" class="menu-item">
-          <i class="ph ph-user"></i>
-          <span>Conta</span>
-        </a>
-      </nav>
-    </div>
+      <a href="#" class="menu-item">
+        <i class="ph ph-sign-out"></i>
+        <span>Sair</span>
+      </a>
 
-<script>
-      const token = localStorage.getItem("token");
-      const contadorCarrinho = document.getElementById("contador-carrinho");
-      let todosProdutos = [];
+      <a href="./conta.html" class="menu-item">
+        <i class="ph ph-user"></i>
+        <span>Conta</span>
+      </a>
+    </nav>
+  </div>
 
-async function atualizarContadorCarrinho() {
-  try {
-    const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  <script>
+    const token = localStorage.getItem("token");
+    const contadorCarrinho = document.getElementById("contador-carrinho");
+    let todosProdutos = [];
 
-    if (!resposta.ok) {
-      throw new Error("Erro ao buscar carrinho");
-    }
-
-    const carrinho = await resposta.json();
-
-    const quantidadeTotal = carrinho.reduce(
-      (total, item) => total + item.quantidade,
-      0
-    );
-
-    contadorCarrinho.textContent = quantidadeTotal;
-
-    if (quantidadeTotal === 0) {
-      contadorCarrinho.style.display = "none";
-    } else {
-      contadorCarrinho.style.display = "flex";
-    }
-
-  } catch (erro) {
-    console.error("Erro ao atualizar contador do carrinho:", erro);
-    contadorCarrinho.style.display = "none";
-  }
-}
-
-      const listarProdutos = document.querySelector("#lista-produtos");
-    
-      const imagemPadrao = "./assets/suporte_para_Celular_3d.png";
-
-      console.log("Token:", token); // Adicione este log para verificar o valor do token
-
-      if (!token) {
-        alert("Entre na sua conta para adicionar produtos ao carrinho.");
-        window.location.href = "./login.html";
-      }
-
-      const formatarPreco = (valor) =>
-        Number(valor).toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL",
+    async function atualizarContadorCarrinho() {
+      try {
+        const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         });
 
-      const adicionarAoCarrinho = async (produtoId) => {
-        try {
-          const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ produtoId, quantidade: 1 }),
-          });
-
-          const dados = await resposta.json();
-
-          if (!resposta.ok) {
-            alert(dados.erro || "Não foi possível adicionar ao carrinho.");
-            return;
-          }
-
-          window.location.href = "./carrinho.html";
-        } catch (erro) {
-          alert("Não foi possível conectar ao servidor.");
+        if (!resposta.ok) {
+          throw new Error("Erro ao buscar carrinho");
         }
-      };
 
-      const mostrarProdutos = (produtos) => {
+        const carrinho = await resposta.json();
+
+        const quantidadeTotal = carrinho.reduce(
+          (total, item) => total + item.quantidade,
+          0
+        );
+
+        contadorCarrinho.textContent = quantidadeTotal;
+
+        if (quantidadeTotal === 0) {
+          contadorCarrinho.style.display = "none";
+        } else {
+          contadorCarrinho.style.display = "flex";
+        }
+
+      } catch (erro) {
+        console.error("Erro ao atualizar contador do carrinho:", erro);
+        contadorCarrinho.style.display = "none";
+      }
+    }
+
+    const listarProdutos = document.querySelector("#lista-produtos");
+
+    const imagemPadrao = "./assets/suporte_para_Celular_3d.png";
+
+    console.log("Token:", token); // Adicione este log para verificar o valor do token
+
+    if (!token) {
+      alert("Entre na sua conta para adicionar produtos ao carrinho.");
+      window.location.href = "./login.html";
+    }
+
+    const formatarPreco = (valor) =>
+      Number(valor).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+
+    const adicionarAoCarrinho = async (produtoId) => {
+      try {
+        const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ produtoId, quantidade: 1 }),
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+          alert(dados.erro || "Não foi possível adicionar ao carrinho.");
+          return;
+        }
+
+        window.location.href = "./carrinho.html";
+      } catch (erro) {
+        alert("Não foi possível conectar ao servidor.");
+      }
+    };
+
+    const mostrarProdutos = (produtos) => {
       listarProdutos.innerHTML = "";
 
       if (produtos.length === 0) {
-      listarProdutos.innerHTML = `
+        listarProdutos.innerHTML = `
         <p class="mensagem-erro">
             Nenhum produto encontrado.
         </p>
     `;
-    return;
-  }
+        return;
+      }
 
       produtos.forEach((produto) => {
 
@@ -353,115 +341,115 @@ async function atualizarContadorCarrinho() {
         `;
 
 
-        // BOTÃO COMPRAR
+        // botão comprar
         const botaoComprar =
-            elementoProduto.querySelector(".botao-comprar");
+          elementoProduto.querySelector(".botao-comprar");
 
         botaoComprar.addEventListener("click", () => {
-            adicionarAoCarrinho(produto.id);
+          adicionarAoCarrinho(produto.id);
         });
 
 
-        // BOTÃO FAVORITO
-      const botaoFavoritar =
-      elementoProduto.querySelector(".botao-favorito");
+        // botão favoritar
+        const botaoFavoritar =
+          elementoProduto.querySelector(".botao-favorito");
 
-// Busca os favoritos salvos
-    let favoritos =
-    JSON.parse(localStorage.getItem("favoritos")) || [];
+        // Busca os favoritos salvos
+        let favoritos =
+          JSON.parse(localStorage.getItem("favoritos")) || [];
 
-// Se esse produto já estiver salvo, deixa o coração laranja
-    if (favoritos.includes(produto.id)) {
-    botaoFavoritar.classList.add("favorito");
-  }
+        // Se esse produto já estiver salvo, deixa o coração laranja
+        if (favoritos.includes(produto.id)) {
+          botaoFavoritar.classList.add("favorito");
+        }
 
-// Clique no coração
-    botaoFavoritar.addEventListener("click", () => {
+        // Clique no coração
+        botaoFavoritar.addEventListener("click", () => {
 
-    favoritos =
-        JSON.parse(localStorage.getItem("favoritos")) || [];
+          favoritos =
+            JSON.parse(localStorage.getItem("favoritos")) || [];
 
-    if (favoritos.includes(produto.id)) {
+          if (favoritos.includes(produto.id)) {
 
-        // Remove dos favoritos
-        favoritos = favoritos.filter(
-            id => id !== produto.id
-        );
+            // Remove dos favoritos
+            favoritos = favoritos.filter(
+              id => id !== produto.id
+            );
 
-        botaoFavoritar.classList.remove("favorito");
+            botaoFavoritar.classList.remove("favorito");
 
-    } else {
+          } else {
 
-        // Adiciona aos favoritos
-        favoritos.push(produto.id);
+            // Adiciona aos favoritos
+            favoritos.push(produto.id);
 
-        botaoFavoritar.classList.add("favorito");
-    }
+            botaoFavoritar.classList.add("favorito");
+          }
 
-    // Salva novamente
-    localStorage.setItem(
-        "favoritos",
-        JSON.stringify(favoritos)
-    );
-});
+          // Salva novamente
+          localStorage.setItem(
+            "favoritos",
+            JSON.stringify(favoritos)
+          );
+        });
 
-        // ADICIONA O PRODUTO NA TELA
+        // adiciona o produto na tela
         listarProdutos.appendChild(elementoProduto);
 
-    });
-};
-      const botoesCategorias = document.querySelectorAll(".categoria-item");
+      });
+    };
+    const botoesCategorias = document.querySelectorAll(".categoria-item");
 
-  botoesCategorias.forEach((botao) => {
+    botoesCategorias.forEach((botao) => {
 
-    botao.addEventListener("click", () => {
+      botao.addEventListener("click", () => {
 
         const categoriaSelecionada =
-            botao.querySelector("span").textContent.trim();
+          botao.querySelector("span").textContent.trim();
 
         // Se clicar em Todos, mostra todos os produtos
         if (categoriaSelecionada === "Todos") {
-            mostrarProdutos(todosProdutos);
-            return;
+          mostrarProdutos(todosProdutos);
+          return;
         }
 
         // Filtra pela categoria do produto
         const produtosFiltrados = todosProdutos.filter((produto) => {
-            return produto.categoria?.nome === categoriaSelecionada;
+          return produto.categoria?.nome === categoriaSelecionada;
         });
 
         mostrarProdutos(produtosFiltrados);
+      });
+
     });
 
-});
+    async function fetchProdutos() {
+      try {
+        const resposta = await fetch("http://127.0.0.1:3000/produtos", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!resposta.ok) {
+          throw new Error("Erro ao buscar produtos");
+        }
+        const produtos = await resposta.json();
+        todosProdutos = produtos; // Armazena os produtos em todosProdutos
 
-      async function fetchProdutos() {
-        try {
-          const resposta = await fetch("http://127.0.0.1:3000/produtos", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          if (!resposta.ok) {
-            throw new Error("Erro ao buscar produtos");
-          }
-          const produtos = await resposta.json();
-          todosProdutos = produtos; // Armazena os produtos em todosProdutos
-
-          mostrarProdutos(produtos);
-        } catch (erro) {
-          listarProdutos.innerHTML = `
+        mostrarProdutos(produtos);
+      } catch (erro) {
+        listarProdutos.innerHTML = `
                  <p class="mensagem-erro">
                    Não foi possível carregar os produtos.
                  </p>
                `;
-        }
       }
-      const menuFavoritos = document.getElementById("menu-favoritos");
+    }
+    const menuFavoritos = document.getElementById("menu-favoritos");
 
-      menuFavoritos.addEventListener("click", (event) => {
+    menuFavoritos.addEventListener("click", (event) => {
       event.preventDefault();
 
       const favoritos =
@@ -472,33 +460,35 @@ async function atualizarContadorCarrinho() {
       );
 
       mostrarProdutos(produtosFavoritos);
-      });
-  
-      fetchProdutos();
-      const campoBusca = document.getElementById("busca");
+    });
+
+    fetchProdutos();
+    const campoBusca = document.getElementById("busca");
 
     campoBusca.addEventListener("input", () => {
-    const textoBusca = campoBusca.value
+      const textoBusca = campoBusca.value
         .toLowerCase()
         .trim();
 
-    const produtosEncontrados = todosProdutos.filter((produto) => {
+      const produtosEncontrados = todosProdutos.filter((produto) => {
 
         const nome = produto.nome.toLowerCase();
 
         const descricao =
-            (produto.descricao || "").toLowerCase();
+          (produto.descricao || "").toLowerCase();
 
         return (
-            nome.includes(textoBusca) ||
-            descricao.includes(textoBusca)
+          nome.includes(textoBusca) ||
+          descricao.includes(textoBusca)
         );
+      });
+
+      mostrarProdutos(produtosEncontrados);
     });
+    atualizarContadorCarrinho();
 
-    mostrarProdutos(produtosEncontrados);
-});
-      atualizarContadorCarrinho();
+  </script>
 
-    </script>
-  </body>
+</body>
+
 </html>

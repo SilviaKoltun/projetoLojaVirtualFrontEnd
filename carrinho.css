@@ -170,8 +170,6 @@ body {
 }
 
 
-/* RESUMO DO PEDIDO */
-
 .resumo-pedido {
     width: 100%;
 
@@ -198,11 +196,6 @@ body {
     font-size: 1.15rem;
     font-weight: 700;
 }
-
-
-/* =========================
-   PRODUTOS
-========================= */
 
 .produtos-pedido {
     width: 100%;
@@ -347,8 +340,6 @@ body {
     background-color: #292929;
 }
 
-/*VALORES*/
-
 .linha-valor {
     width: 100%;
 
@@ -386,8 +377,6 @@ body {
     font-size: 1.35rem;
 }
 
-
-/*FRETE / CUPOM*/
 .opcao-frete {
   padding: 24px 20px;
   border-bottom: 1px solid #333;
@@ -527,9 +516,6 @@ body {
     font-size: 1.4rem;
 }
 
-
-/* FINALIZAR PEDIDO*/
-
 .btn-submit {
     width: calc(100% - 40px);
     height: 58px;
@@ -587,9 +573,6 @@ body {
     font-size: 1.1rem;
 }
 
-
-/*RODAPÉ*/
-
 .rodape {
     margin-top: 5px;
 }
@@ -634,9 +617,6 @@ body {
     font-size: 0.68rem;
 }
 
-
-/* MENSAGEM DE ERRO */
-
 .mensagem-erro {
     padding: 20px;
 
@@ -644,15 +624,6 @@ body {
 
     text-align: center;
 }
-
-/* ==================================================
-   RESPONSIVIDADE
-================================================== */
-
-/* ========================================
-   DESKTOP / NOTEBOOK
-   até 1024px
-======================================== */
 
 @media (max-width: 1024px) {
 
@@ -678,12 +649,6 @@ body {
         padding: 24px 28px;
     }
 }
-
-
-/* ========================================
-   TABLET
-   até 768px
-======================================== */
 
 @media (max-width: 768px) {
 
@@ -726,12 +691,6 @@ body {
         padding: 22px 24px;
     }
 }
-
-
-/* ========================================
-   CELULAR
-   até 500px
-======================================== */
 
 @media (max-width: 500px) {
 
@@ -787,8 +746,6 @@ body {
     .titulo-carrinho h3 {
         font-size: 1.3rem;
     }
-
-    /* PRODUTO */
 
     .produto-pedido {
         grid-template-columns: 75px minmax(0, 1fr) 35px;
@@ -859,8 +816,6 @@ body {
         font-size: 1.2rem;
     }
 
-    /* FRETE */
-
     .opcao-frete {
         padding: 20px;
     }
@@ -897,8 +852,6 @@ body {
         flex-shrink: 0;
     }
 
-    /* OPÇÕES */
-
     .opcao-pedido {
         min-height: 68px;
 
@@ -920,8 +873,6 @@ body {
         font-size: 0.75rem;
     }
 
-    /* FINALIZAR */
-
     .btn-submit {
         width: calc(100% - 28px);
         height: 55px;
@@ -931,8 +882,6 @@ body {
 
         font-size: 1rem;
     }
-
-    /* MENU */
 
     .menu-inferior {
         min-height: 82px;
@@ -952,12 +901,6 @@ body {
         font-size: 0.62rem;
     }
 }
-
-
-/* ========================================
-   CELULAR PEQUENO
-   até 400px
-======================================== */
 
 @media (max-width: 400px) {
 
@@ -994,10 +937,6 @@ body {
         margin-bottom: 16px;
     }
 
-    /*
-       Produto um pouco mais compacto
-    */
-
     .produto-pedido {
         grid-template-columns: 65px minmax(0, 1fr) 32px;
 
@@ -1026,10 +965,6 @@ body {
         height: 32px;
     }
 
-    /*
-       Controle de quantidade
-    */
-
     .controle-quantidade {
         width: 130px;
         height: 38px;
@@ -1040,10 +975,6 @@ body {
     .valores-pedido {
         padding: 17px;
     }
-
-    /*
-       Frete
-    */
 
     .opcao-frete {
         padding: 17px;
@@ -1065,10 +996,6 @@ body {
         width: 62px;
     }
 
-    /*
-       Botões / opções
-    */
-
     .opcao-pedido {
         padding-left: 17px;
         padding-right: 17px;
@@ -1089,10 +1016,6 @@ body {
         text-align: center;
     }
 
-    /*
-       Menu inferior
-    */
-
     .menu-inferior {
         padding-left: 4px;
         padding-right: 4px;
@@ -1106,12 +1029,6 @@ body {
         font-size: 0.57rem;
     }
 }
-
-
-/* ========================================
-   CELULAR MUITO PEQUENO
-   até 360px
-======================================== */
 
 @media (max-width: 360px) {
 
@@ -1132,11 +1049,6 @@ body {
     .nome-marca strong {
         font-size: 1rem;
     }
-
-    /*
-       No celular muito pequeno,
-       reorganizamos o produto.
-    */
 
     .produto-pedido {
         grid-template-columns: 60px minmax(0, 1fr) 30px;

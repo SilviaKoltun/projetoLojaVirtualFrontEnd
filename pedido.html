@@ -4,19 +4,13 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Pedido aprovado - Inova 3D</title>
 
     <link rel="stylesheet" href="pedido.css">
 
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
 </head>
 
 <body>
@@ -25,22 +19,14 @@
 
         <header class="cabecalho">
 
-            <button
-            type="button"
-            class="botao-voltar"
-            aria-label="Voltar para o início"
-            onclick="window.location.href='./produtos.html'"
-            >
-            <i class="ph ph-arrow-left"></i>
+            <button type="button" class="botao-voltar" aria-label="Voltar para o início"
+                onclick="window.location.href='./produtos.html'">
+                <i class="ph ph-arrow-left"></i>
             </button>
 
             <div class="marca">
 
-                <img
-                    src="./assets/logo.png"
-                    alt="Logo Inova 3D"
-                    class="logo"
-                >
+                <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo">
 
                 <div class="nome-marca">
                     <span>INOVA</span>
@@ -90,11 +76,6 @@
                     <strong id="numero-pedido">Pedido #</strong>
                     <span id="data-pedido"></span>
 
-                    <!-- <div class="numero-pedido">
-                        <h2>Pedido #12458</h2> --> <!--colocar um contador?-->
-                        <!--<p>Realizado em 24/06/2026 às 14:32</p> colocar data e hora do pedido
-                    </div> -->
-
                     <span id="status-pedido">Pago</span>
 
                 </div>
@@ -102,27 +83,27 @@
 
                 <div class="conteudo-pedido">
 
-                   <h3>Resumo do pedido</h3>
+                    <h3>Resumo do pedido</h3>
 
                     <div class="valores-pedido">
 
-                    <div class="linha-valor">
-                    <span>Subtotal (itens)</span>
-                    <span id="resumo-subtotal">R$ 0,00</span>
+                        <div class="linha-valor">
+                            <span>Subtotal (itens)</span>
+                            <span id="resumo-subtotal">R$ 0,00</span>
+                        </div>
+
+                        <div class="linha-valor">
+                            <span>Frete</span>
+                            <span id="resumo-frete">R$ 0,00</span>
+                        </div>
+
+                        <div class="total-pedido">
+                            <strong>Total pago</strong>
+                            <strong id="resumo-total">R$ 0,00</strong>
+                        </div>
+
                     </div>
 
-            <div class="linha-valor">
-            <span>Frete</span>
-            <span id="resumo-frete">R$ 0,00</span>
-            </div>
-
-            <div class="total-pedido">
-            <strong>Total pago</strong>
-            <strong id="resumo-total">R$ 0,00</strong>
-            </div>
-
-        </div>
-            
 
             </section>
 
@@ -135,7 +116,7 @@
                 <div class="informacoes-entrega">
                     <h2>Entrega estimada</h2>
                     <span id="data-entrega">Calculando...</span>
-                
+
                     <p>Você receberá o código de rastreio por e-mail.</p>
                 </div>
 
@@ -183,177 +164,170 @@
 
     </div>
 
-<script>
+    <script>
 
-    const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
 
-    const formatarPreco = (preco) => {
-        return Number(preco).toLocaleString("pt-BR", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-    };
+        const formatarPreco = (preco) => {
+            return Number(preco).toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        };
 
-    const formatarDataEntrega = (data) => {
-        return data.toLocaleDateString(
-            "pt-BR",
-            {
-                timeZone: "America/Sao_Paulo",
-                day: "2-digit",
-                month: "2-digit",
-                year: "2-digit"
+        const formatarDataEntrega = (data) => {
+            return data.toLocaleDateString(
+                "pt-BR",
+                {
+                    timeZone: "America/Sao_Paulo",
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "2-digit"
+                }
+            );
+        };
+
+        async function carregarPedido() {
+
+            const pedidoId =
+                localStorage.getItem("pedidoId");
+
+
+            if (!pedidoId) {
+                console.error("pedidoId não encontrado.");
+                return;
             }
-        );
-    };
 
+            try {
 
-    async function carregarPedido() {
-
-        const pedidoId =
-            localStorage.getItem("pedidoId");
-
-
-        if (!pedidoId) {
-            console.error("pedidoId não encontrado.");
-            return;
-        }
-
-        try {
-
-            const resposta =
-                await fetch(
-                    `http://127.0.0.1:3000/pedidos/${pedidoId}`,
-                    {
-                        method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${token}`
+                const resposta =
+                    await fetch(
+                        `http://127.0.0.1:3000/pedidos/${pedidoId}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            }
                         }
-                    }
+                    );
+
+                const pedido =
+                    await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(
+                        pedido.erro ||
+                        "Erro ao buscar pedido."
+                    );
+                }
+
+                console.log(
+                    "PEDIDO RECEBIDO:",
+                    pedido
                 );
 
+                document.getElementById(
+                    "numero-pedido"
+                ).textContent =
+                    `Pedido #${pedido.id}`;
 
-            const pedido =
-                await resposta.json();
+
+                const dataPedido =
+                    new Date(pedido.data);
 
 
-            if (!resposta.ok) {
-                throw new Error(
-                    pedido.erro ||
-                    "Erro ao buscar pedido."
+                const dataFormatada =
+                    dataPedido.toLocaleString(
+                        "pt-BR",
+                        {
+                            timeZone: "America/Sao_Paulo",
+                            dateStyle: "short",
+                            timeStyle: "short"
+                        }
+                    );
+
+                document.getElementById(
+                    "data-pedido"
+                ).textContent =
+                    `Realizado em ${dataFormatada}`;
+
+                document.getElementById(
+                    "status-pedido"
+                ).textContent =
+                    pedido.status === "pago"
+                        ? "Pago"
+                        : pedido.status;
+
+                const inicioEntrega =
+                    new Date(pedido.data);
+
+                inicioEntrega.setDate(
+                    inicioEntrega.getDate() + 5
                 );
+
+                const fimEntrega =
+                    new Date(pedido.data);
+
+                fimEntrega.setDate(
+                    fimEntrega.getDate() + 7
+                );
+
+                document.getElementById(
+                    "data-entrega"
+                ).textContent =
+                    `${formatarDataEntrega(inicioEntrega)} a ${formatarDataEntrega(fimEntrega)}`;
+
+
+                const dadosEntrega =
+                    JSON.parse(
+                        localStorage.getItem("dadosEntrega")
+                    );
+
+                console.log(
+                    "DADOS ENTREGA:",
+                    dadosEntrega
+                );
+
+                if (dadosEntrega) {
+
+                    document.getElementById(
+                        "resumo-subtotal"
+                    ).textContent =
+                        `R$ ${formatarPreco(
+                            dadosEntrega.subtotal
+                        )}`;
+
+                    document.getElementById(
+                        "resumo-frete"
+                    ).textContent =
+                        `R$ ${formatarPreco(
+                            dadosEntrega.frete
+                        )}`;
+
+                    document.getElementById(
+                        "resumo-total"
+                    ).textContent =
+                        `R$ ${formatarPreco(
+                            dadosEntrega.total
+                        )}`;
+
+                }
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao carregar pedido:",
+                    erro
+                );
+
             }
-
-
-            console.log(
-                "PEDIDO RECEBIDO:",
-                pedido
-            );
-
-            document.getElementById(
-                "numero-pedido"
-            ).textContent =
-                `Pedido #${pedido.id}`;
-
-
-            const dataPedido =
-                new Date(pedido.data);
-
-
-            const dataFormatada =
-                dataPedido.toLocaleString(
-                    "pt-BR",
-                    {
-                        timeZone: "America/Sao_Paulo",
-                        dateStyle: "short",
-                        timeStyle: "short"
-                    }
-                );
-
-
-            document.getElementById(
-                "data-pedido"
-            ).textContent =
-                `Realizado em ${dataFormatada}`;
-
-            document.getElementById(
-                "status-pedido"
-            ).textContent =
-                pedido.status === "pago"
-                    ? "Pago"
-                    : pedido.status;
-
-            const inicioEntrega =
-                new Date(pedido.data);
-
-            inicioEntrega.setDate(
-                inicioEntrega.getDate() + 5
-            );
-
-
-            const fimEntrega =
-                new Date(pedido.data);
-
-            fimEntrega.setDate(
-                fimEntrega.getDate() + 7
-            );
-
-
-            document.getElementById(
-                "data-entrega"
-            ).textContent =
-                `${formatarDataEntrega(inicioEntrega)} a ${formatarDataEntrega(fimEntrega)}`;
-
-
-            const dadosEntrega =
-                JSON.parse(
-                    localStorage.getItem("dadosEntrega")
-                );
-
-            console.log(
-                "DADOS ENTREGA:",
-                dadosEntrega
-            );
-
-            if (dadosEntrega) {
-
-                document.getElementById(
-                    "resumo-subtotal"
-                ).textContent =
-                    `R$ ${formatarPreco(
-                        dadosEntrega.subtotal
-                    )}`;
-
-                document.getElementById(
-                    "resumo-frete"
-                ).textContent =
-                    `R$ ${formatarPreco(
-                        dadosEntrega.frete
-                    )}`;
-
-                document.getElementById(
-                    "resumo-total"
-                ).textContent =
-                    `R$ ${formatarPreco(
-                        dadosEntrega.total
-                    )}`;
-
-            }
-
-        } catch (erro) {
-
-            console.error(
-                "Erro ao carregar pedido:",
-                erro
-            );
 
         }
 
-    }
+        carregarPedido();
 
-    carregarPedido();
-
-</script>
+    </script>
 
 </body>
 

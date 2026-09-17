@@ -51,16 +51,12 @@ body {
 
     color: #ffffff;
     background:
-        radial-gradient(
-            circle at 55% 52%,
+        radial-gradient(circle at 55% 52%,
             rgba(255, 101, 0, 0.17),
-            transparent 3%
-        ),
-        linear-gradient(
-            145deg,
+            transparent 3%),
+        linear-gradient(145deg,
             rgba(255, 101, 0, 0.08),
-            transparent 25%
-        ),
+            transparent 25%),
         var(--dark-bg);
 }
 
@@ -73,18 +69,14 @@ body {
     opacity: 0.35;
 
     background:
-        linear-gradient(
-            130deg,
+        linear-gradient(130deg,
             transparent 15%,
             rgba(255, 101, 0, 0.18) 15.3%,
-            transparent 15.7%
-        ),
-        linear-gradient(
-            40deg,
+            transparent 15.7%),
+        linear-gradient(40deg,
             transparent 50%,
             rgba(255, 101, 0, 0.16) 50.3%,
-            transparent 50.7%
-        );
+            transparent 50.7%);
 }
 
 .logo-area {
@@ -236,7 +228,7 @@ body {
     box-shadow: 0 0 0 3px rgba(255, 101, 0, 0.1);
 }
 
-.input-wrapper > i {
+.input-wrapper>i {
     flex-shrink: 0;
 
     color: #7f858c;
@@ -317,9 +309,9 @@ body {
 .btn-submit {
     width: 100%;
     height: 55px;
-    color:white;
+    color: white;
     background: linear-gradient(90deg, #ff7100, #ff5b00);
-    text-decoration: none; 
+    text-decoration: none;
     border: none;
     border-radius: 9px;
 
@@ -410,15 +402,6 @@ body {
     font-weight: 600;
 }
 
-/* ==================================================
-   RESPONSIVIDADE
-================================================== */
-
-/* ========================================
-   NOTEBOOK / TABLET GRANDE
-   até 1024px
-======================================== */
-
 @media (max-width: 1024px) {
 
     body {
@@ -429,11 +412,6 @@ body {
         max-width: 625px;
     }
 }
-
-/* ========================================
-   TABLET
-   até 768px
-======================================== */
 
 @media (max-width: 768px) {
 
@@ -460,11 +438,6 @@ body {
         font-size: 1.8rem;
     }
 }
-
-/* ========================================
-   CELULAR
-   até 650px
-======================================== */
 
 @media (max-width: 650px) {
 

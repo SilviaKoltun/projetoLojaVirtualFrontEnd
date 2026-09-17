@@ -1,228 +1,185 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Meu Carrinho - Inova 3D</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="carrinho.css" />
+  <title>Meu Carrinho - Inova 3D</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    />
-  </head>
+  <link rel="stylesheet" href="carrinho.css" />
 
-  <body>
-    <div class="pagina">
-      <header class="cabecalho">
-        <button
-        type="button"
-        class="botao-cabecalho"
-        aria-label="Voltar para produtos"
-        onclick="window.location.href='./produtos.html'"
-        >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+</head>
+
+<body>
+  <div class="pagina">
+    <header class="cabecalho">
+      <button type="button" class="botao-cabecalho" aria-label="Voltar para produtos"
+        onclick="window.location.href='./produtos.html'">
         <i class="ph ph-arrow-left"></i>
-        </button>
-
-        <div class="marca">
-          <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo" />
-
-          <div class="nome-marca">
-            <span>INOVA</span>
-            <strong>3D</strong>
-            <small>INOVAÇÃO QUE GANHA FORMA</small>
-          </div>
-        </div>
-
-        <button
-          type="button"
-          class="botao-cabecalho botao-carrinho"
-          aria-label="Abrir carrinho"
-        >
-          <i class="ph ph-shopping-cart-simple"></i>
-          <span class="contador-carrinho">0</span>
-        </button>
-      </header>
-
-      <main class="conteudo">
-        <section class="titulo-carrinho">
-          <h3>Meu carrinho</h3>
-          <!--<p>3 itens</p> colocar um contador de itens no carrinho, que vai ser atualizado dinamicamente com JS</p>-->
-        </section>
-
-        <section class="resumo-pedido">
-          <div class="valores-pedido">
-            <h2>Resumo do pedido</h2>
-
-            <ul class="produtos-pedido"></ul>
-
-
-            <div class="linha-valor">
-              <span>Subtotal (itens)</span>
-              <span>R$ </span>
-            </div>
-
-            <div class="linha-valor">
-              <span>Frete</span>
-              <span id="valor-frete">R$ 0,00</span>
-            </div>
-
-            <div class="linha-valor total">
-              <strong>Total</strong>
-              <strong>R$ </strong>
-            </div>
-          </div>
-
-          
-          <div class="opcao-frete">
-          <div class="cabecalho-frete">
-          <i class="ph ph-truck icone-opcao"></i>
-
-        <span class="texto-opcao">
-        <strong>Calcular frete</strong>
-        <small>Informe seu CEP para calcular o frete</small>
-        </span>
-        </div>
-
-      <div class="campo-cep">
-      <input type="text" id="cep" maxlength="9" placeholder="00000-000" onblur="pesquisarCep(this.value)">
-
-      <button type="button" class="botao-cep" onclick="pesquisarCep(document.getElementById('cep').value)">
-      <i class="ph ph-caret-right"></i>
-      </button>
-    </div>
-
-      <div class="endereco-cep">
-
-  <input
-    type="text"
-    id="rua"
-    placeholder="Rua"
-    readonly
-  >
-
-  <div class="numero-complemento">
-    <input
-      type="text"
-      id="numero"
-      placeholder="Número"
-      inputmode="numeric"
-    >
-
-    <input
-      type="text"
-      id="complemento"
-      placeholder="Complemento (opcional)"
-    >
-  </div>
-
-  <input
-    type="text"
-    id="bairro"
-    placeholder="Bairro"
-    readonly
-  >
-
-  <div class="cidade-uf">
-    <input
-      type="text"
-      id="cidade"
-      placeholder="Cidade"
-      readonly
-    >
-
-    <input
-      type="text"
-      id="uf"
-      placeholder="UF"
-      readonly
-    >
-  </div>
-
-</div>
-</div>          
-        </section>
-      </main>
-      
-      <button
-        type="button"
-        class="btn-submit"
-        onclick="finalizarPedido()"
-      >
-        <i class="ph ph-lock"></i>
-        <span>Finalizar pedido</span>
       </button>
 
-      <div class="aviso-seguranca">
-        <i class="ph ph-shield-check"></i>
-        <span>Ambiente 100% seguro</span>
+      <div class="marca">
+        <img src="./assets/logo.png" alt="Logo Inova 3D" class="logo" />
+
+        <div class="nome-marca">
+          <span>INOVA</span>
+          <strong>3D</strong>
+          <small>INOVAÇÃO QUE GANHA FORMA</small>
+        </div>
       </div>
 
-      <footer class="rodape">
-        <nav class="menu-inferior">
-          <a href="produtos.html" class="menu-item">
-            <i class="ph ph-house"></i>
-            <span>Início</span>
-          </a>
+      <button type="button" class="botao-cabecalho botao-carrinho" aria-label="Abrir carrinho">
+        <i class="ph ph-shopping-cart-simple"></i>
+        <span class="contador-carrinho">0</span>
+      </button>
+    </header>
 
-          <a href="#" class="menu-item">
-            <i class="ph ph-squares-four"></i>
-            <span>Categorias</span>
-          </a>
+    <main class="conteudo">
+      <section class="titulo-carrinho">
+        <h3>Meu carrinho</h3>
+        <!--<p>3 itens</p> colocar um contador de itens no carrinho, que vai ser atualizado dinamicamente com JS</p>-->
+      </section>
 
-          <a href="#" class="menu-item">
-            <i class="ph ph-heart"></i>
-            <span>Favoritos</span>
-          </a>
+      <section class="resumo-pedido">
+        <div class="valores-pedido">
+          <h2>Resumo do pedido</h2>
 
-          <a href="#" class="menu-item">
-            <i class="ph ph-shopping-bag"></i>
-            <span>Pedidos</span>
-          </a>
+          <ul class="produtos-pedido"></ul>
 
-          <a href="#" class="menu-item">
-            <i class="ph ph-user"></i>
-            <span>Conta</span>
-          </a>
-        </nav>
-      </footer>
+
+          <div class="linha-valor">
+            <span>Subtotal (itens)</span>
+            <span>R$ </span>
+          </div>
+
+          <div class="linha-valor">
+            <span>Frete</span>
+            <span id="valor-frete">R$ 0,00</span>
+          </div>
+
+          <div class="linha-valor total">
+            <strong>Total</strong>
+            <strong>R$ </strong>
+          </div>
+        </div>
+
+
+        <div class="opcao-frete">
+          <div class="cabecalho-frete">
+            <i class="ph ph-truck icone-opcao"></i>
+
+            <span class="texto-opcao">
+              <strong>Calcular frete</strong>
+              <small>Informe seu CEP para calcular o frete</small>
+            </span>
+          </div>
+
+          <div class="campo-cep">
+            <input type="text" id="cep" maxlength="9" placeholder="00000-000" onblur="pesquisarCep(this.value)">
+
+            <button type="button" class="botao-cep" onclick="pesquisarCep(document.getElementById('cep').value)">
+              <i class="ph ph-caret-right"></i>
+            </button>
+          </div>
+
+          <div class="endereco-cep">
+
+            <input type="text" id="rua" placeholder="Rua" readonly>
+
+            <div class="numero-complemento">
+              <input type="text" id="numero" placeholder="Número" inputmode="numeric">
+
+              <input type="text" id="complemento" placeholder="Complemento (opcional)">
+            </div>
+
+            <input type="text" id="bairro" placeholder="Bairro" readonly>
+
+            <div class="cidade-uf">
+              <input type="text" id="cidade" placeholder="Cidade" readonly>
+
+              <input type="text" id="uf" placeholder="UF" readonly>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button type="button" class="btn-submit" onclick="finalizarPedido()">
+      <i class="ph ph-lock"></i>
+      <span>Finalizar pedido</span>
+    </button>
+
+    <div class="aviso-seguranca">
+      <i class="ph ph-shield-check"></i>
+      <span>Ambiente 100% seguro</span>
     </div>
 
-<script>
-  const token = localStorage.getItem("token");
-  let frete = 0;
-  let subtotalAtual = 0;
+    <footer class="rodape">
+      <nav class="menu-inferior">
+        <a href="produtos.html" class="menu-item">
+          <i class="ph ph-house"></i>
+          <span>Início</span>
+        </a>
 
-  const formatarPreco = (preco) => {
-    return Number(preco).toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-  };
+        <a href="#" class="menu-item">
+          <i class="ph ph-squares-four"></i>
+          <span>Categorias</span>
+        </a>
 
-  const mostrarCarrinho = (carrinho) => {
+        <a href="#" class="menu-item">
+          <i class="ph ph-heart"></i>
+          <span>Favoritos</span>
+        </a>
 
-    const produtosPedido =
-      document.querySelector(".produtos-pedido");
+        <a href="#" class="menu-item">
+          <i class="ph ph-shopping-bag"></i>
+          <span>Pedidos</span>
+        </a>
 
-    produtosPedido.innerHTML = "";
+        <a href="#" class="menu-item">
+          <i class="ph ph-user"></i>
+          <span>Conta</span>
+        </a>
+      </nav>
+    </footer>
+  </div>
 
-    // CRIA OS PRODUTOS
-    carrinho.forEach((item) => {
+  <script>
+    const token = localStorage.getItem("token");
+    let frete = 0;
+    let subtotalAtual = 0;
 
-      console.log("ITEM DO CARRINHO:", item);
-      console.log("ID DO CARRINHO:", item.id);
-      console.log("ID DO PRODUTO:", item.produtoId);
+    const formatarPreco = (preco) => {
+      return Number(preco).toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    };
 
-      const produtoItem =
-        document.createElement("li");
+    const mostrarCarrinho = (carrinho) => {
 
-      produtoItem.classList.add("produto-pedido");
+      const produtosPedido =
+        document.querySelector(".produtos-pedido");
+
+      produtosPedido.innerHTML = "";
+
+      // CRIA OS PRODUTOS
+      carrinho.forEach((item) => {
+
+        console.log("ITEM DO CARRINHO:", item);
+        console.log("ID DO CARRINHO:", item.id);
+        console.log("ID DO PRODUTO:", item.produtoId);
+
+        const produtoItem =
+          document.createElement("li");
+
+        produtoItem.classList.add("produto-pedido");
 
 
-      produtoItem.innerHTML = `
+        produtoItem.innerHTML = `
         <img
           src="${item.produto.imagem || "./assets/sem-imagem.png"}"
           alt="${item.produto.nome}"
@@ -283,413 +240,413 @@
       `;
 
 
-      produtosPedido.appendChild(produtoItem);
+        produtosPedido.appendChild(produtoItem);
 
-    });
+      });
 
-    document.querySelector(
-      ".contador-carrinho"
-    ).textContent = carrinho.length;
+      document.querySelector(
+        ".contador-carrinho"
+      ).textContent = carrinho.length;
 
-    const subtotal = carrinho.reduce(
-      (total, item) => {
+      const subtotal = carrinho.reduce(
+        (total, item) => {
 
-        const preco =
-          Number(item.produto.preco);
+          const preco =
+            Number(item.produto.preco);
 
-        const quantidade =
-          Number(item.quantidade);
+          const quantidade =
+            Number(item.quantidade);
 
-        return total + preco * quantidade;
+          return total + preco * quantidade;
 
-      },
-      0
-    );
+        },
+        0
+      );
       subtotalAtual = subtotal;
 
       const linhasValor =
-      document.querySelectorAll(".linha-valor");
+        document.querySelectorAll(".linha-valor");
 
-    linhasValor[0]
-      .querySelector("span:last-child")
-      .textContent =
+      linhasValor[0]
+        .querySelector("span:last-child")
+        .textContent =
         `R$ ${formatarPreco(subtotal)}`;
-  
-   atualizarTotal();
 
-  };
+      atualizarTotal();
 
-
-  const atualizarQuantidade = async (
-    id,
-    novaQuantidade
-  ) => {
-
-    try {
-
-      const resposta = await fetch(
-        `http://127.0.0.1:3000/carrinho/${id}`,
-        {
-          method: "PUT",
-
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-
-          body: JSON.stringify({
-            quantidade: novaQuantidade,
-          }),
-        }
-      );
+    };
 
 
-      const dados = await resposta.json();
+    const atualizarQuantidade = async (
+      id,
+      novaQuantidade
+    ) => {
 
+      try {
 
-      if (!resposta.ok) {
+        const resposta = await fetch(
+          `http://127.0.0.1:3000/carrinho/${id}`,
+          {
+            method: "PUT",
 
-        throw new Error(
-          dados.erro ||
-          "Erro ao atualizar quantidade."
-        );
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
 
-      }
-
-
-      await buscarDadosCarrinho();
-
-
-    } catch (erro) {
-
-      console.error(
-        "Erro ao atualizar quantidade:",
-        erro
-      );
-
-      alert(erro.message);
-
-    }
-
-  };
-
-  const removerItemCarrinho = async (id) => {
-
-    try {
-
-      console.log(
-        "ID enviado para exclusão:",
-        id
-      );
-
-
-      const resposta = await fetch(
-        `http://127.0.0.1:3000/carrinho/${id}`,
-        {
-          method: "DELETE",
-
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-
-      if (!resposta.ok) {
-
-        const dados = await resposta
-          .json()
-          .catch(() => ({}));
-
-
-        throw new Error(
-          dados.erro ||
-          "Erro ao remover produto."
-        );
-
-      }
-
-
-      await buscarDadosCarrinho();
-
-
-    } catch (erro) {
-
-      console.error(
-        "Erro ao remover item:",
-        erro
-      );
-
-      alert(erro.message);
-
-    }
-
-  };
-
-  const listaCarrinho =
-    document.querySelector(".produtos-pedido");
-
-
-  listaCarrinho.addEventListener(
-    "click",
-    async (event) => {
-
-
-      const botaoAumentar =
-        event.target.closest(
-          ".botao-aumentar"
+            body: JSON.stringify({
+              quantidade: novaQuantidade,
+            }),
+          }
         );
 
 
-      if (botaoAumentar) {
+        const dados = await resposta.json();
 
-        const id =
-          Number(botaoAumentar.dataset.id);
 
-        const quantidade =
-          Number(
-            botaoAumentar.dataset.quantidade
+        if (!resposta.ok) {
+
+          throw new Error(
+            dados.erro ||
+            "Erro ao atualizar quantidade."
           );
 
-
-        await atualizarQuantidade(
-          id,
-          quantidade + 1
-        );
-
-
-        return;
-      }
-
-      const botaoDiminuir =
-        event.target.closest(
-          ".botao-diminuir"
-        );
-
-
-      if (botaoDiminuir) {
-
-        const id =
-          Number(botaoDiminuir.dataset.id);
-
-        const quantidade =
-          Number(
-            botaoDiminuir.dataset.quantidade
-          );
-
-
-        if (quantidade <= 1) {
-          return;
         }
 
 
-        await atualizarQuantidade(
-          id,
-          quantidade - 1
+        await buscarDadosCarrinho();
+
+
+      } catch (erro) {
+
+        console.error(
+          "Erro ao atualizar quantidade:",
+          erro
         );
 
+        alert(erro.message);
 
-        return;
       }
 
+    };
 
-      const botaoRemover =
-        event.target.closest(
-          ".botao-remover"
-        );
+    const removerItemCarrinho = async (id) => {
 
-
-      if (botaoRemover) {
-
-        const id =
-          Number(botaoRemover.dataset.id);
-
+      try {
 
         console.log(
-          "ID recebido pela lixeira:",
+          "ID enviado para exclusão:",
           id
         );
 
 
-        await removerItemCarrinho(id);
+        const resposta = await fetch(
+          `http://127.0.0.1:3000/carrinho/${id}`,
+          {
+            method: "DELETE",
 
-        return;
-      }
-
-    }
-  );
-
-  const buscarDadosCarrinho = async () => {
-
-    const produtosPedido =
-      document.querySelector(
-        ".produtos-pedido"
-      );
-
-
-    try {
-
-      if (!token) {
-
-        throw new Error(
-          "Token não encontrado. Faça login novamente."
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
-      }
 
-      const resposta = await fetch(
-        "http://127.0.0.1:3000/carrinho",
-        {
-          method: "GET",
+        if (!resposta.ok) {
 
-          headers: {
-            "Content-Type":
-              "application/json",
-
-            Authorization:
-              `Bearer ${token}`,
-          },
-        }
-      );
-
-
-      if (!resposta.ok) {
-
-        const dadosErro =
-          await resposta
+          const dados = await resposta
             .json()
             .catch(() => ({}));
 
 
-        throw new Error(
-          dadosErro.erro ||
-          `Erro HTTP ${resposta.status}`
+          throw new Error(
+            dados.erro ||
+            "Erro ao remover produto."
+          );
+
+        }
+
+
+        await buscarDadosCarrinho();
+
+
+      } catch (erro) {
+
+        console.error(
+          "Erro ao remover item:",
+          erro
         );
+
+        alert(erro.message);
 
       }
 
+    };
 
-      const carrinho =
-        await resposta.json();
+    const listaCarrinho =
+      document.querySelector(".produtos-pedido");
 
 
-      if (!Array.isArray(carrinho)) {
+    listaCarrinho.addEventListener(
+      "click",
+      async (event) => {
 
-        throw new Error(
-          "O servidor não retornou uma lista de produtos."
-        );
+
+        const botaoAumentar =
+          event.target.closest(
+            ".botao-aumentar"
+          );
+
+
+        if (botaoAumentar) {
+
+          const id =
+            Number(botaoAumentar.dataset.id);
+
+          const quantidade =
+            Number(
+              botaoAumentar.dataset.quantidade
+            );
+
+
+          await atualizarQuantidade(
+            id,
+            quantidade + 1
+          );
+
+
+          return;
+        }
+
+        const botaoDiminuir =
+          event.target.closest(
+            ".botao-diminuir"
+          );
+
+
+        if (botaoDiminuir) {
+
+          const id =
+            Number(botaoDiminuir.dataset.id);
+
+          const quantidade =
+            Number(
+              botaoDiminuir.dataset.quantidade
+            );
+
+
+          if (quantidade <= 1) {
+            return;
+          }
+
+
+          await atualizarQuantidade(
+            id,
+            quantidade - 1
+          );
+
+
+          return;
+        }
+
+
+        const botaoRemover =
+          event.target.closest(
+            ".botao-remover"
+          );
+
+
+        if (botaoRemover) {
+
+          const id =
+            Number(botaoRemover.dataset.id);
+
+
+          console.log(
+            "ID recebido pela lixeira:",
+            id
+          );
+
+
+          await removerItemCarrinho(id);
+
+          return;
+        }
 
       }
+    );
+
+    const buscarDadosCarrinho = async () => {
+
+      const produtosPedido =
+        document.querySelector(
+          ".produtos-pedido"
+        );
 
 
-      mostrarCarrinho(carrinho);
+      try {
+
+        if (!token) {
+
+          throw new Error(
+            "Token não encontrado. Faça login novamente."
+          );
+
+        }
+
+        const resposta = await fetch(
+          "http://127.0.0.1:3000/carrinho",
+          {
+            method: "GET",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+
+              Authorization:
+                `Bearer ${token}`,
+            },
+          }
+        );
 
 
-    } catch (erro) {
+        if (!resposta.ok) {
 
-      console.error(
-        "Erro ao carregar carrinho:",
-        erro
-      );
+          const dadosErro =
+            await resposta
+              .json()
+              .catch(() => ({}));
 
 
-      produtosPedido.innerHTML = `
+          throw new Error(
+            dadosErro.erro ||
+            `Erro HTTP ${resposta.status}`
+          );
+
+        }
+
+
+        const carrinho =
+          await resposta.json();
+
+
+        if (!Array.isArray(carrinho)) {
+
+          throw new Error(
+            "O servidor não retornou uma lista de produtos."
+          );
+
+        }
+
+
+        mostrarCarrinho(carrinho);
+
+
+      } catch (erro) {
+
+        console.error(
+          "Erro ao carregar carrinho:",
+          erro
+        );
+
+
+        produtosPedido.innerHTML = `
         <li class="mensagem-erro">
           ${erro.message}
         </li>
       `;
 
-    }
+      }
 
-  };
+    };
 
-      function calcularFrete(uf) {
+    function calcularFrete(uf) {
       if (uf === "PR") {
-      frete = 10;
+        frete = 10;
       } else if (uf === "SP" || uf === "SC") {
-      frete = 15;
+        frete = 15;
       } else {
-      frete = 25;
+        frete = 25;
       }
       atualizarTotal();
     }
 
-async function pesquisarCep(valor) {
-  const cep = valor.replace(/\D/g, '');
+    async function pesquisarCep(valor) {
+      const cep = valor.replace(/\D/g, '');
 
-  if (cep.length !== 8) {
-    alert('CEP inválido');
-    return;
-  }
-
-  const token = localStorage.getItem('token');
-
-  try {
-    const resposta = await fetch(
-      `http://127.0.0.1:3000/carrinho/endereco/${cep}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+      if (cep.length !== 8) {
+        alert('CEP inválido');
+        return;
       }
-    );
 
-    const endereco = await resposta.json();
+      const token = localStorage.getItem('token');
 
-    if (!resposta.ok) {
-      alert(endereco.erro || 'Erro ao consultar CEP');
-      return;
+      try {
+        const resposta = await fetch(
+          `http://127.0.0.1:3000/carrinho/endereco/${cep}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        const endereco = await resposta.json();
+
+        if (!resposta.ok) {
+          alert(endereco.erro || 'Erro ao consultar CEP');
+          return;
+        }
+
+        document.getElementById('rua').value = endereco.logradouro;
+        document.getElementById('bairro').value = endereco.bairro;
+        document.getElementById('cidade').value = endereco.localidade;
+        document.getElementById('uf').value = endereco.uf;
+        calcularFrete(endereco.uf);
+
+      } catch (erro) {
+        console.error('Erro ao consultar CEP:', erro);
+        alert('Não foi possível consultar o CEP.');
+      }
     }
+    function atualizarTotal() {
+      const total = subtotalAtual + frete;
 
-    document.getElementById('rua').value = endereco.logradouro;
-    document.getElementById('bairro').value = endereco.bairro;
-    document.getElementById('cidade').value = endereco.localidade;
-    document.getElementById('uf').value = endereco.uf;
-    calcularFrete(endereco.uf);
+      const elementoFrete =
+        document.getElementById("valor-frete");
 
-  } catch (erro) {
-    console.error('Erro ao consultar CEP:', erro);
-    alert('Não foi possível consultar o CEP.');
-  }
-}
-function atualizarTotal() {
-  const total = subtotalAtual + frete;
+      if (elementoFrete) {
+        elementoFrete.textContent =
+          `R$ ${formatarPreco(frete)}`;
+      }
 
-  const elementoFrete =
-    document.getElementById("valor-frete");
+      document.querySelector(
+        ".linha-valor.total strong:last-child"
+      ).textContent =
+        `R$ ${formatarPreco(total)}`;
+    }
+    function finalizarPedido() {
+      const cep = document.getElementById("cep").value;
+      const rua = document.getElementById("rua").value;
+      const numero = document.getElementById("numero").value.trim();
+      const complemento = document.getElementById("complemento").value.trim();
+      const bairro = document.getElementById("bairro").value;
+      const cidade = document.getElementById("cidade").value;
+      const uf = document.getElementById("uf").value;
 
-  if (elementoFrete) {
-    elementoFrete.textContent =
-      `R$ ${formatarPreco(frete)}`;
-  }
-
-  document.querySelector(
-    ".linha-valor.total strong:last-child"
-  ).textContent =
-    `R$ ${formatarPreco(total)}`;
-}
-function finalizarPedido() {
-    const cep = document.getElementById("cep").value;
-    const rua = document.getElementById("rua").value;
-    const numero = document.getElementById("numero").value.trim();
-    const complemento = document.getElementById("complemento").value.trim();
-    const bairro = document.getElementById("bairro").value;
-    const cidade = document.getElementById("cidade").value;
-    const uf = document.getElementById("uf").value;
-
-    if (!cep || !rua || frete === 0) {
+      if (!cep || !rua || frete === 0) {
         alert("Informe um CEP válido antes de finalizar o pedido.");
         return;
-    }
+      }
 
-    if (!numero) {
+      if (!numero) {
         alert("Informe o número do endereço.");
         document.getElementById("numero").focus();
         return;
-    }
+      }
 
-    const dadosEntrega = {
+      const dadosEntrega = {
         cep,
         rua,
         numero,
@@ -700,20 +657,21 @@ function finalizarPedido() {
         frete,
         subtotal: subtotalAtual,
         total: subtotalAtual + frete
-    };
+      };
 
-    localStorage.setItem(
+      localStorage.setItem(
         "dadosEntrega",
         JSON.stringify(dadosEntrega)
-    );
+      );
 
-    window.location.href = "./pagamento.html";
-}
+      window.location.href = "./pagamento.html";
+    }
 
-buscarDadosCarrinho();
+    buscarDadosCarrinho();
 
 
 
-</script>
+  </script>
 </body>
+
 </html>

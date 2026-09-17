@@ -510,16 +510,6 @@ a {
     color: var(--cor-laranja);
 }
 
-/* ==================================================
-   RESPONSIVIDADE
-================================================== */
-
-
-/* ========================================
-   NOTEBOOK
-   até 1024px
-======================================== */
-
 @media (max-width: 1024px) {
 
     .pagina {
@@ -543,12 +533,6 @@ a {
         padding-right: 22px;
     }
 }
-
-
-/* ========================================
-   TABLET
-   até 768px
-======================================== */
 
 @media (max-width: 768px) {
 
@@ -590,12 +574,6 @@ a {
     }
 }
 
-
-/* ========================================
-   CELULAR
-   até 500px
-======================================== */
-
 @media (max-width: 500px) {
 
     body {
@@ -608,8 +586,6 @@ a {
 
         border-radius: 0;
     }
-
-    /* LOGO */
 
     .cabecalho {
         min-height: 75px;
@@ -628,8 +604,6 @@ a {
     .nome-marca small {
         font-size: 0.34rem;
     }
-
-    /* CONFIRMAÇÃO */
 
     .confirmacao {
         padding: 15px 8px 17px;
@@ -653,8 +627,6 @@ a {
     .confirmacao p {
         font-size: 0.82rem;
     }
-
-    /* PEDIDO */
 
     .cabecalho-pedido {
         min-height: 68px;
@@ -698,12 +670,6 @@ a {
         font-size: 0.88rem;
     }
 
-    /*
-       Produtos do pedido.
-       Mantidos porque podem ser criados
-       dinamicamente pelo JavaScript.
-    */
-
     .produto {
         grid-template-columns: 65px minmax(0, 1fr) auto;
         gap: 9px;
@@ -730,8 +696,6 @@ a {
         white-space: nowrap;
     }
 
-    /* VALORES */
-
     .linha-valor {
         font-size: 0.78rem;
     }
@@ -743,8 +707,6 @@ a {
     .total-pedido strong:last-child {
         font-size: 1.15rem;
     }
-
-    /* ENTREGA */
 
     .entrega {
         min-height: 85px;
@@ -775,8 +737,6 @@ a {
         font-size: 0.7rem;
         line-height: 1.4;
     }
-
-    /* BOTÕES */
 
     .acoes-pedido {
         margin-top: 12px;
@@ -811,12 +771,6 @@ a {
         font-size: 0.61rem;
     }
 }
-
-
-/* ========================================
-   CELULAR PEQUENO
-   até 400px
-======================================== */
 
 @media (max-width: 400px) {
 
@@ -896,12 +850,6 @@ a {
     }
 }
 
-
-/* ========================================
-   CELULAR MUITO PEQUENO
-   até 360px
-======================================== */
-
 @media (max-width: 360px) {
 
     .pagina {
@@ -926,11 +874,6 @@ a {
         font-size: 1.25rem;
     }
 
-    /*
-       Status passa para baixo para não
-       comprimir o número do pedido.
-    */
-
     .cabecalho-pedido {
         grid-template-columns: 34px minmax(0, 1fr);
 
@@ -943,10 +886,6 @@ a {
 
         justify-self: start;
     }
-
-    /*
-       Produto reorganizado.
-    */
 
     .produto {
         grid-template-columns: 58px minmax(0, 1fr);
@@ -963,9 +902,6 @@ a {
         margin-top: -8px;
     }
 
-    /*
-       Entrega mais compacta.
-    */
 
     .entrega {
         padding: 10px;
@@ -985,10 +921,6 @@ a {
     .informacoes-entrega strong {
         font-size: 0.82rem;
     }
-
-    /*
-       Menu inferior
-    */
 
     .menu-inferior {
         width: calc(100% + 20px);

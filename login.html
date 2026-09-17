@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
+
 </head>
 
 <body>
@@ -116,188 +116,170 @@
             </p>
         </main>
     </div>
-   
-   <script>
 
+    <script>
 
-    // ========================================
-    // MOSTRAR / ESCONDER SENHA
-    // ========================================
+        const botoesSenha = document.querySelectorAll(".toggle-password");
 
-    const botoesSenha = document.querySelectorAll(".toggle-password");
+        botoesSenha.forEach((botao) => {
 
-    botoesSenha.forEach((botao) => {
+            botao.addEventListener("click", () => {
 
-        botao.addEventListener("click", () => {
+                const input = botao.parentElement.querySelector("input");
+                const icone = botao.querySelector("i");
 
-            const input = botao.parentElement.querySelector("input");
-            const icone = botao.querySelector("i");
+                const senhaVisivel = input.type === "text";
 
-            const senhaVisivel = input.type === "text";
+                input.type = senhaVisivel ? "password" : "text";
 
-            input.type = senhaVisivel ? "password" : "text";
+                icone.classList.toggle("ph-eye");
+                icone.classList.toggle("ph-eye-slash");
 
-            icone.classList.toggle("ph-eye");
-            icone.classList.toggle("ph-eye-slash");
+            });
 
         });
 
-    });
 
+        const form = document.querySelector("#login");
 
-    // ========================================
-    // LOGIN NORMAL
-    // ========================================
+        form.addEventListener("submit", async (event) => {
 
-    const form = document.querySelector("#login");
+            event.preventDefault();
 
-    form.addEventListener("submit", async (event) => {
+            const email = document.querySelector("#email").value.trim();
+            const senha = document.querySelector("#senha").value;
 
-        event.preventDefault();
+            const data = {
+                email,
+                senha
+            };
 
-        const email = document.querySelector("#email").value.trim();
-        const senha = document.querySelector("#senha").value;
+            try {
 
-        const data = {
-            email,
-            senha
-        };
+                const response = await fetch(
+                    "http://127.0.0.1:3000/auth/login",
+                    {
+                        method: "POST",
 
-        try {
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-            const response = await fetch(
-                "http://127.0.0.1:3000/auth/login",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify(data)
-                }
-            );
-
-            const dados = await response.json();
-
-            if (!response.ok) {
-
-                alert(
-                    dados.erro ||
-                    dados.message ||
-                    "E-mail ou senha inválidos."
+                        body: JSON.stringify(data)
+                    }
                 );
 
-                return;
-            }
+                const dados = await response.json();
 
-            localStorage.setItem("token", dados.token);
+                if (!response.ok) {
 
-            localStorage.setItem(
-                "usuario",
-                JSON.stringify(dados.usuario)
-            );
+                    alert(
+                        dados.erro ||
+                        dados.message ||
+                        "E-mail ou senha inválidos."
+                    );
 
-            window.location.href = "./produtos.html";
-
-        } catch (erro) {
-
-            console.error("Erro no login:", erro);
-
-            alert("Não foi possível conectar ao servidor.");
-
-        }
-
-    });
-
-
-    // ========================================
-    // LOGIN COM GOOGLE
-    // ========================================
-
-    async function loginComGoogle(response) {
-
-        try {
-
-            const respostaBackend = await fetch(
-                "http://127.0.0.1:3000/auth/google",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        credential: response.credential
-                    })
+                    return;
                 }
-            );
 
-            const dados = await respostaBackend.json();
+                localStorage.setItem("token", dados.token);
 
-            if (!respostaBackend.ok) {
-
-                alert(
-                    dados.erro ||
-                    dados.message ||
-                    "Não foi possível entrar com Google."
+                localStorage.setItem(
+                    "usuario",
+                    JSON.stringify(dados.usuario)
                 );
 
-                return;
+                window.location.href = "./produtos.html";
+
+            } catch (erro) {
+
+                console.error("Erro no login:", erro);
+
+                alert("Não foi possível conectar ao servidor.");
+
             }
-
-            localStorage.setItem("token", dados.token);
-
-            localStorage.setItem(
-                "usuario",
-                JSON.stringify(dados.usuario)
-            );
-
-            window.location.href = "./produtos.html";
-
-        } catch (erro) {
-
-            console.error("Erro no login Google:", erro);
-
-            alert("Não foi possível entrar com Google.");
-
-        }
-
-    }
-
-
-    // ========================================
-    // CRIAR BOTÃO DO GOOGLE
-    // ========================================
-
-    window.addEventListener("load", () => {
-
-        google.accounts.id.initialize({
-
-            client_id: "1074203320076-b3makfs3nk7e4mt9bsj43rs9nmu7pm24.apps.googleusercontent.com",
-
-            callback: loginComGoogle
 
         });
 
-        google.accounts.id.renderButton(
 
-            document.getElementById("google-btn"),
+        async function loginComGoogle(response) {
 
-            {
-                theme: "outline",
-                size: "large",
-                text: "signin_with",
-                shape: "rectangular",
-                width: 300
+            try {
+
+                const respostaBackend = await fetch(
+                    "http://127.0.0.1:3000/auth/google",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            credential: response.credential
+                        })
+                    }
+                );
+
+                const dados = await respostaBackend.json();
+
+                if (!respostaBackend.ok) {
+
+                    alert(
+                        dados.erro ||
+                        dados.message ||
+                        "Não foi possível entrar com Google."
+                    );
+
+                    return;
+                }
+
+                localStorage.setItem("token", dados.token);
+
+                localStorage.setItem(
+                    "usuario",
+                    JSON.stringify(dados.usuario)
+                );
+
+                window.location.href = "./produtos.html";
+
+            } catch (erro) {
+
+                console.error("Erro no login Google:", erro);
+
+                alert("Não foi possível entrar com Google.");
+
             }
 
-        );
+        }
 
-    });
+        window.addEventListener("load", () => {
 
-</script>
+            google.accounts.id.initialize({
+
+                client_id: "1074203320076-b3makfs3nk7e4mt9bsj43rs9nmu7pm24.apps.googleusercontent.com",
+
+                callback: loginComGoogle
+
+            });
+
+            google.accounts.id.renderButton(
+
+                document.getElementById("google-btn"),
+
+                {
+                    theme: "outline",
+                    size: "large",
+                    text: "signin_with",
+                    shape: "rectangular",
+                    width: 300
+                }
+
+            );
+
+        });
+
+    </script>
 
 
 </body>
