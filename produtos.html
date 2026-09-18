@@ -48,48 +48,22 @@
 
     <main>
       <section class="banner">
-        <div class="banner-conteudo">
-          <h1>
-            Soluções impressas<br />
-            em <span>3D</span> para o seu<br />
-            dia a dia.
-          </h1>
+        <img src="./assets/banner-inova3d.png" alt="Inova 3D - Soluções impressas em 3D para o seu dia a dia"
+          class="banner-imagem" />
+      </section>
 
-          <div class="beneficios-banner">
-            <div class="beneficio-banner">
-              <i class="ph ph-shield-check"></i>
-              <p>Alta<br />qualidade</p>
-            </div>
 
-            <div class="beneficio-banner">
-              <i class="ph ph-cube"></i>
-              <p>Materiais<br />duráveis</p>
-            </div>
 
-            <div class="beneficio-banner">
-              <i class="ph ph-rocket-launch"></i>
-              <p>Design<br />inovador</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- <img src="./assets/banner-impressora-3d.png" alt="Banner de produtos" class="banner-imagem"> -->
-
-        <div class="indicadores">
-          <span class="indicador ativo"></span>
-          <span class="indicador"></span>
-          <span class="indicador"></span>
-        </div>
+      <div class="indicadores">
+        <span class="indicador ativo"></span>
+        <span class="indicador"></span>
+        <span class="indicador"></span>
+      </div>
       </section>
 
       <section class="secao-categorias" id="categorias">
         <div class="titulo-secao">
           <h2>Categorias</h2>
-
-          <a href="#" class="ver-todas">
-            
-            <i class="ph ph-caret-right"></i>
-          </a>
         </div>
 
         <div class="categorias">
@@ -127,11 +101,6 @@
       <section class="secao-produtos">
         <div class="titulo-secao">
           <h2>Produtos</h2>
-
-          <a href="#" class="ver-todas">
-          
-            <i class="ph ph-caret-right"></i>
-          </a>
         </div>
 
         <div id="lista-produtos" class="lista-produtos"></div>
@@ -177,12 +146,13 @@
     </main>
 
     <nav class="menu-inferior">
-      <a href="produtos.html" class="menu-item ativo">
+
+      <a href="./produtos.html" class="menu-item">
         <i class="ph ph-house"></i>
         <span>Início</span>
       </a>
 
-      <a href="#categorias" class="menu-item" id="menu-categorias">
+      <a href="./produtos.html#categorias" class="menu-item">
         <i class="ph ph-squares-four"></i>
         <span>Categorias</span>
       </a>
@@ -192,7 +162,7 @@
         <span>Favoritos</span>
       </a>
 
-      <a href="#" class="menu-item">
+      <a href="#" class="menu-item" id="btn-sair">
         <i class="ph ph-sign-out"></i>
         <span>Sair</span>
       </a>
@@ -201,108 +171,106 @@
         <i class="ph ph-user"></i>
         <span>Conta</span>
       </a>
+
     </nav>
-  </div>
 
-  <script>
-    const token = localStorage.getItem("token");
-    const contadorCarrinho = document.getElementById("contador-carrinho");
-    let todosProdutos = [];
+    <script>
+      const token = localStorage.getItem("token");
+      const contadorCarrinho = document.getElementById("contador-carrinho");
+      let todosProdutos = [];
 
-    async function atualizarContadorCarrinho() {
-      try {
-        const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+      async function atualizarContadorCarrinho() {
+        try {
+          const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-        if (!resposta.ok) {
-          throw new Error("Erro ao buscar carrinho");
-        }
+          if (!resposta.ok) {
+            throw new Error("Erro ao buscar carrinho");
+          }
 
-        const carrinho = await resposta.json();
+          const carrinho = await resposta.json();
 
-        const quantidadeTotal = carrinho.reduce(
-          (total, item) => total + item.quantidade,
-          0
-        );
+          const quantidadeTotal = carrinho.reduce(
+            (total, item) => total + item.quantidade,
+            0
+          );
 
-        contadorCarrinho.textContent = quantidadeTotal;
+          contadorCarrinho.textContent = quantidadeTotal;
 
-        if (quantidadeTotal === 0) {
+          if (quantidadeTotal === 0) {
+            contadorCarrinho.style.display = "none";
+          } else {
+            contadorCarrinho.style.display = "flex";
+          }
+
+        } catch (erro) {
+          console.error("Erro ao atualizar contador do carrinho:", erro);
           contadorCarrinho.style.display = "none";
-        } else {
-          contadorCarrinho.style.display = "flex";
         }
-
-      } catch (erro) {
-        console.error("Erro ao atualizar contador do carrinho:", erro);
-        contadorCarrinho.style.display = "none";
       }
-    }
 
-    const listarProdutos = document.querySelector("#lista-produtos");
+      const listarProdutos = document.querySelector("#lista-produtos");
 
-    const imagemPadrao = "./assets/suporte_para_Celular_3d.png";
+      const imagemPadrao = "./assets/suporte_para_Celular_3d.png";
 
-    console.log("Token:", token); // Adicione este log para verificar o valor do token
+      console.log("Token:", token); // Adicione este log para verificar o valor do token
+      if (!token) {
+        window.location.href = "./login.html";
+      }
 
-    if (!token) {
-      alert("Entre na sua conta para adicionar produtos ao carrinho.");
-      window.location.href = "./login.html";
-    }
-
-    const formatarPreco = (valor) =>
-      Number(valor).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-
-    const adicionarAoCarrinho = async (produtoId) => {
-      try {
-        const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ produtoId, quantidade: 1 }),
+      const formatarPreco = (valor) =>
+        Number(valor).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
         });
 
-        const dados = await resposta.json();
+      const adicionarAoCarrinho = async (produtoId) => {
+        try {
+          const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ produtoId, quantidade: 1 }),
+          });
 
-        if (!resposta.ok) {
-          alert(dados.erro || "Não foi possível adicionar ao carrinho.");
-          return;
+          const dados = await resposta.json();
+
+          if (!resposta.ok) {
+            alert(dados.erro || "Não foi possível adicionar ao carrinho.");
+            return;
+          }
+
+          window.location.href = "./carrinho.html";
+        } catch (erro) {
+          alert("Não foi possível conectar ao servidor.");
         }
+      };
 
-        window.location.href = "./carrinho.html";
-      } catch (erro) {
-        alert("Não foi possível conectar ao servidor.");
-      }
-    };
+      const mostrarProdutos = (produtos) => {
+        listarProdutos.innerHTML = "";
 
-    const mostrarProdutos = (produtos) => {
-      listarProdutos.innerHTML = "";
-
-      if (produtos.length === 0) {
-        listarProdutos.innerHTML = `
+        if (produtos.length === 0) {
+          listarProdutos.innerHTML = `
         <p class="mensagem-erro">
             Nenhum produto encontrado.
         </p>
     `;
-        return;
-      }
+          return;
+        }
 
-      produtos.forEach((produto) => {
+        produtos.forEach((produto) => {
 
-        const elementoProduto = document.createElement("article");
-        elementoProduto.className = "produto";
+          const elementoProduto = document.createElement("article");
+          elementoProduto.className = "produto";
 
-        elementoProduto.innerHTML = `
+          elementoProduto.innerHTML = `
             <img
                 src="${produto.imagem || imagemPadrao}"
                 alt="${produto.nome}"
@@ -341,153 +309,199 @@
         `;
 
 
-        // botão comprar
-        const botaoComprar =
-          elementoProduto.querySelector(".botao-comprar");
+          // botão comprar
+          const botaoComprar =
+            elementoProduto.querySelector(".botao-comprar");
 
-        botaoComprar.addEventListener("click", () => {
-          adicionarAoCarrinho(produto.id);
-        });
+          botaoComprar.addEventListener("click", () => {
+            adicionarAoCarrinho(produto.id);
+          });
 
 
-        // botão favoritar
-        const botaoFavoritar =
-          elementoProduto.querySelector(".botao-favorito");
+          // botão favoritar
+          const botaoFavoritar =
+            elementoProduto.querySelector(".botao-favorito");
 
-        // Busca os favoritos salvos
-        let favoritos =
-          JSON.parse(localStorage.getItem("favoritos")) || [];
-
-        // Se esse produto já estiver salvo, deixa o coração laranja
-        if (favoritos.includes(produto.id)) {
-          botaoFavoritar.classList.add("favorito");
-        }
-
-        // Clique no coração
-        botaoFavoritar.addEventListener("click", () => {
-
-          favoritos =
+          // Busca os favoritos salvos
+          let favoritos =
             JSON.parse(localStorage.getItem("favoritos")) || [];
 
+          // Se esse produto já estiver salvo, deixa o coração laranja
           if (favoritos.includes(produto.id)) {
-
-            // Remove dos favoritos
-            favoritos = favoritos.filter(
-              id => id !== produto.id
-            );
-
-            botaoFavoritar.classList.remove("favorito");
-
-          } else {
-
-            // Adiciona aos favoritos
-            favoritos.push(produto.id);
-
             botaoFavoritar.classList.add("favorito");
           }
 
-          // Salva novamente
-          localStorage.setItem(
-            "favoritos",
-            JSON.stringify(favoritos)
-          );
-        });
+          // Clique no coração
+          botaoFavoritar.addEventListener("click", () => {
 
-        // adiciona o produto na tela
-        listarProdutos.appendChild(elementoProduto);
+            favoritos =
+              JSON.parse(localStorage.getItem("favoritos")) || [];
+
+            if (favoritos.includes(produto.id)) {
+
+              // Remove dos favoritos
+              favoritos = favoritos.filter(
+                id => id !== produto.id
+              );
+
+              botaoFavoritar.classList.remove("favorito");
+
+            } else {
+
+              // Adiciona aos favoritos
+              favoritos.push(produto.id);
+
+              botaoFavoritar.classList.add("favorito");
+            }
+
+            // Salva novamente
+            localStorage.setItem(
+              "favoritos",
+              JSON.stringify(favoritos)
+            );
+          });
+
+          // adiciona o produto na tela
+          listarProdutos.appendChild(elementoProduto);
+
+        });
+      };
+      const botoesCategorias = document.querySelectorAll(".categoria-item");
+
+      botoesCategorias.forEach((botao) => {
+
+        botao.addEventListener("click", () => {
+
+          const categoriaSelecionada =
+            botao.querySelector("span").textContent.trim();
+
+          // Se clicar em Todos, mostra todos os produtos
+          if (categoriaSelecionada === "Todos") {
+            mostrarProdutos(todosProdutos);
+            return;
+          }
+
+          // Filtra pela categoria do produto
+          const produtosFiltrados = todosProdutos.filter((produto) => {
+            return produto.categoria?.nome === categoriaSelecionada;
+          });
+
+          mostrarProdutos(produtosFiltrados);
+        });
 
       });
-    };
-    const botoesCategorias = document.querySelectorAll(".categoria-item");
 
-    botoesCategorias.forEach((botao) => {
+      async function fetchProdutos() {
+        try {
+          const resposta = await fetch("http://127.0.0.1:3000/produtos", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (!resposta.ok) {
+            throw new Error("Erro ao buscar produtos");
+          }
+          const produtos = await resposta.json();
+          todosProdutos = produtos;
 
-      botao.addEventListener("click", () => {
+          // Verifica se veio pelo botão Favoritos
+          const parametros = new URLSearchParams(window.location.search);
+          const filtro = parametros.get("filtro");
 
-        const categoriaSelecionada =
-          botao.querySelector("span").textContent.trim();
+          if (filtro === "favoritos") {
 
-        // Se clicar em Todos, mostra todos os produtos
-        if (categoriaSelecionada === "Todos") {
-          mostrarProdutos(todosProdutos);
-          return;
-        }
+            const favoritos =
+              JSON.parse(localStorage.getItem("favoritos")) || [];
 
-        // Filtra pela categoria do produto
-        const produtosFiltrados = todosProdutos.filter((produto) => {
-          return produto.categoria?.nome === categoriaSelecionada;
-        });
+            const produtosFavoritos = todosProdutos.filter((produto) =>
+              favoritos.includes(produto.id)
+            );
 
-        mostrarProdutos(produtosFiltrados);
-      });
+            mostrarProdutos(produtosFavoritos);
 
-    });
+          } else {
 
-    async function fetchProdutos() {
-      try {
-        const resposta = await fetch("http://127.0.0.1:3000/produtos", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!resposta.ok) {
-          throw new Error("Erro ao buscar produtos");
-        }
-        const produtos = await resposta.json();
-        todosProdutos = produtos; // Armazena os produtos em todosProdutos
+            mostrarProdutos(todosProdutos);
 
-        mostrarProdutos(produtos);
-      } catch (erro) {
-        listarProdutos.innerHTML = `
+          }
+        } catch (erro) {
+          listarProdutos.innerHTML = `
                  <p class="mensagem-erro">
                    Não foi possível carregar os produtos.
                  </p>
                `;
+        }
       }
-    }
-    const menuFavoritos = document.getElementById("menu-favoritos");
+      const menuFavoritos = document.getElementById("menu-favoritos");
 
-    menuFavoritos.addEventListener("click", (event) => {
-      event.preventDefault();
+      if (menuFavoritos) {
+        menuFavoritos.addEventListener("click", (event) => {
+          event.preventDefault();
 
-      const favoritos =
-        JSON.parse(localStorage.getItem("favoritos")) || [];
+          const favoritos =
+            JSON.parse(localStorage.getItem("favoritos")) || [];
 
-      const produtosFavoritos = todosProdutos.filter((produto) =>
-        favoritos.includes(produto.id)
-      );
+          const produtosFavoritos = todosProdutos.filter((produto) =>
+            favoritos.includes(produto.id)
+          );
 
-      mostrarProdutos(produtosFavoritos);
-    });
+          mostrarProdutos(produtosFavoritos);
+        });
+      }
 
-    fetchProdutos();
-    const campoBusca = document.getElementById("busca");
 
-    campoBusca.addEventListener("input", () => {
-      const textoBusca = campoBusca.value
-        .toLowerCase()
-        .trim();
+      // CARREGA OS PRODUTOS
+      fetchProdutos();
 
-      const produtosEncontrados = todosProdutos.filter((produto) => {
 
-        const nome = produto.nome.toLowerCase();
+      // CAMPO DE BUSCA
+      const campoBusca = document.getElementById("busca");
 
-        const descricao =
-          (produto.descricao || "").toLowerCase();
+      if (campoBusca) {
+        campoBusca.addEventListener("input", () => {
 
-        return (
-          nome.includes(textoBusca) ||
-          descricao.includes(textoBusca)
-        );
-      });
+          const textoBusca = campoBusca.value
+            .toLowerCase()
+            .trim();
 
-      mostrarProdutos(produtosEncontrados);
-    });
-    atualizarContadorCarrinho();
+          const produtosEncontrados = todosProdutos.filter((produto) => {
 
-  </script>
+            const nome = produto.nome.toLowerCase();
+
+            const descricao =
+              (produto.descricao || "").toLowerCase();
+
+            return (
+              nome.includes(textoBusca) ||
+              descricao.includes(textoBusca)
+            );
+          });
+
+          mostrarProdutos(produtosEncontrados);
+        });
+      }
+
+
+      // ATUALIZA CONTADOR DO CARRINHO
+      atualizarContadorCarrinho();
+
+
+      // BOTÃO SAIR
+      const btnSair = document.getElementById("btn-sair");
+
+      if (btnSair) {
+        btnSair.addEventListener("click", (event) => {
+          event.preventDefault();
+
+          localStorage.removeItem("token");
+
+          window.location.href = "./login.html";
+        });
+      }
+
+    </script>
 
 </body>
 

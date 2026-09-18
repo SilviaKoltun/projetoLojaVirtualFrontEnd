@@ -140,22 +140,22 @@
                 <span>Início</span>
             </a>
 
-            <a href="#" class="menu-item">
+            <a href="./produtos.html#categorias" class="menu-item">
                 <i class="ph ph-squares-four"></i>
                 <span>Categorias</span>
             </a>
 
-            <a href="#" class="menu-item" id="menu-favoritos">
+            <a href="./produtos.html?filtro=favoritos" class="menu-item">
                 <i class="ph ph-heart"></i>
                 <span>Favoritos</span>
             </a>
 
-            <a href="#" class="menu-item ativo">
-                <i class="ph ph-bag"></i>
-                <span>Pedidos</span>
+            <a href="#" class="menu-item btn-sair">
+                <i class="ph ph-sign-out"></i>
+                <span>Sair</span>
             </a>
 
-            <a href="#" class="menu-item">
+            <a href="./conta.html" class="menu-item">
                 <i class="ph ph-user"></i>
                 <span>Conta</span>
             </a>
@@ -326,6 +326,19 @@
         }
 
         carregarPedido();
+        document.querySelectorAll(".btn-sair").forEach((botao) => {
+
+            botao.addEventListener("click", (event) => {
+
+                event.preventDefault();
+
+                localStorage.removeItem("token");
+
+                window.location.href = "./login.html";
+
+            });
+
+        });
 
     </script>
 

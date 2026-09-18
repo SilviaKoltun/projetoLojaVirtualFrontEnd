@@ -119,36 +119,41 @@
 
     <footer class="rodape">
       <nav class="menu-inferior">
-        <a href="produtos.html" class="menu-item">
+
+        <a href="./produtos.html" class="menu-item">
           <i class="ph ph-house"></i>
           <span>Início</span>
         </a>
 
-        <a href="#" class="menu-item">
+        <a href="./produtos.html#categorias" class="menu-item">
           <i class="ph ph-squares-four"></i>
           <span>Categorias</span>
         </a>
 
-        <a href="#" class="menu-item">
+        <a href="./produtos.html?filtro=favoritos" class="menu-item">
           <i class="ph ph-heart"></i>
           <span>Favoritos</span>
         </a>
 
-        <a href="#" class="menu-item">
-          <i class="ph ph-shopping-bag"></i>
-          <span>Pedidos</span>
+        <a href="#" class="menu-item btn-sair">
+          <i class="ph ph-sign-out"></i>
+          <span>Sair</span>
         </a>
 
-        <a href="#" class="menu-item">
+        <a href="./conta.html" class="menu-item">
           <i class="ph ph-user"></i>
           <span>Conta</span>
         </a>
+
       </nav>
     </footer>
   </div>
 
   <script>
     const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "./login.html";
+    }
     let frete = 0;
     let subtotalAtual = 0;
 
@@ -486,13 +491,7 @@
 
       try {
 
-        if (!token) {
 
-          throw new Error(
-            "Token não encontrado. Faça login novamente."
-          );
-
-        }
 
         const resposta = await fetch(
           "http://127.0.0.1:3000/carrinho",
@@ -668,6 +667,18 @@
     }
 
     buscarDadosCarrinho();
+    // BOTÃO SAIR
+    const btnSair = document.querySelector(".btn-sair");
+
+    if (btnSair) {
+      btnSair.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        localStorage.removeItem("token");
+
+        window.location.href = "./login.html";
+      });
+    }
 
 
 

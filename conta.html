@@ -73,17 +73,17 @@
         <span>Categorias</span>
       </a>
 
-      <a href="./produtos.html#favoritos" class="menu-item">
+      <a href="./produtos.html?filtro=favoritos" class="menu-item">
         <i class="ph ph-heart"></i>
         <span>Favoritos</span>
       </a>
 
-      <a href="#" class="menu-item">
-        <i class="ph ph-shopping-bag"></i>
-        <span>Pedidos</span>
+      <a href="#" class="menu-item btn-sair">
+        <i class="ph ph-sign-out"></i>
+        <span>Sair</span>
       </a>
 
-      <a href="./conta.html" class="menu-item ativo">
+      <a href="./conta.html" class="menu-item">
         <i class="ph ph-user"></i>
         <span>Conta</span>
       </a>
@@ -145,6 +145,19 @@
       });
 
     carregarUsuario();
+    document.querySelectorAll(".btn-sair").forEach((botao) => {
+
+      botao.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        localStorage.removeItem("token");
+
+        window.location.href = "./login.html";
+
+      });
+
+    });
 
   </script>
 
