@@ -65,7 +65,6 @@
           </div>
         </div>
 
-
         <div class="opcao-frete">
           <div class="cabecalho-frete">
             <i class="ph ph-truck icone-opcao"></i>
@@ -171,7 +170,6 @@
 
       produtosPedido.innerHTML = "";
 
-      // CRIA OS PRODUTOS
       carrinho.forEach((item) => {
 
         console.log("ITEM DO CARRINHO:", item);
@@ -202,7 +200,6 @@
             R$ ${formatarPreco(item.produto.preco)}
           </span>
 
-
           <div class="controle-quantidade">
 
             <button
@@ -214,11 +211,9 @@
               <i class="ph ph-minus"></i>
             </button>
 
-
             <span class="quantidade-atual">
               ${item.quantidade}
             </span>
-
 
             <button
               type="button"
@@ -233,7 +228,6 @@
 
         </div>
 
-
         <button
           type="button"
           class="botao-remover"
@@ -243,7 +237,6 @@
           <i class="ph ph-trash"></i>
         </button>
       `;
-
 
         produtosPedido.appendChild(produtoItem);
 
@@ -281,7 +274,6 @@
 
     };
 
-
     const atualizarQuantidade = async (
       id,
       novaQuantidade
@@ -305,9 +297,7 @@
           }
         );
 
-
         const dados = await resposta.json();
-
 
         if (!resposta.ok) {
 
@@ -318,9 +308,7 @@
 
         }
 
-
         await buscarDadosCarrinho();
-
 
       } catch (erro) {
 
@@ -356,13 +344,11 @@
           }
         );
 
-
         if (!resposta.ok) {
 
           const dados = await resposta
             .json()
             .catch(() => ({}));
-
 
           throw new Error(
             dados.erro ||
@@ -371,9 +357,7 @@
 
         }
 
-
         await buscarDadosCarrinho();
-
 
       } catch (erro) {
 
@@ -391,17 +375,14 @@
     const listaCarrinho =
       document.querySelector(".produtos-pedido");
 
-
     listaCarrinho.addEventListener(
       "click",
       async (event) => {
-
 
         const botaoAumentar =
           event.target.closest(
             ".botao-aumentar"
           );
-
 
         if (botaoAumentar) {
 
@@ -413,12 +394,10 @@
               botaoAumentar.dataset.quantidade
             );
 
-
           await atualizarQuantidade(
             id,
             quantidade + 1
           );
-
 
           return;
         }
@@ -427,7 +406,6 @@
           event.target.closest(
             ".botao-diminuir"
           );
-
 
         if (botaoDiminuir) {
 
@@ -439,39 +417,32 @@
               botaoDiminuir.dataset.quantidade
             );
 
-
           if (quantidade <= 1) {
             return;
           }
-
 
           await atualizarQuantidade(
             id,
             quantidade - 1
           );
 
-
           return;
         }
-
 
         const botaoRemover =
           event.target.closest(
             ".botao-remover"
           );
 
-
         if (botaoRemover) {
 
           const id =
             Number(botaoRemover.dataset.id);
 
-
           console.log(
             "ID recebido pela lixeira:",
             id
           );
-
 
           await removerItemCarrinho(id);
 
@@ -491,8 +462,6 @@
 
       try {
 
-
-
         const resposta = await fetch(
           "http://127.0.0.1:3000/carrinho",
           {
@@ -508,14 +477,12 @@
           }
         );
 
-
         if (!resposta.ok) {
 
           const dadosErro =
             await resposta
               .json()
               .catch(() => ({}));
-
 
           throw new Error(
             dadosErro.erro ||
@@ -524,10 +491,8 @@
 
         }
 
-
         const carrinho =
           await resposta.json();
-
 
         if (!Array.isArray(carrinho)) {
 
@@ -537,9 +502,7 @@
 
         }
 
-
         mostrarCarrinho(carrinho);
-
 
       } catch (erro) {
 
@@ -547,7 +510,6 @@
           "Erro ao carregar carrinho:",
           erro
         );
-
 
         produtosPedido.innerHTML = `
         <li class="mensagem-erro">
@@ -667,7 +629,7 @@
     }
 
     buscarDadosCarrinho();
-    // BOTÃO SAIR
+    
     const btnSair = document.querySelector(".btn-sair");
 
     if (btnSair) {
@@ -679,8 +641,6 @@
         window.location.href = "./login.html";
       });
     }
-
-
 
   </script>
 </body>

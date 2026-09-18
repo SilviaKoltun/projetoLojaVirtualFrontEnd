@@ -52,8 +52,6 @@
           class="banner-imagem" />
       </section>
 
-
-
       <div class="indicadores">
         <span class="indicador ativo"></span>
         <span class="indicador"></span>
@@ -69,6 +67,7 @@
         <div class="categorias">
           <button type="button" class="categoria-item">
             <i class="ph ph-squares-four"></i>
+            <span>Todos</span>
           </button>
 
           <button type="button" class="categoria-item">
@@ -308,8 +307,6 @@
             </div>
         `;
 
-
-          // botão comprar
           const botaoComprar =
             elementoProduto.querySelector(".botao-comprar");
 
@@ -317,21 +314,16 @@
             adicionarAoCarrinho(produto.id);
           });
 
-
-          // botão favoritar
           const botaoFavoritar =
             elementoProduto.querySelector(".botao-favorito");
 
-          // Busca os favoritos salvos
           let favoritos =
             JSON.parse(localStorage.getItem("favoritos")) || [];
 
-          // Se esse produto já estiver salvo, deixa o coração laranja
           if (favoritos.includes(produto.id)) {
             botaoFavoritar.classList.add("favorito");
           }
 
-          // Clique no coração
           botaoFavoritar.addEventListener("click", () => {
 
             favoritos =
@@ -339,7 +331,6 @@
 
             if (favoritos.includes(produto.id)) {
 
-              // Remove dos favoritos
               favoritos = favoritos.filter(
                 id => id !== produto.id
               );
@@ -348,20 +339,17 @@
 
             } else {
 
-              // Adiciona aos favoritos
               favoritos.push(produto.id);
 
               botaoFavoritar.classList.add("favorito");
             }
 
-            // Salva novamente
             localStorage.setItem(
               "favoritos",
               JSON.stringify(favoritos)
             );
           });
 
-          // adiciona o produto na tela
           listarProdutos.appendChild(elementoProduto);
 
         });
@@ -374,6 +362,9 @@
 
           const categoriaSelecionada =
             botao.querySelector("span").textContent.trim();
+
+          console.log("CATEGORIA CLICADA:", categoriaSelecionada);
+
 
           // Se clicar em Todos, mostra todos os produtos
           if (categoriaSelecionada === "Todos") {
@@ -451,12 +442,8 @@
         });
       }
 
-
-      // CARREGA OS PRODUTOS
       fetchProdutos();
 
-
-      // CAMPO DE BUSCA
       const campoBusca = document.getElementById("busca");
 
       if (campoBusca) {
@@ -483,12 +470,8 @@
         });
       }
 
-
-      // ATUALIZA CONTADOR DO CARRINHO
       atualizarContadorCarrinho();
 
-
-      // BOTÃO SAIR
       const btnSair = document.getElementById("btn-sair");
 
       if (btnSair) {

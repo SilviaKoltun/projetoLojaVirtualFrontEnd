@@ -25,9 +25,6 @@ body {
     background-color: #eeeeee;
 }
 
-
-/* PÁGINA */
-
 .pagina {
     width: 100%;
     max-width: 800px;
@@ -36,10 +33,6 @@ body {
     color: var(--texto);
     background-color: var(--fundo);
 }
-
-
-/* CABEÇALHO*/
-
 
 .cabecalho {
     min-height: 100px;
@@ -69,10 +62,6 @@ body {
 .botao-cabecalho i {
     font-size: 2rem;
 }
-
-
-
-/* Carrinho */
 
 .botao-carrinho {
     position: relative;
@@ -104,9 +93,6 @@ body {
     font-size: 12px;
     font-weight: bold;
 }
-
-
-/* LOGO */
 
 .marca {
     display: flex;
@@ -152,9 +138,6 @@ body {
 
     text-align: center;
 }
-
-
-/* CONTEÚDO */
 
 .conteudo {
     padding: 20px;
@@ -257,9 +240,6 @@ body {
     font-size: 1rem;
     font-weight: 700;
 }
-
-
-/* BOTÃO EXCLUIR*/
 
 .botao-remover {
     width: 40px;
@@ -552,9 +532,6 @@ body {
 .btn-submit:hover {
     opacity: 0.9;
 }
-
-
-/* SEGURANÇA*/
 
 .aviso-seguranca {
     height: 58px;

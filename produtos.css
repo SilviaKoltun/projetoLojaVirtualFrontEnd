@@ -702,8 +702,6 @@ body {
         font-size: 0.58rem;
     }
 
-    /* Categorias com rolagem horizontal */
-
     .categorias {
         display: flex;
         overflow-x: auto;
@@ -721,10 +719,6 @@ body {
         min-height: 80px;
     }
 
-    /*
-       No celular os produtos continuam em
-       duas colunas.
-    */
 
     .lista-produtos {
         grid-template-columns: 1fr;
@@ -924,11 +918,6 @@ body {
     .beneficio-banner p {
         font-size: 0.52rem;
     }
-
-    /*
-       Em telas muito pequenas,
-       passamos para um produto por linha.
-    */
 
     .imagem-produto {
         aspect-ratio: 16 / 10;
