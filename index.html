@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -225,6 +226,56 @@
             }
 
         });
+        async function loginComGoogle(response) {
+
+            try {
+
+                const respostaBackend = await fetch(
+                    "https://loja-virtual-production-6104.up.railway.app/auth/google",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            credential: response.credential
+                        })
+                    }
+                );
+
+                const dados = await respostaBackend.json();
+
+                if (!respostaBackend.ok) {
+
+                    alert(
+                        dados.erro ||
+                        dados.message ||
+                        "Não foi possível entrar com Google."
+                    );
+
+                    return;
+                }
+
+                localStorage.setItem("token", dados.token);
+
+                localStorage.setItem(
+                    "usuario",
+                    JSON.stringify(dados.usuario)
+                );
+
+                window.location.href = "./produtos.html";
+
+            } catch (erro) {
+
+                console.error("Erro no login Google:", erro);
+
+                alert("Não foi possível entrar com Google.");
+
+            }
+
+        }
         window.addEventListener("load", () => {
             google.accounts.id.initialize({
                 client_id: "1074203320076-b3makfs3nk7e4mt9bsj43rs9nmu7pm24.apps.googleusercontent.com",
