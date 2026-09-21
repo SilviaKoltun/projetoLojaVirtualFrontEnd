@@ -67,8 +67,8 @@ body {
     cursor: pointer;
 }
 
-.botao-menu i {
-    font-size: 2.2rem;
+.espaco-menu {
+  width: 40px;
 }
 
 .botao-carrinho {

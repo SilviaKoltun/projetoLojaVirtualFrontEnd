@@ -154,10 +154,7 @@
                 <span>ou</span>
             </div>
 
-            <button type="button" class="btn-google">
-                <span class="google-icon">G</span>
-                Cadastrar com Google
-            </button>
+            <div id="google-btn"></div>
 
             <p class="footer-text">
                 Já tem uma conta?
@@ -227,6 +224,23 @@
                 alert("Não foi possível conectar ao servidor.");
             }
 
+        });
+        window.addEventListener("load", () => {
+            google.accounts.id.initialize({
+                client_id: "1074203320076-b3makfs3nk7e4mt9bsj43rs9nmu7pm24.apps.googleusercontent.com",
+                callback: loginComGoogle
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("google-btn"),
+                {
+                    theme: "outline",
+                    size: "large",
+                    text: "signup_with",
+                    shape: "rectangular",
+                    width: 300
+                }
+            );
         });
 
     </script>

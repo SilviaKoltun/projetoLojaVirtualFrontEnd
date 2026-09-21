@@ -392,6 +392,12 @@ body {
     font-size: 0.82rem;
 }
 
+#google-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .btn-google {
     width: 100%;
     height: 55px;
@@ -575,6 +581,7 @@ body {
         margin-top: 30px;
     }
 }
+
 @media (max-width: 400px) {
 
     .sidebar {
