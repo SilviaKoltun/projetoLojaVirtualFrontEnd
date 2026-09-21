@@ -180,7 +180,7 @@
 
       async function atualizarContadorCarrinho() {
         try {
-          const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+          const resposta = await fetch("https://loja-virtual-production-6104.up.railway.app/carrinho", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -230,7 +230,7 @@
 
       const adicionarAoCarrinho = async (produtoId) => {
         try {
-          const resposta = await fetch("http://127.0.0.1:3000/carrinho", {
+          const resposta = await fetch("https://loja-virtual-production-6104.up.railway.app/carrinho", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -384,7 +384,7 @@
 
       async function fetchProdutos() {
         try {
-          const resposta = await fetch("http://127.0.0.1:3000/produtos", {
+          const resposta = await fetch("https://loja-virtual-production-6104.up.railway.app/produtos", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
