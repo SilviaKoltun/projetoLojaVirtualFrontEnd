@@ -214,32 +214,6 @@ body {
     color: var(--cor-laranja);
 }
 
-
-.indicadores {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-
-    display: flex;
-    gap: 7px;
-
-    transform: translateX(-50%);
-}
-
-.indicador {
-    width: 8px;
-    height: 8px;
-
-    display: block;
-
-    background-color: #777777;
-    border-radius: 50%;
-}
-
-.indicador.ativo {
-    background-color: var(--cor-laranja);
-}
-
 .secao-categorias,
 .secao-produtos {
     margin-top: 22px;
