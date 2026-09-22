@@ -18,10 +18,9 @@ body {
     min-height: 100vh;
     margin: 0;
 
-    background-color: #eeeeee;
+    background-color: #050505;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 .pagina {
     width: 94%;
     max-width: 1600px;
@@ -29,9 +28,10 @@ body {
     margin: 0 auto;
     padding: 20px clamp(16px, 2vw, 36px) 0;
 
-    color: var(--cor-texto);
-    background-color: var(--cor-fundo);
+    color: #ffffff;
+    background-color: #050505;
 }
+
 
 
 .cabecalho {
@@ -143,31 +143,37 @@ body {
     padding: 20px;
 }
 
-.titulo-carrinho {
-    margin: 5px 7px 25px;
-}
-
 .titulo-carrinho h3 {
+    color: #ffffff;
     font-size: 1.45rem;
     font-weight: 700;
 }
 
+.valores-pedido h2 {
+    margin-bottom: 20px;
+
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
 
 .resumo-pedido {
     width: 100%;
 
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.8fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(420px, 0.9fr);
 
     overflow: hidden;
 
     background:
-        linear-gradient(135deg,
-            #191919,
-            #111111);
+        linear-gradient(
+            180deg,
+            #181818,
+            #101010
+        );
 
-    border: 1px solid var(--borda);
-    border-radius: 16px;
+    border: 1px solid #252525;
+    border-radius: 18px;
 }
 
 .valores-pedido {
@@ -499,12 +505,11 @@ body {
 
     font-size: 1.4rem;
 }
-
 .btn-submit {
-    width: calc(100% - 40px);
+    width: min(100% - 40px, 700px);
     height: 58px;
 
-    margin: 14px 20px 0;
+    margin: 24px auto 0;
 
     display: flex;
     align-items: center;
@@ -514,10 +519,11 @@ body {
     border: none;
     border-radius: 10px;
 
-    background:
-        linear-gradient(90deg,
-            #ff7100,
-            #ff5b00);
+    background: linear-gradient(
+        90deg,
+        #ff7100,
+        #ff5b00
+    );
 
     color: white;
 
@@ -551,51 +557,58 @@ body {
 .aviso-seguranca i {
     font-size: 1.1rem;
 }
+.conteudo,
+.rodape {
+    width: 100%;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .rodape {
-    margin-top: 5px;
+    width: 100%;
+    margin: 28px auto 0;
 }
 
 .menu-inferior {
-    width: calc(100% + 40px);
-    min-height: 74px;
-    margin-top: 14px;
-    margin-left: -20px;
-    padding: 10px 14px;
+    width: 100%;
+    min-height: 64px;
+
+    margin: 0;
+    padding: 8px 14px;
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
 
-    border-top: 1px solid #242424;
-    border-radius: 18px 18px 0 0;
-
     background:
-        linear-gradient(180deg,
+        linear-gradient(
+            180deg,
             #181818,
-            #101010);
+            #101010
+        );
 
-    border-top: 1px solid #252525;
-    border-radius: 18px 18px 0 0;
+    border: 1px solid #252525;
+    border-radius: 16px 16px 0 0;
 }
-
 .menu-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 7px;
+    justify-content: center;
+
+    gap: 5px;
 
     color: var(--texto-suave);
-
     text-decoration: none;
 }
 
 .menu-item i {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 }
 
 .menu-item span {
-    font-size: 0.68rem;
+    font-size: 0.62rem;
 }
 
 .mensagem-erro {
@@ -604,6 +617,30 @@ body {
     color: #ff6b6b;
 
     text-align: center;
+}
+
+@media (min-width: 1025px) {
+
+    .valores-pedido {
+        padding: 20px 24px;
+    }
+
+    .produto-pedido {
+        padding: 8px 0 14px;
+    }
+
+    .opcao-frete {
+        padding: 20px 24px;
+    }
+
+    .cabecalho-frete {
+        margin-bottom: 12px;
+    }
+
+    .endereco-cep {
+        gap: 7px;
+        margin-top: 10px;
+    }
 }
 
 @media (max-width: 1024px) {
