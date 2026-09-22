@@ -22,13 +22,9 @@ html {
 
 body {
     min-height: 100vh;
+    margin: 0;
 
-    display: flex;
-    justify-content: center;
-
-    color: var(--cor-texto);
     background-color: #eeeeee;
-
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -42,10 +38,13 @@ button {
 }
 
 .pagina {
-    width: 100%;
-    max-width: 530px;
-    min-height: 100vh;
-    padding: 14px 24px 26px;
+    width: 96%;
+    max-width: 1800px;
+   
+    margin: 0 auto;
+    padding: 20px clamp(16px, 2vw, 36px) 0;
+
+    color: var(--cor-texto);
 
     background:
         radial-gradient(circle at center,
@@ -649,24 +648,20 @@ fieldset {
 @media (max-width: 1024px) {
 
     .pagina {
-        max-width: 760px;
-        padding-left: 26px;
-        padding-right: 26px;
-    }
-
-    .card-pedido,
-    .entrega {
         width: 100%;
+        max-width: none;
+        padding: 18px 25px 0;
     }
 
-    .cabecalho-pedido {
-        margin-left: 22px;
-        margin-right: 22px;
-    }
+    .lista-produtos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
 
-    .conteudo-pedido {
-        padding-left: 22px;
-        padding-right: 22px;
+    .categorias {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 }
 

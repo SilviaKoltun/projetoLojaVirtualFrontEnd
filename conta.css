@@ -14,18 +14,22 @@
 }
 
 body {
-  background: #eeeeee;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--cor-texto);
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: #eeeeee;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .pagina {
-  width: 100%;
-  max-width: 760px;
-  min-height: 100vh;
-  margin: 0 auto;
-  background: var(--cor-fundo);
-  padding-bottom: 100px;
+    width: 96%;
+    max-width: 1800px;
+   
+    margin: 0 auto;
+    padding: 20px clamp(16px, 2vw, 36px) 0;
+
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
 }
 
 .cabecalho {
@@ -152,18 +156,20 @@ body {
 }
 
 .menu-inferior {
-  max-width: 760px;
-  width: 100%;
-  min-height: 82px;
-  margin-top: 35px;
+    width: calc(100% + 40px);
+    min-height: 74px;
+    margin-top: 14px;
+    margin-left: -20px;
+    padding: 10px 14px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
 
-  background: #171717;
-  border-top: 1px solid #292929;
-  border-radius: 16px 16px 0 0;
+    background:#171717;
+
+    border-top: 1px solid #242424;
+
 }
 
 .menu-item {
@@ -185,6 +191,26 @@ body {
 .menu-item.ativo {
   color: var(--cor-laranja);
 }
+@media (max-width: 1024px) {
+
+    .pagina {
+        width: 100%;
+        max-width: none;
+        padding: 18px 25px 0;
+    }
+
+    .lista-produtos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
+
+    .categorias {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}
+
 
 @media (max-width: 600px) {
   .conteudo {

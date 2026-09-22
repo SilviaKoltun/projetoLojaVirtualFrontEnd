@@ -20,13 +20,9 @@ html {
 
 body {
     min-height: 100vh;
+    margin: 0;
 
-    display: flex;
-    justify-content: center;
-
-    color: var(--cor-texto);
     background-color: #eeeeee;
-
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -34,12 +30,12 @@ a {
     color: inherit;
     text-decoration: none;
 }
-
 .pagina {
-    width: 100%;
-    max-width: 760px;
-    min-height: 100vh;
-    padding: 15px 27px 0;
+    width: 96%;
+    max-width: 1800px;
+   
+    margin: 0 auto;
+    padding: 20px clamp(16px, 2vw, 36px) 0;
 
     color: var(--cor-texto);
 
@@ -466,26 +462,23 @@ a {
 }
 
 .menu-inferior {
-    width: calc(100% + 54px);
-    min-height: 77px;
-    margin-top: 10px;
-    margin-left: -27px;
-    padding: 10px 17px;
+    width: calc(100% + 40px);
+    min-height: 74px;
+    margin-top: 14px;
+    margin-left: -20px;
+    padding: 10px 14px;
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
 
     background:
-        linear-gradient(
-            180deg,
-            #151515,
-            #101010
-        );
+        linear-gradient(180deg, #181818, #111111);
 
-    border-top: 1px solid #202020;
+    border-top: 1px solid #242424;
     border-radius: 18px 18px 0 0;
 }
+   
 
 .menu-item {
     min-width: 0;
@@ -513,26 +506,23 @@ a {
 @media (max-width: 1024px) {
 
     .pagina {
-        max-width: 760px;
-        padding-left: 26px;
-        padding-right: 26px;
-    }
-
-    .card-pedido,
-    .entrega {
         width: 100%;
+        max-width: none;
+        padding: 18px 25px 0;
     }
 
-    .cabecalho-pedido {
-        margin-left: 22px;
-        margin-right: 22px;
-    }
+    .lista-produtos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
 
-    .conteudo-pedido {
-        padding-left: 22px;
-        padding-right: 22px;
+    .categorias {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 }
+
 
 @media (max-width: 768px) {
 
