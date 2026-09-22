@@ -20,24 +20,22 @@ html {
 
 body {
     min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
+    margin: 0;
 
     background-color: #eeeeee;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .pagina {
-    width: 100%;
-    max-width: 1200px;
-    min-height: 100vh;
-    padding: 20px 30px 0;
+    width: 96%;
+    max-width: 1800px;
+   
+    margin: 0 auto;
+    padding: 20px clamp(16px, 2vw, 36px) 0;
 
     color: var(--cor-texto);
     background-color: var(--cor-fundo);
 }
-
 .cabecalho {
     width: 100%;
 }
@@ -299,13 +297,10 @@ body {
 
 .lista-produtos {
     width: 100%;
-    min-height: 20px;
-
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 12px;
 }
-
 .vantagens {
     width: 100%;
     margin-top: 16px;
@@ -517,17 +512,17 @@ body {
 @media (max-width: 1024px) {
 
     .pagina {
-        max-width: 900px;
+        width: 100%;
+        max-width: none;
         padding: 18px 25px 0;
     }
 
-    .banner {
-        min-height: 235px;
-    }
-
     .lista-produtos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
 
     .categorias {
         grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -558,19 +553,6 @@ body {
 
     .nome-marca span,
     .nome-marca strong {
-        font-size: 1.45rem;
-    }
-
-    .banner {
-        min-height: 230px;
-        padding: 22px;
-    }
-
-    .banner-conteudo {
-        width: 64%;
-    }
-
-    .banner h1 {
         font-size: 1.45rem;
     }
 
@@ -648,32 +630,6 @@ body {
     .campo-busca {
         height: 46px;
         margin: 12px 0 14px;
-    }
-
-    .banner {
-        min-height: 220px;
-        padding: 20px;
-    }
-
-    .banner-conteudo {
-        width: 68%;
-    }
-
-    .banner h1 {
-        font-size: 1.35rem;
-    }
-
-    .beneficios-banner {
-        margin-top: 20px;
-        gap: 8px;
-    }
-
-    .beneficio-banner i {
-        font-size: 1.5rem;
-    }
-
-    .beneficio-banner p {
-        font-size: 0.58rem;
     }
 
     .categorias {
@@ -800,23 +756,6 @@ body {
         font-size: 1.1rem;
     }
 
-    .banner {
-        min-height: 205px;
-        padding: 17px;
-    }
-
-    .banner-conteudo {
-        width: 70%;
-    }
-
-    .banner h1 {
-        font-size: 1.2rem;
-    }
-
-    .beneficios-banner {
-        margin-top: 17px;
-    }
-
     .titulo-secao h2 {
         font-size: 1.05rem;
     }
@@ -878,19 +817,6 @@ body {
 
     .logo {
         width: 43px;
-    }
-
-    .banner {
-        min-height: 195px;
-        padding: 15px;
-    }
-
-    .banner h1 {
-        font-size: 1.1rem;
-    }
-
-    .beneficio-banner p {
-        font-size: 0.52rem;
     }
 
     .imagem-produto {
