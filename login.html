@@ -262,20 +262,23 @@
                 callback: loginComGoogle
 
             });
+            const googleBtn = document.getElementById("google-btn");
+            const larguraGoogle = Math.min(
+                googleBtn.offsetWidth,
+                480
+            );
 
             google.accounts.id.renderButton(
-
-                document.getElementById("google-btn"),
-
+                googleBtn,
                 {
                     theme: "outline",
                     size: "large",
                     text: "signin_with",
                     shape: "rectangular",
-                    width: 300
+                    width: 480
                 }
-
             );
+
 
         });
 
