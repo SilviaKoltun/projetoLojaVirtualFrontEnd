@@ -252,24 +252,16 @@
             }
 
         }
-
         window.addEventListener("load", () => {
 
             google.accounts.id.initialize({
-
                 client_id: "1074203320076-b3makfs3nk7e4mt9bsj43rs9nmu7pm24.apps.googleusercontent.com",
 
                 callback: loginComGoogle
-
             });
-            const googleBtn = document.getElementById("google-btn");
-            const larguraGoogle = Math.min(
-                googleBtn.offsetWidth,
-                480
-            );
 
             google.accounts.id.renderButton(
-                googleBtn,
+                document.getElementById("google-btn"),
                 {
                     theme: "outline",
                     size: "large",
@@ -279,8 +271,11 @@
                 }
             );
 
-
         });
+
+
+
+
 
     </script>
 

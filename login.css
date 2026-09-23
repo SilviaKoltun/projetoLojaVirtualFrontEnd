@@ -181,10 +181,10 @@ body {
     width: 100%;
     max-width: 480px;
 
-    margin: 20px auto 0;
-
     display: flex;
     justify-content: center;
+
+    margin: 20px auto 0;
 }
 .form-header,
 #login,
